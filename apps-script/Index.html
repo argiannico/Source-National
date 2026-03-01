@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #faf8f5;
+      color: #1a1a1a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { padding: 24px 28px 32px; }
+
+    .offer-title {
+      font-size: 13pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8b4789;
+      margin-bottom: 4px;
+    }
+    .offer-sub {
+      font-size: 10pt;
+      color: #999;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    /* --- Tabs --- */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #e0d8cc;
+      margin-bottom: 0;
+      position: sticky;
+      top: 0;
+      background: #faf8f5;
+      z-index: 10;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px 6px;
+      text-align: center;
+      font-family: 'EB Garamond', serif;
+      font-size: 10pt;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: #888;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .tab:hover { color: #8b4789; }
+    .tab.active {
+      color: #8b4789;
+      border-bottom-color: #8b4789;
+    }
+
+    /* --- Panels --- */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    .wine-list {
+      padding: 16px 0 8px;
+    }
+
+    /* --- Producer group --- */
+    .producer-group { margin-bottom: 20px; }
+    .producer-name {
+      font-size: 11pt;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b4789;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(139,71,137,0.15);
+      margin-bottom: 10px;
+    }
+
+    /* --- Wine row --- */
+    .wine-row {
+      display: flex;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0ece4;
+      gap: 10px;
+    }
+    .wine-row:last-child { border-bottom: none; }
+
+    .wine-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .wine-name {
+      font-size: 11pt;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .wine-format {
+      font-size: 9pt;
+      color: #999;
+    }
+    .wine-price {
+      font-size: 11pt;
+      font-weight: 500;
+      color: #8b4789;
+      min-width: 70px;
+      text-align: right;
+    }
+    .wine-qty {
+      width: 50px;
+      height: 30px;
+      border: 1px solid #c5b9a8;
+      border-radius: 3px;
+      text-align: center;
+      font-family: 'EB Garamond', serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      background: #fff;
+      outline: none;
+    }
+    .wine-qty:focus { border-color: #8b4789; }
+
+    /* --- Checkout panel --- */
+    .checkout-panel { padding: 16px 0; }
+
+    .cart-summary { margin-bottom: 20px; }
+    .cart-summary-title {
+      font-size: 11pt;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b4789;
+      margin-bottom: 10px;
+    }
+    .cart-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      font-size: 10.5pt;
+      border-bottom: 1px solid #f0ece4;
+    }
+    .cart-line-wine {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 12px;
+    }
+    .cart-line-qty { min-width: 40px; text-align: center; color: #888; }
+    .cart-line-total { min-width: 70px; text-align: right; font-weight: 500; }
+    .cart-grand-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0 0;
+      font-size: 13pt;
+      font-weight: 500;
+    }
+    .cart-grand-total span:last-child { color: #8b4789; }
+
+    .cart-empty-msg {
+      font-style: italic;
+      color: #999;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    /* --- Form --- */
+    .form-section { margin-top: 20px; }
+    .form-section label {
+      display: block;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #666;
+      margin-bottom: 4px;
+      margin-top: 12px;
+    }
+    .form-section label:first-child { margin-top: 0; }
+    .form-section input,
+    .form-section textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #c5b9a8;
+      border-radius: 3px;
+      font-family: 'EB Garamond', serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      background: #fff;
+      outline: none;
+    }
+    .form-section input:focus,
+    .form-section textarea:focus { border-color: #8b4789; }
+    .form-section textarea { height: 50px; resize: vertical; }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px;
+      font-family: 'EB Garamond', serif;
+      font-size: 11pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .submit-btn:hover { background: #8b4789; }
+    .submit-btn:disabled { background: #aaa; cursor: not-allowed; }
+
+    .status-msg {
+      text-align: center;
+      font-size: 11pt;
+      padding: 8px 0;
+      min-height: 28px;
+    }
+    .status-msg.success { color: #2e7d32; }
+    .status-msg.error { color: #c0392b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="offer-title">The Source Imports</div>
+    <div class="offer-sub">Women in Wine &mdash; Pre-Arrival Order Form</div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showPanel('wines')">Wines</button>
+      <button class="tab" onclick="showPanel('checkout')">Checkout</button>
+    </div>
+
+    <!-- ===== WINES PANEL ===== -->
+    <div class="panel active" id="panelWines">
+      <div class="wine-list">
+
+        <div class="producer-group">
+          <div class="producer-name">Katharina Wechsler &mdash; Rheinhessen</div>
+          <div class="wine-row" data-wine="2022 Wechsler, Riesling, Trocken" data-price="216" data-producer="Katharina Wechsler">
+            <div class="wine-info"><div class="wine-name">2022 Riesling, Trocken</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$216</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2022 Wechsler, Riesling, Kalk" data-price="300" data-producer="Katharina Wechsler">
+            <div class="wine-info"><div class="wine-name">2022 Riesling, Kalk</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$300</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2022 Wechsler, Riesling, Kabinett, Kirchspiel" data-price="320" data-producer="Katharina Wechsler">
+            <div class="wine-info"><div class="wine-name">2022 Riesling, Kabinett, Kirchspiel</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$320</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2022 Wechsler, Riesling, Kirchspiel" data-price="492" data-producer="Katharina Wechsler">
+            <div class="wine-info"><div class="wine-name">2022 Riesling, Kirchspiel</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$492</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2022 Wechsler, Riesling, Morstein" data-price="600" data-producer="Katharina Wechsler">
+            <div class="wine-info"><div class="wine-name">2022 Riesling, Morstein</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$600</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2020 Wechsler, Riesling, Kirchspiel" data-price="444" data-producer="Katharina Wechsler">
+            <div class="wine-info"><div class="wine-name">2020 Riesling, Kirchspiel</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$444</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2020 Wechsler, Riesling, Morstein" data-price="516" data-producer="Katharina Wechsler">
+            <div class="wine-info"><div class="wine-name">2020 Riesling, Morstein</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$516</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+        </div>
+
+        <div class="producer-group">
+          <div class="producer-name">Jardins de Fleury &mdash; Loire Valley</div>
+          <div class="wine-row" data-wine="2023 Jardins de Fleury, Chenin Blanc, La Source" data-price="300" data-producer="Jardins de Fleury">
+            <div class="wine-info"><div class="wine-name">2023 Chenin Blanc, La Source</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$300</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2023 Jardins de Fleury, Chenin Blanc, Sequoia" data-price="300" data-producer="Jardins de Fleury">
+            <div class="wine-info"><div class="wine-name">2023 Chenin Blanc, Sequoia</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$300</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2023 Jardins de Fleury, Cabernet Franc, Jardin" data-price="300" data-producer="Jardins de Fleury">
+            <div class="wine-info"><div class="wine-name">2023 Cabernet Franc, Jardin</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$300</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+        </div>
+
+        <div class="producer-group">
+          <div class="producer-name">Menina d'Uva &mdash; Tr&aacute;s-os-Montes, Portugal</div>
+          <div class="wine-row" data-wine="2023 Menina d'Uva, Vinho Branco, Liquen" data-price="300" data-producer="Menina d'Uva">
+            <div class="wine-info"><div class="wine-name">2023 Vinho Branco, Liquen</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$300</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2023 Menina d'Uva, Vinho Tinto, Ciste" data-price="240" data-producer="Menina d'Uva">
+            <div class="wine-info"><div class="wine-name">2023 Vinho Tinto, Ciste</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$240</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2023 Menina d'Uva, Vinho Tinto, Palomba" data-price="300" data-producer="Menina d'Uva">
+            <div class="wine-info"><div class="wine-name">2023 Vinho Tinto, Palomba</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$300</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+        </div>
+
+        <div class="producer-group">
+          <div class="producer-name">Agricola Brandini &mdash; Piedmont</div>
+          <div class="wine-row" data-wine="2023 Brandini, Langhe Arneis, Le Margherite" data-price="216" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2023 Langhe Arneis, Le Margherite</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$216</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2021 Brandini, Alta Langa, Brut" data-price="360" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2021 Alta Langa, Brut</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$360</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2022 Brandini, Dolcetto di Diano d'Alba, Filari Lunghi" data-price="216" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2022 Dolcetto di Diano d'Alba, Filari Lunghi</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$216</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2023 Brandini, Dolcetto di Diano d'Alba, Filari Lunghi" data-price="240" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2023 Dolcetto di Diano d'Alba, Filari Lunghi</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$240</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2021 Brandini, Barbera d'Alba" data-price="228" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2021 Barbera d'Alba</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$228</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2022 Brandini, Barbera d'Alba Superiore, Rocche del Santo" data-price="276" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2022 Barbera d'Alba Superiore, Rocche del Santo</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$276</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2022 Brandini, Langhe Nebbiolo, Filari Corti" data-price="264" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2022 Langhe Nebbiolo, Filari Corti</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$264</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2023 Brandini, Langhe Nebbiolo, Filari Corti" data-price="264" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2023 Langhe Nebbiolo, Filari Corti</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$264</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2020 Brandini, Barolo, La Morra" data-price="528" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2020 Barolo, La Morra</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$528</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2021 Brandini, Barolo, La Morra" data-price="564" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2021 Barolo, La Morra</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$564</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2019 Brandini, Barolo, R56" data-price="864" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2019 Barolo, R56</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$864</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2020 Brandini, Barolo, R56" data-price="864" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2020 Barolo, R56</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$864</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2020 Brandini, Barolo, Annunziata" data-price="864" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2020 Barolo, Annunziata</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$864</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+          <div class="wine-row" data-wine="2019 Brandini, Barolo, Cerretta" data-price="864" data-producer="Agricola Brandini">
+            <div class="wine-info"><div class="wine-name">2019 Barolo, Cerretta</div><div class="wine-format">12/750ml</div></div>
+            <div class="wine-price">$864</div>
+            <input type="number" class="wine-qty" value="0" min="0" max="99" step="0.25">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== CHECKOUT PANEL ===== -->
+    <div class="panel" id="panelCheckout">
+      <div class="checkout-panel">
+        <div class="cart-summary">
+          <div class="cart-summary-title">Order Summary</div>
+          <div id="cartSummary">
+            <div class="cart-empty-msg">No wines selected. Go back and enter quantities.</div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label>Company Name *</label>
+          <input type="text" id="coName" required placeholder="Your company">
+
+          <label>Contact Name *</label>
+          <input type="text" id="coContact" required placeholder="Full name">
+
+          <label>Email *</label>
+          <input type="email" id="coEmail" required placeholder="email@company.com">
+
+          <label>Phone</label>
+          <input type="tel" id="coPhone" placeholder="(555) 123-4567">
+
+          <label>Notes</label>
+          <textarea id="coNotes" placeholder="Delivery instructions, questions, etc."></textarea>
+
+          <button class="submit-btn" id="submitBtn" onclick="submitOrder()">Submit Order</button>
+          <div class="status-msg" id="statusMsg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── Tab switching ── */
+    function showPanel(name) {
+      document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+
+      if (name === 'wines') {
+        document.getElementById('panelWines').classList.add('active');
+        document.querySelectorAll('.tab')[0].classList.add('active');
+      } else {
+        document.getElementById('panelCheckout').classList.add('active');
+        document.querySelectorAll('.tab')[1].classList.add('active');
+        buildSummary();
+      }
+    }
+
+    /* ── Collect items with qty > 0 ── */
+    function getSelectedItems() {
+      var items = [];
+      document.querySelectorAll('.wine-row').forEach(function(row) {
+        var qty = parseFloat(row.querySelector('.wine-qty').value) || 0;
+        if (qty > 0) {
+          items.push({
+            wine: row.dataset.wine,
+            producer: row.dataset.producer,
+            price: parseFloat(row.dataset.price),
+            quantity: qty,
+            format: '12/750ml'
+          });
+        }
+      });
+      return items;
+    }
+
+    /* ── Build checkout summary ── */
+    function buildSummary() {
+      var items = getSelectedItems();
+      var container = document.getElementById('cartSummary');
+
+      if (items.length === 0) {
+        container.innerHTML = '<div class="cart-empty-msg">No wines selected. Go back and enter quantities.</div>';
+        return;
+      }
+
+      var html = '';
+      var grandTotal = 0;
+      items.forEach(function(item) {
+        var lineTotal = item.price * item.quantity;
+        grandTotal += lineTotal;
+        html += '<div class="cart-line">';
+        html += '<span class="cart-line-wine">' + item.wine + '</span>';
+        html += '<span class="cart-line-qty">' + item.quantity + ' cs</span>';
+        html += '<span class="cart-line-total">$' + lineTotal.toFixed(2) + '</span>';
+        html += '</div>';
+      });
+
+      html += '<div class="cart-grand-total">';
+      html += '<span>ORDER TOTAL</span>';
+      html += '<span>$' + grandTotal.toFixed(2) + '</span>';
+      html += '</div>';
+
+      container.innerHTML = html;
+    }
+
+    /* ── Generate order ID ── */
+    function generateOrderId() {
+      var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      var id = 'WIW-';
+      for (var i = 0; i < 6; i++) {
+        id += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return id;
+    }
+
+    /* ── Submit order via google.script.run ── */
+    function submitOrder() {
+      var items = getSelectedItems();
+      var statusEl = document.getElementById('statusMsg');
+      var submitBtn = document.getElementById('submitBtn');
+
+      if (items.length === 0) {
+        statusEl.textContent = 'Please select at least one wine.';
+        statusEl.className = 'status-msg error';
+        return;
+      }
+
+      var company = document.getElementById('coName').value.trim();
+      var contact = document.getElementById('coContact').value.trim();
+      var email = document.getElementById('coEmail').value.trim();
+
+      if (!company || !contact || !email) {
+        statusEl.textContent = 'Please fill in Company, Contact, and Email.';
+        statusEl.className = 'status-msg error';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      statusEl.textContent = '';
+      statusEl.className = 'status-msg';
+
+      var payload = {
+        orderId: generateOrderId(),
+        company: company,
+        contact: contact,
+        email: email,
+        phone: document.getElementById('coPhone').value.trim(),
+        notes: document.getElementById('coNotes').value.trim(),
+        items: items
+      };
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (result.status === 'success') {
+            statusEl.textContent = result.message;
+            statusEl.className = 'status-msg success';
+            // Reset quantities
+            document.querySelectorAll('.wine-qty').forEach(function(input) { input.value = 0; });
+            document.getElementById('coName').value = '';
+            document.getElementById('coContact').value = '';
+            document.getElementById('coEmail').value = '';
+            document.getElementById('coPhone').value = '';
+            document.getElementById('coNotes').value = '';
+            buildSummary();
+          } else {
+            statusEl.textContent = result.message || 'Something went wrong.';
+            statusEl.className = 'status-msg error';
+          }
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Order';
+        })
+        .withFailureHandler(function(err) {
+          statusEl.textContent = 'Error: ' + err.message;
+          statusEl.className = 'status-msg error';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Order';
+        })
+        .submitOrderFromClient(payload);
+    }
+  </script>
+</body>
+</html>

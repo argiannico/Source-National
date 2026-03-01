@@ -1,0 +1,51 @@
+TIME LOG — Inside Source Landing Pages (SD, LA, SF)
+====================================================
+Date: February 26, 2026
+
+Task: Build 3 city-specific landing pages for Spring 2026 Inside Source Flight Tasting
+
+Phase 1 — Initial build:
+- Parsed Google Sheets tasting lineup data (gid=867832458)
+  - 10 flights, 40 wines, 16 producers
+  - Identified city-specific Flight 10 variants (SD, LA, SF)
+- Fetched all producer bios and flight headers from spreadsheet
+- Extracted design patterns from existing david-duband-2023-collection.html
+- Built SD landing page (inside-source-sd.html)
+  - Full HTML with embedded font, parallax hero, scroll-reveal
+  - All 10 flights with producer bios and wine details
+  - Keyword highlighting (.kw class) for sommelier-relevant terms
+  - No shopping cart/order form (tasting lineup only)
+- Built LA and SF landing pages from SD base
+  - Each with city-specific Flight 10 Duband lineup
+- Fixed shorthand terroir/vinification descriptions across all three files
+
+Phase 2 — Per-producer carousels (matching Spain page style):
+- Researched and sourced producer images from thesourceimports.com for all 10 producers
+  - Mixtura: 1 image (thesourceimports.com/mixtura/)
+  - Quinta da Carolina: 7 images (thesourceimports.com/quinta-da-carolina/)
+  - Augalevada: 8 images (thesourceimports.com/augalevada/)
+  - Aseginolaza & Leunda: 6 images (thesourceimports.com/aseginolaza-y-leunda/)
+  - Philippe Chatillon: 7 images (thesourceimports.com/philippe-chatillon/)
+  - Martin Muthenthaler: 0 images (page has no photos)
+  - Weszeli: 8 images (thesourceimports.com/weszeli/)
+  - Familia Seoane Novelle: 8 images (thesourceimports.com/fazenda-pradio/)
+  - Giacomo Baraldo: 8 images (thesourceimports.com/giacomo-baraldo/)
+  - David Duband: 8 images (thesourceimports.com/david-duband/)
+- Restructured all pages:
+  - Each producer within each flight gets own carousel + bio + "Click here for more" link
+  - Flights with 2 producers split wines under respective producer sections
+  - 13 carousels per page (14 producers minus Muthenthaler with no images)
+  - 14 "Click here for more" links per page
+  - Carousel CSS and JS added
+  - Lazy loading on all carousel images except first per carousel
+- Rebuilt LA and SF from restructured SD base with city-specific Flight 10 wines
+
+Files (current):
+- /Users/remysmacbookpro/Desktop/VineJoy /inside-source-sd.html (861 lines)
+- /Users/remysmacbookpro/Desktop/VineJoy /inside-source-la.html (861 lines)
+- /Users/remysmacbookpro/Desktop/VineJoy /inside-source-sf.html (861 lines)
+
+Flight 10 lineup by city:
+  SD: HCdN Louis Auguste, Chambolle-Musigny, Morey-SD 1er Cru Clos Sorbe, NSG 1er Cru Les Proces
+  LA: HCdN Louis Auguste, Gevrey-Chambertin, Morey-SD 1er Cru Les Broc, NSG 1er Cru Aux Thorey
+  SF: HCdN Louis Auguste, Gevrey-Chambertin, Vosne-Romanee, Chambolle-Musigny 1er Cru Les Sentiers
