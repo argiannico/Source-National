@@ -351,6 +351,35 @@
       color: #c0392b;
       font-weight: 500;
     }
+    .wine-stock.pre-arrival {
+      color: #7b5ea7;
+      font-style: italic;
+    }
+    .wine-stock.inquire {
+      color: #999;
+      font-style: italic;
+    }
+
+    /* Stock filter tabs */
+    .stock-filter {
+      display: flex; gap: 0; margin-left: 12px;
+    }
+    .stock-filter-btn {
+      font-family: 'The Source', 'EB Garamond', serif;
+      font-size: 8pt; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 12px; border: 1px solid rgba(90,62,43,0.2);
+      background: none; cursor: pointer; color: #888;
+      transition: all 0.2s;
+    }
+    .stock-filter-btn:first-child { border-radius: 4px 0 0 4px; }
+    .stock-filter-btn:last-child { border-radius: 0 4px 4px 0; }
+    .stock-filter-btn + .stock-filter-btn { border-left: none; }
+    .stock-filter-btn.active {
+      background: #5a3e2b; color: #fff; border-color: #5a3e2b;
+    }
+    .stock-filter-btn:hover:not(.active) {
+      background: rgba(90,62,43,0.06);
+    }
 
     /* Wine Details Accordion */
     .wine-toggle {
@@ -996,6 +1025,11 @@
     <input type="text" id="searchInput" placeholder="Search wines, producers, regions, varietals..." oninput="debouncedSearch()" autocomplete="off">
     <button class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none;">&times;</button>
   </div>
+  <div class="stock-filter" id="stockFilter">
+    <button class="stock-filter-btn active" data-filter="all" onclick="filterByStock('all')">All</button>
+    <button class="stock-filter-btn" data-filter="in-stock" onclick="filterByStock('in-stock')">In Stock</button>
+    <button class="stock-filter-btn" data-filter="pre-arrival" onclick="filterByStock('pre-arrival')">Pre-Arrival</button>
+  </div>
   <div class="view-toggle">
     <button class="view-toggle-btn active" id="btnCatalog" onclick="switchView('catalog')">Catalog</button>
     <button class="view-toggle-btn" id="btnSpreadsheet" onclick="switchView('spreadsheet')">Spreadsheet</button>
@@ -1030,6 +1064,7 @@ let searchTimeout = null;
 let currentView = 'catalog';
 let sortColumn = null;
 let sortDirection = 'asc';
+let currentStockFilter = 'all';
 
 function generateOrderId() {
   const now = new Date();
@@ -1309,7 +1344,9 @@ function handleSearch(query) {
       var titleEl = wineEl.querySelector('.wine-title');
       if (titleEl) searchText += ' ' + titleEl.textContent.toLowerCase();
 
-      if (searchText.indexOf(lowerQuery) !== -1) {
+      // Check stock filter first
+      var stockMatch = (currentStockFilter === 'all' || wineEl.dataset.stock === currentStockFilter);
+      if (stockMatch && searchText.indexOf(lowerQuery) !== -1) {
         wineEl.style.display = '';
         visibleWines++;
       } else {
@@ -1355,6 +1392,62 @@ function clearSearch() {
     document.getElementById('searchClear').style.display = 'none';
     handleSearch('');
   }
+}
+
+// ===================================================================
+// STOCK FILTER
+// ===================================================================
+function filterByStock(filter) {
+  currentStockFilter = filter;
+
+  // Update button states
+  document.querySelectorAll('.stock-filter-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+
+  if (currentView === 'catalog') {
+    var activeContent = document.getElementById('content-' + currentWarehouse);
+    if (!activeContent) return;
+
+    var wines = activeContent.querySelectorAll('.wine-entry[data-stock]');
+    wines.forEach(function(el) {
+      if (filter === 'all' || el.dataset.stock === filter) {
+        el.style.display = '';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    // Hide empty producer sections
+    activeContent.querySelectorAll('.producer-section').forEach(function(section) {
+      var visible = section.querySelectorAll('.wine-entry:not([style*="display: none"])');
+      section.style.display = visible.length === 0 ? 'none' : '';
+    });
+    // Hide empty region sections
+    activeContent.querySelectorAll('.region-section').forEach(function(section) {
+      var visible = section.querySelectorAll('.producer-section:not([style*="display: none"])');
+      section.style.display = visible.length === 0 ? 'none' : '';
+    });
+    // Hide empty country sections
+    activeContent.querySelectorAll('.country-section').forEach(function(section) {
+      var visible = section.querySelectorAll('.producer-section:not([style*="display: none"])');
+      section.style.display = visible.length === 0 ? 'none' : '';
+    });
+  } else {
+    // Spreadsheet view
+    var rows = document.querySelectorAll('.ss-row[data-stock]');
+    rows.forEach(function(row) {
+      if (filter === 'all' || row.dataset.stock === filter) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  // Re-apply search on top of stock filter
+  var query = document.getElementById('searchInput').value.trim();
+  if (query) handleSearch(query);
 }
 
 // ===================================================================
@@ -1417,9 +1510,10 @@ function renderSpreadsheet() {
         var varietalStr = (wine.varietals || []).map(function(v) { return v.name || v; }).join(', ');
         var displayName = stripProducerPrefix(wine.name);
 
-        // Skip out-of-stock wines
         var avail = parseFloat(wine.available) || 0;
-        if (avail <= 0) return;
+        var stockStatus = 'in-stock';
+        if (avail <= 0 && distPrice > 0) stockStatus = 'pre-arrival';
+        else if (avail <= 0) stockStatus = 'inquire';
 
         rows.push({
           producer: producer.name,
@@ -1431,9 +1525,11 @@ function renderSpreadsheet() {
           distPrice: distPrice,
           dist5Price: dist5Price,
           dist10Price: dist10Price,
-          available: parseFloat(wine.available) || 0,
+          available: avail,
+          stockStatus: stockStatus,
           varietals: varietalStr,
-          searchText: (producer.name + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '')).toLowerCase()
+          region: producer.region || '',
+          searchText: (producer.name + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (producer.region || '')).toLowerCase()
         });
       });
     });
@@ -1465,6 +1561,7 @@ function renderSpreadsheet() {
     { key: 'distPrice', label: 'Dist. Price' },
     { key: 'dist5Price', label: '5%' },
     { key: 'dist10Price', label: '10%' },
+    { key: 'stockStatus', label: 'Status' },
     { key: 'available', label: 'Available' },
     { key: 'varietals', label: 'Varietals' }
   ];
@@ -1479,7 +1576,7 @@ function renderSpreadsheet() {
   html += '</tr></thead><tbody>';
 
   rows.forEach(function(row, idx) {
-    html += '<tr class="ss-row" data-search="' + escapeHtml(row.searchText) + '">';
+    html += '<tr class="ss-row" data-search="' + escapeHtml(row.searchText) + '" data-stock="' + row.stockStatus + '">';
     html += '<td>' + escapeHtml(row.producer) + '</td>';
     html += '<td>' + escapeHtml(row.wine) + '</td>';
     html += '<td>' + row.vintage + '</td>';
@@ -1489,8 +1586,12 @@ function renderSpreadsheet() {
     html += '<td class="price-cell">' + (row.dist5Price > 0 ? '$' + row.dist5Price.toFixed(2) : '---') + '</td>';
     html += '<td class="price-cell">' + (row.dist10Price > 0 ? '$' + row.dist10Price.toFixed(2) : '---') + '</td>';
 
-    var stockClass = row.available <= 0 ? 'stock-out' : (row.available <= 2 ? 'stock-low' : '');
-    html += '<td class="' + stockClass + '">' + (row.available <= 0 ? 'Out' : row.available.toFixed(2) + ' cs') + '</td>';
+    var statusLabel = row.stockStatus === 'in-stock' ? 'In Stock' : (row.stockStatus === 'pre-arrival' ? 'Pre-Arrival' : 'Inquire');
+    var statusClass = row.stockStatus === 'pre-arrival' ? 'wine-stock pre-arrival' : (row.stockStatus === 'inquire' ? 'wine-stock inquire' : '');
+    html += '<td class="' + statusClass + '">' + statusLabel + '</td>';
+
+    var stockClass = row.available <= 2 && row.available > 0 ? 'stock-low' : '';
+    html += '<td class="' + stockClass + '">' + (row.available > 0 ? row.available.toFixed(2) + ' cs' : '') + '</td>';
 
     html += '<td>' + escapeHtml(row.varietals) + '</td>';
 
@@ -1541,7 +1642,7 @@ function exportCSV() {
   if (!warehouseData) return;
 
   var whLabel = warehouseData.warehouse_label || warehouseData.warehouse;
-  var headers = ['Producer', 'Wine', 'Vintage', 'Appellation', 'Format', 'Dist. Price', '5% Price', '10% Price', 'Available (cs)', 'Varietals'];
+  var headers = ['Producer', 'Wine', 'Vintage', 'Appellation', 'Format', 'Dist. Price', '5% Price', '10% Price', 'Status', 'Available (cs)', 'Varietals'];
 
   var csvRows = [headers.join(',')];
 
@@ -1549,14 +1650,13 @@ function exportCSV() {
     country.producers.forEach(function(producer) {
       producer.wines.forEach(function(wine) {
         var avail = parseFloat(wine.available) || 0;
-        if (avail <= 0) return;
-
         var distPrice = parsePrice(wine.dist);
         var dist5Price = parsePrice(wine.dist5);
         var dist10Price = parsePrice(wine.dist10);
         var displayName = stripProducerPrefix(wine.name);
         var format = (wine.unit_set || '') + '/' + (wine.bottle_size || '');
         var varietalStr = (wine.varietals || []).map(function(v) { return v.name || v; }).join('; ');
+        var status = avail > 0 ? 'In Stock' : (distPrice > 0 ? 'Pre-Arrival' : 'Inquire');
 
         var row = [
           csvEscape(producer.name),
@@ -1567,7 +1667,8 @@ function exportCSV() {
           distPrice > 0 ? distPrice.toFixed(2) : '',
           dist5Price > 0 ? dist5Price.toFixed(2) : '',
           dist10Price > 0 ? dist10Price.toFixed(2) : '',
-          avail.toFixed(2),
+          status,
+          avail > 0 ? avail.toFixed(2) : '',
           csvEscape(varietalStr)
         ];
         csvRows.push(row.join(','));
@@ -1826,8 +1927,10 @@ function renderPortfolio() {
           const format = unitSet + '/' + bottleSize;
           const available = parseFloat(wine.available) || 0;
 
-          // Skip out-of-stock wines
-          if (available <= 0) return;
+          // Determine stock status
+          let stockStatus = 'in-stock';
+          if (available <= 0 && distPrice > 0) stockStatus = 'pre-arrival';
+          else if (available <= 0) stockStatus = 'inquire';
 
           // Build title line
           let titleLine = '';
@@ -1844,14 +1947,18 @@ function renderPortfolio() {
 
           // Stock indicator
           let stockHtml = '';
-          if (available <= 2) {
+          if (stockStatus === 'pre-arrival') {
+            stockHtml = '<span class="wine-stock pre-arrival">(Pre-Arrival)</span>';
+          } else if (stockStatus === 'inquire') {
+            stockHtml = '<span class="wine-stock inquire">(Inquire)</span>';
+          } else if (available <= 2) {
             stockHtml = '<span class="wine-stock low">(' + available.toFixed(2) + ' cs available)</span>';
           } else {
             stockHtml = '<span class="wine-stock">(' + available.toFixed(2) + ' cs available)</span>';
           }
 
           const varietalStr = (wine.varietals || []).map(function(v) { return v.name || v; }).join(', ');
-          contentHtml += '<div class="wine-entry" data-wine="' + escapeHtml(vintage + ' ' + wineName) + '" data-price="' + distPrice + '" data-format="' + escapeHtml(format) + '" data-producer="' + escapeHtml(producerName) + '" data-warehouse="' + escapeHtml(whKey) + '" data-appellation="' + escapeHtml(wine.appellation || '') + '" data-varietals="' + escapeHtml(varietalStr) + '" data-region="' + escapeHtml(region) + '">';
+          contentHtml += '<div class="wine-entry" data-wine="' + escapeHtml(vintage + ' ' + wineName) + '" data-price="' + distPrice + '" data-format="' + escapeHtml(format) + '" data-producer="' + escapeHtml(producerName) + '" data-warehouse="' + escapeHtml(whKey) + '" data-appellation="' + escapeHtml(wine.appellation || '') + '" data-varietals="' + escapeHtml(varietalStr) + '" data-region="' + escapeHtml(region) + '" data-stock="' + stockStatus + '">';
           contentHtml += '<p class="wine-title">' + titleLine + stockHtml + '</p>';
 
           const hasDetails = tastingNotes || vinification || aging || vineyard;
@@ -1954,8 +2061,9 @@ function switchWarehouse(wh) {
   }
   countryNav.innerHTML = navHtml;
 
-  // Clear search when switching warehouses
+  // Clear search and stock filter when switching warehouses
   clearSearch();
+  filterByStock('all');
 
   // Update spreadsheet if in spreadsheet mode
   if (currentView === 'spreadsheet') {
