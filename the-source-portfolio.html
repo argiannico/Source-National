@@ -224,8 +224,8 @@
       user-select: none;
       white-space: nowrap;
       position: sticky;
-      top: var(--ss-header-top, 0px);
-      z-index: 50;
+      top: 0;
+      z-index: 110;
     }
     .spreadsheet-table th:hover { background: #333; }
     .spreadsheet-table th .sort-arrow {
@@ -1458,13 +1458,21 @@ function switchView(mode) {
   document.getElementById('btnCatalog').classList.toggle('active', mode === 'catalog');
   document.getElementById('btnSpreadsheet').classList.toggle('active', mode === 'spreadsheet');
 
+  // Make sticky header scroll away in spreadsheet mode so table header pins to top
+  var stickyHeader = document.getElementById('stickyHeader');
+  if (mode === 'spreadsheet') {
+    stickyHeader.style.position = 'relative';
+  } else {
+    stickyHeader.style.position = '';
+  }
+
   // Show/hide catalog content
   DATA.forEach(function(warehouse) {
     var el = document.getElementById('content-' + warehouse.warehouse);
     if (el) el.style.display = (mode === 'catalog' && warehouse.warehouse === currentWarehouse) ? '' : 'none';
   });
 
-  // Show/hide country nav (only in catalog mode) — do this BEFORE rendering spreadsheet
+  // Show/hide country nav (only in catalog mode)
   var cn = document.getElementById('countryNav');
   cn.style.display = (mode === 'catalog') ? '' : 'none';
 
