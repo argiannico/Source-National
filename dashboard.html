@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE SOURCE | Portfolio Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="https://thesourceimports.com/wp-content/uploads/2019/07/favicon.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+    @font-face {
+      font-family: 'The Source';
+      src: local('The Source 4 Regular'), local('TheSource4-Regular'),
+           url(data:font/truetype;base64,AAEAAAAQAQAABAAARFNJRwAAAAEAAGhMAAAACEdQT1MtICWMAABmMAAAAUhHU1VCKX8fKwAAZ3gAAADST1MvMlgb9HcAAAGIAAAAYGNtYXBZOmV8AAADsAAAAjZjdnQgACECeQAABfAAAAAEZ2FzcAAAABAAAGYoAAAACGdseWZ6aPPRAAAG3AAAW5hoZWFkJWZMzwAAAQwAAAA2aGhlYQY8AtYAAAFEAAAAJGhtdHiaew5KAAAB6AAAAchsb2NhyQyyVgAABfQAAADmbWF4cAC5AMUAAAFoAAAAIG5hbWUF/eSbAABidAAAApFwb3N0npvKJAAAZQgAAAEfcHJlcGgGjIUAAAXoAAAABwABAAAAAQAAWUfA9l8PPPUACwPoAAAAAOGzBK0AAAAA4bMErQAZ/3gCyAMYAAAACAACAAAAAAAAAAEAAAMY/3gAWgLrAAAAAALIAAEAAAAAAAAAAAAAAAAAAAByAAEAAAByAMIABQAAAAAAAgAAAAEAAQAAAEAAAAAAAAAABAFaAZAABQAAAooCvAAAAIwCigK8AAAB4AAxAQIAAAIABQMAAAAAAACAAAAnAAAAAgAAAAAAAAAAQ0xHUgBAAAAgrAMg/zgAWgMYAIgAAAADAAAAAAJGAAAAAAAgAAIBbAAhAPoAAAFNAAAA+gAAAPoAAACXACAChAAkAWQAIwHOACICJAAkAP4AIQD9ACQA/AAhAgAAJACaACAA5gAgAIEAIAFdACQBVQAgARMAJAFQACMBXAAiAZMAJAE7AB8BVQAhAU4AJAFbACMBUwAjAIQAIACbAB4BiQAiAVcAGQGIAB4BYwAkAa0AIQDdAB4A2gAjAZEAIACwAB4BxwAkAZMAIQFiACIBsAAkAbUAIQGYACIBrwAiAWoAHwCeACABUQAjAYwAJAGiACAB7QAjAaYAIAGEACIBTAAeAZIAIgFiAB4BXAAhAckAJAFNACEBXwAjAc8AIwGuACUBmgAkAagAJADZACMAdgAeARUAIAD6AAAAmAAhAOMAHACwACMBhAAhAeYAHgCGACAAmgAhAYgAIAFnACQBiwAkAcgAJAHHACQBxQAkAcYAJAHRACQC6wAkAWYAIQGqACEBswAhAbQAIQGzACEAzgAlALwAIAD3ACQA+gAiAaYAGwGFACIBiQAiAYgAIQGCACIBhgAiAU0AIQFLACEBTgAiAU0AIQGZACQBmQAkAs4AIQDoAB4AqwAhAKYAIgERACEBEQAhAeQAIgG4ACIAAAADAAAAAwAAABwAAQAAAAABMAADAAEAAAAcAAQBFAAAAEAAQAAFAAAAAAANACEAJgBAAFoAWwBdAHwAfgChAKgArAC3ALsAvwDEAM8A1gDdAOQA7wD2AP0A/wFTAXgCxiAZIB0grP//AAAAAAANACAAIwAoAEEAWwBdAF8AfgCgAKgAqgC3ALoAvwDAAMYA0QDZAN8A5gDxAPkA/wFSAXgCxiAYIBwgrP//AAH/9v/k/+P/4v/m/8j/x//G/8X/pP+e/53/k/+R/47/j/+O/63/i/9v/24/bf9r/2oAAP7x/aXgVOBS38QAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAagBqAAABBgAAAQAAAAAAAAABAgAAAAMAAAAAAAAAAAAAAAAAAAABAAAEBQAGBwgJAAoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACMAJAAlJicoKSorLC0uLzAxMjM0NTY3ODk6Ozw9Pj9AQUIAQwAAAAAAAAAAUE9RU1IAVVdWWFlbWlxdXmBfYWNiZWRmZwAAAAAAAABOAAAAAEYAAAAAAAAAAAAAAAAAAEdLAFQATUVJAAAAAEhMAEQAAAAAagAAbm9sbQAAaQAAcAAAAAAASgAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAAAAAAAAAuAH/hbAEjQAAIQJ5AAAAFAAUABQAFAAUAGABMgH4AswD1gQaBFoEpgTwBRQFOAVSBYIF9AY6BqgHKgeYB/gIfAjECVYJ4goYCmgKpArgCxYLggxyDLYM/A0kDUANwg5SDqwPAg9yD9IQYBC0ENwRJBGcEeQSgBMCE1gTthQ+FLIVIBVwFcYWGBawFyAXaBfuGGQYhBjAGMAZBhk8GX4Z+hokGkoafhsEG3ob7BxoHPodoB5CHwAf2iBaIN4hdiIYIsQi/CM6I44j6iSwJRolpCYqJvQnligMKIwpECmqKhAqmitwK54rziv8LFAsqC1CLcw=) format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #faf8f5; color: #1a1a1a; font-family: 'EB Garamond', serif; -webkit-font-smoothing: antialiased; }
+
+    /* ── Login Screen ── */
+    .login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: #faf8f5;
+    }
+    .login-card {
+      background: #fff; border: 1px solid #e0d8cc; padding: 60px 50px; text-align: center;
+      max-width: 440px; width: 90%; box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .login-card h1 {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 36px; font-weight: normal;
+      letter-spacing: 8px; text-transform: uppercase; margin-bottom: 8px; color: #1a1a1a;
+    }
+    .login-card h2 {
+      font-family: 'EB Garamond', serif; font-size: 14pt; font-weight: 400;
+      letter-spacing: 4px; text-transform: uppercase; color: #888; margin-bottom: 6px;
+    }
+    .login-divider { width: 50px; height: 1px; background: #c5b9a8; margin: 20px auto 28px; }
+    .login-card input[type="text"] {
+      width: 100%; padding: 12px 16px; border: 1px solid #c5b9a8; border-radius: 3px;
+      font-family: 'EB Garamond', serif; font-size: 14pt; text-align: center;
+      letter-spacing: 3px; text-transform: uppercase; color: #1a1a1a; background: #faf8f5;
+      outline: none; transition: border-color 0.3s;
+    }
+    .login-card input:focus { border-color: #5a3e2b; }
+    .login-card input::placeholder { color: #bbb; letter-spacing: 1px; text-transform: none; font-size: 12pt; }
+    .login-btn {
+      width: 100%; margin-top: 16px; padding: 12px; background: #1a1a1a; color: #fff; border: none;
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 11pt; letter-spacing: 3px;
+      text-transform: uppercase; cursor: pointer; transition: background 0.3s;
+    }
+    .login-btn:hover { background: #5a3e2b; }
+    .login-btn:disabled { background: #aaa; cursor: not-allowed; }
+    .login-error {
+      color: #8b2e2e; font-size: 11pt; margin-top: 14px; min-height: 20px;
+    }
+
+    /* ── Dashboard Layout ── */
+    .dashboard { display: none; }
+    .dashboard.active { display: block; }
+    .login-screen.hidden { display: none; }
+
+    /* User bar */
+    .user-bar {
+      background: #1a1a1a; color: #fff; padding: 14px 40px; display: flex;
+      justify-content: space-between; align-items: center;
+    }
+    .user-bar-info {
+      font-family: 'EB Garamond', serif; font-size: 12pt;
+    }
+    .user-bar-info strong { font-weight: 500; }
+    .user-bar-right { display: flex; align-items: center; gap: 16px; }
+    .refresh-btn, .logout-btn {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 9pt; letter-spacing: 1.5px;
+      text-transform: uppercase; background: none; border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8); padding: 6px 16px; cursor: pointer; transition: all 0.3s;
+      border-radius: 2px;
+    }
+    .refresh-btn:hover, .logout-btn:hover { border-color: #fff; color: #fff; }
+    .logout-btn { border-color: #8b2e2e; color: #e57373; }
+    .logout-btn:hover { background: #8b2e2e; color: #fff; }
+
+    /* Sticky header */
+    .sticky-header {
+      position: sticky; top: 0; z-index: 102; background: #faf8f5;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    /* Country nav */
+    .country-nav {
+      background: #faf8f5; border-bottom: 1px solid #e0d8cc;
+      display: flex; justify-content: center; gap: 0; padding: 0;
+    }
+    .country-tab {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 11pt;
+      letter-spacing: 2px; text-transform: uppercase; padding: 14px 20px;
+      border: none; background: none; cursor: pointer; color: #888;
+      transition: color 0.3s, border-color 0.3s; border-bottom: 2px solid transparent;
+    }
+    .country-tab:hover, .country-tab.active { color: #5a3e2b; border-bottom-color: #5a3e2b; }
+
+    /* Toolbar */
+    .toolbar {
+      background: #faf8f5; padding: 10px 40px; display: flex; align-items: center;
+      gap: 16px; border-bottom: 1px solid #e0d8cc;
+    }
+    .search-bar { flex: 1; display: flex; align-items: center; gap: 8px; position: relative; }
+    .search-icon { position: absolute; left: 12px; pointer-events: none; }
+    .search-bar input {
+      width: 100%; padding: 8px 14px 8px 36px; border: 1px solid #c5b9a8; border-radius: 3px;
+      font-family: 'EB Garamond', serif; font-size: 12pt; color: #1a1a1a; background: #fff;
+      outline: none; transition: border-color 0.3s;
+    }
+    .search-bar input:focus { border-color: #5a3e2b; }
+    .search-bar input::placeholder { color: #aaa; font-style: italic; }
+    .search-clear {
+      position: absolute; right: 8px; background: none; border: none; font-size: 20px;
+      color: #888; cursor: pointer; padding: 0 4px; line-height: 1;
+    }
+    .search-clear:hover { color: #1a1a1a; }
+    .view-toggle { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: center; }
+    .view-tab {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 9pt; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 8px 18px; border: 1px solid #c5b9a8;
+      background: none; cursor: pointer; color: #888; transition: all 0.3s; border-radius: 2px;
+      white-space: nowrap;
+    }
+    .view-tab:hover { color: #5a3e2b; border-color: #5a3e2b; }
+    .view-tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+    .format-toggle {
+      display: inline-flex; margin-left: 10px; border: 1px solid #c5b9a8; border-radius: 2px; overflow: hidden;
+    }
+    .format-btn {
+      font-family: 'EB Garamond', serif; font-size: 9pt; letter-spacing: 1px;
+      text-transform: uppercase; padding: 6px 12px; border: none; background: none;
+      cursor: pointer; color: #888; transition: all 0.25s; white-space: nowrap;
+    }
+    .format-btn:not(:last-child) { border-right: 1px solid #c5b9a8; }
+    .format-btn:hover { color: #5a3e2b; }
+    .format-btn.active { background: #5a3e2b; color: #fff; }
+
+    /* Content area */
+    .content { max-width: 850px; margin: 0 auto; padding: 50px 40px 60px; }
+
+    /* Country / region / producer headings */
+    .country-divider {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 28pt; font-weight: normal;
+      letter-spacing: 4px; text-transform: uppercase; color: #5a3e2b; text-align: center;
+      margin: 60px 0 10px; padding-top: 20px;
+    }
+    .country-section:first-child .country-divider { margin-top: 0; }
+    .region-header {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 14pt; font-weight: normal;
+      letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin: 36px 0 8px;
+      padding-bottom: 6px; border-bottom: 1px solid rgba(90,62,43,0.12);
+    }
+    .producer-section {
+      margin-bottom: 55px; opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .producer-section.visible { opacity: 1; transform: translateY(0); }
+    .producer-title {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 16pt; font-weight: normal;
+      letter-spacing: 1px; margin-bottom: 10px; color: #1a1a1a;
+    }
+    .intro {
+      font-family: 'EB Garamond', serif; font-size: 14.5pt; font-style: normal;
+      line-height: 1.55; margin-bottom: 24px;
+    }
+
+    /* Wine entries */
+    .wine-entry { margin-bottom: 22px; padding: 16px 0; border-bottom: 1px solid rgba(90,62,43,0.08); }
+    .wine-title {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 15pt; font-weight: normal;
+      line-height: 1.45; margin-bottom: 4px;
+    }
+    .wine-desc {
+      font-family: 'EB Garamond', serif; font-size: 12pt; line-height: 1.5; margin-bottom: 4px;
+    }
+    .wine-desc .kw { font-family: 'The Source', 'EB Garamond', serif; font-style: normal; color: #5a3e2b; }
+
+    /* Wine details accordion */
+    .wine-toggle {
+      background: none; border: none; font-family: 'EB Garamond', serif; font-size: 10.5pt;
+      color: #5a3e2b; cursor: pointer; padding: 4px 0; display: inline-flex;
+      align-items: center; gap: 4px; transition: color 0.2s; letter-spacing: 0.5px;
+    }
+    .wine-toggle:hover { color: #1a1a1a; }
+    .wine-toggle .chevron { display: inline-block; transition: transform 0.3s ease; font-size: 11px; }
+    .wine-toggle.open .chevron { transform: rotate(90deg); }
+    .wine-details { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; opacity: 0; }
+    .wine-details.open { max-height: 800px; opacity: 1; }
+
+    /* Allocation bar */
+    .allocation-bar-container {
+      display: flex; align-items: center; gap: 10px; margin: 6px 0;
+    }
+    .allocation-label {
+      font-family: 'EB Garamond', serif; font-size: 10.5pt; color: #666; white-space: nowrap;
+    }
+    .allocation-bar {
+      flex: 1; max-width: 160px; height: 6px; background: #e8e2d8; border-radius: 3px; overflow: hidden;
+    }
+    .allocation-bar-fill {
+      height: 100%; background: #5a3e2b; border-radius: 3px; transition: width 0.4s ease;
+    }
+    .allocation-bar-fill.low { background: #c0392b; }
+    .allocation-bar-fill.empty { background: #ccc; }
+
+    /* Carousel */
+    .carousel { position: relative; width: 100%; aspect-ratio: 3/2; overflow: hidden; margin-bottom: 22px; background: #f0f0f0; }
+    .carousel-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25,0.1,0.25,1); }
+    .carousel-slide { min-width: 100%; height: 100%; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.75);
+      border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+      font-size: 18px; color: #333; display: flex; align-items: center; justify-content: center;
+      z-index: 2; opacity: 0; transition: opacity 0.3s; backdrop-filter: blur(4px);
+    }
+    .carousel:hover .carousel-btn { opacity: 1; }
+    .carousel-btn:hover { background: rgba(255,255,255,0.95); }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+    .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; }
+    .carousel-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.5);
+      border: none; cursor: pointer; padding: 0; transition: background 0.3s;
+    }
+    .carousel-dot.active { background: rgba(255,255,255,0.95); }
+
+    /* Wine cart controls */
+    .wine-cart-controls { display: flex; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+    .wine-price-display { font-family: 'EB Garamond', serif; font-size: 13pt; font-weight: 500; color: #5a3e2b; min-width: 120px; }
+    .qty-label { font-family: 'EB Garamond', serif; font-size: 11pt; color: #666; }
+    .qty-input {
+      width: 54px; height: 34px; border: 1px solid #c5b9a8; border-radius: 3px;
+      text-align: center; font-family: 'EB Garamond', serif; font-size: 12pt;
+      color: #1a1a1a; background: #faf8f5; outline: none; transition: border-color 0.3s;
+    }
+    .qty-input:focus { border-color: #5a3e2b; }
+    .add-to-cart-btn {
+      font-family: 'EB Garamond', serif; font-size: 11pt; letter-spacing: 1.5px;
+      text-transform: uppercase; background: #1a1a1a; color: #fff; border: none;
+      padding: 8px 20px; cursor: pointer; transition: background 0.3s, transform 0.15s;
+    }
+    .add-to-cart-btn:hover { background: #5a3e2b; }
+    .add-to-cart-btn:active { transform: scale(0.97); }
+    .add-to-cart-btn.added { background: #5a3e2b; }
+    .add-to-cart-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* Floating cart icon */
+    .floating-cart {
+      position: fixed; top: 24px; right: 24px; z-index: 1000; width: 52px; height: 52px;
+      background: #1a1a1a; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .floating-cart:hover { background: #5a3e2b; transform: scale(1.05); }
+    .floating-cart svg { width: 24px; height: 24px; fill: #fff; }
+    .cart-badge {
+      position: absolute; top: -4px; right: -4px; background: #8b2e2e; color: #fff;
+      font-family: 'EB Garamond', serif; font-size: 11px; font-weight: 500;
+      width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; opacity: 0; transform: scale(0); transition: opacity 0.3s, transform 0.3s;
+    }
+    .cart-badge.show { opacity: 1; transform: scale(1); }
+
+    /* Cart sidebar */
+    /* Cart — full page scroll view */
+    .cart-page {
+      display: none; max-width: 620px; margin: 0 auto; padding: 40px 32px 80px;
+    }
+    .cart-page.open { display: block; }
+    .cart-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid #e0d8cc;
+    }
+    .cart-header h2 {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 20pt;
+      font-weight: normal; letter-spacing: 2px;
+    }
+    .cart-back {
+      font-family: 'EB Garamond', serif; font-size: 11pt; letter-spacing: 1px;
+      text-transform: uppercase; background: none; border: 1px solid #c5b9a8;
+      color: #888; padding: 8px 18px; cursor: pointer; transition: all 0.3s; border-radius: 2px;
+    }
+    .cart-back:hover { color: #5a3e2b; border-color: #5a3e2b; }
+    .cart-body { margin-bottom: 36px; }
+    .cart-empty { font-family: 'EB Garamond', serif; font-size: 13pt; font-style: italic; color: #999; text-align: center; padding: 40px 0; }
+    .cart-item { padding: 16px 0; border-bottom: 1px solid #e8e2d8; }
+    .cart-item-name { font-family: 'EB Garamond', serif; font-size: 12pt; font-weight: 500; line-height: 1.4; margin-bottom: 4px; color: #1a1a1a; }
+    .cart-item-producer { font-family: 'EB Garamond', serif; font-size: 10pt; color: #888; margin-bottom: 8px; }
+    .cart-item-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .cart-item-qty-controls { display: flex; align-items: center; gap: 6px; }
+    .cart-qty-btn {
+      width: 26px; height: 26px; border: 1px solid #c5b9a8; border-radius: 3px;
+      background: #fff; cursor: pointer; font-family: 'EB Garamond', serif; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; color: #1a1a1a; transition: background 0.2s;
+    }
+    .cart-qty-btn:hover { background: #f0ece4; }
+    .cart-item-qty { font-family: 'EB Garamond', serif; font-size: 12pt; min-width: 24px; text-align: center; }
+    .cart-item-total { font-family: 'EB Garamond', serif; font-size: 12pt; font-weight: 500; color: #5a3e2b; min-width: 80px; text-align: right; }
+    .cart-item-remove {
+      background: none; border: none; font-family: 'EB Garamond', serif; font-size: 10pt;
+      color: #8b2e2e; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+      padding: 4px 0; transition: color 0.2s; margin-top: 6px;
+    }
+    .cart-item-remove:hover { color: #c0392b; }
+    .cart-footer { padding-top: 28px; border-top: 1px solid #e0d8cc; }
+    .cart-total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .cart-total-label { font-family: 'The Source', 'EB Garamond', serif; font-size: 14pt; letter-spacing: 1px; }
+    .cart-total-amount { font-family: 'EB Garamond', serif; font-size: 16pt; font-weight: 500; color: #5a3e2b; }
+    .checkout-form { display: flex; flex-direction: column; gap: 12px; }
+    .checkout-form label { font-family: 'EB Garamond', serif; font-size: 10pt; text-transform: uppercase; letter-spacing: 1.5px; color: #666; margin-bottom: -6px; }
+    .checkout-form input, .checkout-form textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid #c5b9a8; border-radius: 3px;
+      font-family: 'EB Garamond', serif; font-size: 12pt; color: #1a1a1a; background: #fff;
+      outline: none; transition: border-color 0.3s;
+    }
+    .checkout-form input:focus, .checkout-form textarea:focus { border-color: #5a3e2b; }
+    .checkout-form textarea { height: 60px; resize: vertical; }
+    .submit-order-btn {
+      width: 100%; font-family: 'The Source', 'EB Garamond', serif; font-size: 12pt;
+      letter-spacing: 3px; text-transform: uppercase; background: #1a1a1a; color: #fff;
+      border: none; padding: 14px 28px; cursor: pointer; transition: background 0.3s; margin-top: 8px;
+    }
+    .submit-order-btn:hover { background: #5a3e2b; }
+    .submit-order-btn:disabled { background: #aaa; cursor: not-allowed; }
+    .order-status { font-family: 'EB Garamond', serif; font-size: 11pt; text-align: center; padding: 8px 0; min-height: 30px; }
+    .order-status.success { color: #2e7d32; }
+    .order-status.error { color: #8b2e2e; }
+
+    /* Spreadsheet view */
+    .spreadsheet-container { max-width: 1400px; margin: 0 auto; padding: 20px 20px 80px; overflow-x: auto; display: none; }
+    .spreadsheet-container.active { display: block; }
+    .catalog-container.hidden { display: none; }
+    .spreadsheet-table { width: 100%; border-collapse: collapse; font-family: 'EB Garamond', serif; font-size: 11pt; }
+    .spreadsheet-table th {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 9.5pt; letter-spacing: 1px;
+      text-transform: uppercase; background: #1a1a1a; color: #fff; padding: 10px 12px;
+      text-align: left; cursor: pointer; user-select: none; white-space: nowrap;
+      position: sticky; top: 0; z-index: 110;
+    }
+    .spreadsheet-table th:hover { background: #333; }
+    .spreadsheet-table th .sort-arrow { font-size: 9px; margin-left: 4px; opacity: 0.4; }
+    .spreadsheet-table th.sorted .sort-arrow { opacity: 1; }
+    .spreadsheet-table td { padding: 7px 12px; border-bottom: 1px solid #e8e2d8; vertical-align: top; line-height: 1.4; }
+    .spreadsheet-table tr:nth-child(even) td { background: rgba(90,62,43,0.03); }
+    .spreadsheet-table tr:hover td { background: rgba(90,62,43,0.08); }
+    .spreadsheet-table .price-cell { white-space: nowrap; }
+    .ss-cart-cell { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .ss-qty {
+      width: 50px; padding: 3px 6px; border: 1px solid #c5b9a8; border-radius: 2px;
+      font-family: 'EB Garamond', serif; font-size: 10.5pt; text-align: center;
+    }
+    .ss-add-btn {
+      background: none; border: 1px solid #5a3e2b; color: #5a3e2b;
+      font-family: 'The Source', serif; font-size: 8pt; letter-spacing: 1px;
+      text-transform: uppercase; padding: 4px 10px; cursor: pointer; border-radius: 2px; transition: all 0.2s;
+    }
+    .ss-add-btn:hover { background: #5a3e2b; color: #fff; }
+    .ss-add-btn.added { background: #5a3e2b; color: #fff; pointer-events: none; }
+    .ss-add-btn:disabled { background: #ccc; border-color: #ccc; color: #999; cursor: not-allowed; }
+
+    /* Loading spinner */
+    .loading { text-align: center; padding: 80px 20px; }
+    .spinner {
+      width: 40px; height: 40px; border: 3px solid #e0d8cc; border-top-color: #5a3e2b;
+      border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-family: 'EB Garamond', serif; font-size: 13pt; color: #888; }
+
+    /* No results */
+    .no-results {
+      text-align: center; padding: 60px 20px; font-family: 'EB Garamond', serif;
+      font-size: 14pt; color: #999; font-style: italic;
+    }
+
+    /* Flight divider */
+    .flight-divider { border: none; border-top: 1px solid rgba(90,62,43,0.15); margin: 50px 0 40px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cart-page { padding: 24px 16px 60px; }
+      .wine-cart-controls { flex-direction: column; align-items: flex-start; }
+      .user-bar { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+      .user-bar-info { font-size: 11pt; }
+    }
+    @media (max-width: 600px) {
+      .content { padding: 30px 16px 40px; }
+      .country-divider { font-size: 20pt; }
+      .country-nav { flex-wrap: wrap; }
+      .country-tab { font-size: 9pt; padding: 10px 12px; letter-spacing: 1px; }
+      .toolbar { padding: 8px 12px; flex-wrap: wrap; gap: 8px; }
+      .search-bar input { font-size: 11pt; }
+      .view-tab { font-size: 8pt; padding: 6px 10px; }
+      .format-btn { font-size: 8pt; padding: 4px 8px; }
+      .format-toggle { margin-left: 6px; }
+      .spreadsheet-container { padding: 10px 8px 60px; }
+      .spreadsheet-table { font-size: 9.5pt; }
+      .spreadsheet-table th { font-size: 8pt; padding: 6px 8px; }
+      .spreadsheet-table td { padding: 5px 8px; }
+      .login-card { padding: 40px 24px; }
+      .login-card h1 { font-size: 28px; letter-spacing: 5px; }
+    }
+
+    /* Full Catalog view */
+    .fullcatalog-container { display: none; }
+    .fullcatalog-container.active { display: block; }
+    .fullcatalog-container .content { max-width: 850px; margin: 0 auto; padding: 50px 40px 60px; }
+    .fc-loading { text-align: center; padding: 80px 20px; }
+    .stock-badge {
+      display: inline-block; font-family: 'EB Garamond', serif; font-size: 10pt;
+      padding: 2px 8px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+    }
+    .stock-badge.in-stock { background: rgba(46,125,50,0.1); color: #2e7d32; }
+    .stock-badge.low-stock { background: rgba(192,57,43,0.1); color: #c0392b; }
+    .stock-badge.pre-arrival { background: rgba(90,62,43,0.1); color: #5a3e2b; }
+    .stock-badge.inquire { background: rgba(0,0,0,0.06); color: #666; }
+    .cart-source-label {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 9pt;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #888;
+      padding: 16px 0 6px; border-bottom: 1px solid #e0d8cc; margin-bottom: 4px;
+    }
+    .cart-source-label:first-child { padding-top: 0; }
+    .fc-badge {
+      display: inline-block; font-family: 'EB Garamond', serif; font-size: 9pt;
+      padding: 1px 6px; border-radius: 2px; margin-right: 4px;
+      background: rgba(90,62,43,0.08); color: #5a3e2b;
+    }
+
+    /* Region nav within countries */
+    .fc-region-nav {
+      display: flex; flex-wrap: wrap; gap: 0; justify-content: center;
+      padding: 4px 0 12px; margin-bottom: 8px;
+    }
+    .fc-region-nav-btn {
+      font-family: 'EB Garamond', serif; font-size: 11.5pt;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 8px 14px; border: none; background: none;
+      cursor: pointer; color: #aaa; transition: color 0.25s, border-color 0.25s;
+      border-bottom: 2px solid transparent; white-space: nowrap;
+    }
+    .fc-region-nav-btn:hover, .fc-region-nav-btn.active {
+      color: #5a3e2b; border-bottom-color: #5a3e2b;
+    }
+    .fc-region-section { margin-bottom: 10px; }
+
+    /* Floating region sidebar */
+    .region-float {
+      position: fixed; right: 20px; top: 90px;
+      z-index: 100; display: flex; flex-direction: column; gap: 2px;
+      opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
+      max-height: calc(100vh - 120px); overflow-y: auto;
+    }
+    .region-float.visible { opacity: 1; pointer-events: auto; }
+    .region-float-label {
+      font-family: 'The Source', 'EB Garamond', serif;
+      font-size: 7.5pt; letter-spacing: 2px; text-transform: uppercase;
+      color: #5a3e2b; text-align: right; padding: 0 4px 4px; margin-bottom: 2px;
+      border-bottom: 1px solid rgba(90,62,43,0.15); white-space: nowrap;
+    }
+    .region-float-link {
+      font-family: 'EB Garamond', serif; font-size: 10pt;
+      color: #aaa; text-decoration: none; padding: 3px 8px;
+      border-right: 2px solid transparent;
+      cursor: pointer; text-align: right; white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      background: none; border-top: none; border-bottom: none; border-left: none;
+      display: block;
+    }
+    .region-float-link:hover { color: #5a3e2b; }
+    .region-float-link.active { color: #5a3e2b; border-right-color: #5a3e2b; font-weight: 500; }
+
+    /* Catalog spreadsheet */
+    .catalog-spreadsheet-container { max-width: 1400px; margin: 0 auto; padding: 20px 20px 80px; overflow-x: auto; display: none; }
+    .catalog-spreadsheet-container.active { display: block; }
+
+    /* View toggle separator */
+
+    /* Export CSV button */
+    .export-order-btn {
+      width: 100%; padding: 12px 20px; background: none; color: #1a1a1a;
+      border: 1px solid #1a1a1a; font-family: 'The Source', 'EB Garamond', serif;
+      font-size: 10pt; letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s; margin-top: 8px;
+    }
+    .export-order-btn:hover { background: #5a3e2b; color: #fff; border-color: #5a3e2b; }
+
+    /* Warehouse nav */
+    .warehouse-nav {
+      display: flex; justify-content: center; gap: 0;
+      background: #1a1a1a; padding: 0; margin: 0 0 8px;
+    }
+    .warehouse-tab {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 10pt;
+      letter-spacing: 2px; text-transform: uppercase; padding: 12px 24px;
+      border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.55);
+      transition: color 0.3s, border-color 0.3s; border-bottom: 2px solid transparent;
+    }
+    .warehouse-tab:hover { color: rgba(255,255,255,0.85); }
+    .warehouse-tab.active { color: #fff; border-bottom-color: #c5b9a8; }
+
+    /* Pre-arrival notes */
+    .prearrival-note {
+      font-family: 'EB Garamond', serif; font-size: 10.5pt; font-style: italic;
+      color: #5a3e2b; margin: 4px 0; line-height: 1.4;
+    }
+    .prearrival-note .prearrival-label {
+      font-family: 'The Source', 'EB Garamond', serif; font-style: normal;
+      font-size: 9pt; letter-spacing: 0.5px; color: #888;
+    }
+
+    /* Cart warehouse label */
+    .cart-item-warehouse {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 8.5pt;
+      letter-spacing: 1px; text-transform: uppercase; color: #5a3e2b;
+      background: rgba(90,62,43,0.08); display: inline-block;
+      padding: 1px 6px; border-radius: 2px; margin-top: 2px;
+    }
+
+    /* Pallet tracker */
+    .pallet-tracker {
+      position: fixed; top: 82px; right: 24px; z-index: 1000;
+      background: #fff; border: 1px solid #e0d8cc; border-radius: 20px;
+      padding: 6px 14px; display: none; align-items: center; gap: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-family: 'EB Garamond', serif;
+    }
+    .pallet-tracker.show { display: flex; }
+    .pallet-tracker-ring {
+      width: 28px; height: 28px; position: relative;
+    }
+    .pallet-tracker-ring svg { width: 28px; height: 28px; transform: rotate(-90deg); }
+    .pallet-tracker-ring .ring-bg { fill: none; stroke: #e8e2d8; stroke-width: 3; }
+    .pallet-tracker-ring .ring-fill { fill: none; stroke: #5a3e2b; stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset 0.4s ease; }
+    .pallet-tracker-text {
+      font-size: 10.5pt; color: #1a1a1a; white-space: nowrap; line-height: 1.2;
+    }
+    .pallet-tracker-text small { display: block; font-size: 8.5pt; color: #888; }
+
+    @media (max-width: 768px) {
+      .region-float { display: none; }
+      .warehouse-tab { font-size: 8.5pt; padding: 10px 14px; letter-spacing: 1px; }
+      .pallet-tracker { top: 80px; right: 12px; padding: 4px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ LOGIN SCREEN ═══════════ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <h1>THE SOURCE</h1>
+    <h2>Portfolio Dashboard</h2>
+    <div class="login-divider"></div>
+    <form id="loginForm" onsubmit="doLogin(event)">
+      <input type="text" id="codeInput" placeholder="Enter your access code" autocomplete="off" autofocus>
+      <button type="submit" class="login-btn" id="loginBtn">Enter</button>
+    </form>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- ═══════════ DASHBOARD ═══════════ -->
+<div class="dashboard" id="dashboard">
+
+  <!-- Floating Cart Icon -->
+  <div class="floating-cart" id="cartIcon" onclick="toggleCart()">
+    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+    <div class="cart-badge" id="cartBadge">0</div>
+  </div>
+
+  <!-- Pallet Tracker -->
+  <div class="pallet-tracker" id="palletTracker">
+    <div class="pallet-tracker-ring">
+      <svg viewBox="0 0 36 36">
+        <circle class="ring-bg" cx="18" cy="18" r="15.9"/>
+        <circle class="ring-fill" id="palletRing" cx="18" cy="18" r="15.9" stroke-dasharray="100" stroke-dashoffset="100"/>
+      </svg>
+    </div>
+    <div class="pallet-tracker-text" id="palletText">0 / 56 cases<small>to fill a pallet</small></div>
+  </div>
+
+  <!-- Cart Page (full-page scroll view) -->
+  <div class="cart-page" id="cartPage">
+    <div class="cart-header">
+      <h2>YOUR ORDER</h2>
+      <button class="cart-back" onclick="toggleCart()">&#8592; Back</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total-row">
+        <span class="cart-total-label">ORDER TOTAL</span>
+        <span class="cart-total-amount" id="cartTotal">$0.00</span>
+      </div>
+      <form class="checkout-form" id="checkoutForm" onsubmit="submitOrder(event)">
+        <label>Company Name *</label>
+        <input type="text" id="coName" required placeholder="Your company">
+        <label>Contact Name *</label>
+        <input type="text" id="coContact" required placeholder="Full name">
+        <label>Email *</label>
+        <input type="email" id="coEmail" required placeholder="email@company.com">
+        <label>Phone</label>
+        <input type="tel" id="coPhone" placeholder="(555) 123-4567">
+        <label>Notes</label>
+        <textarea id="coNotes" placeholder="Delivery instructions, questions, etc."></textarea>
+        <button type="submit" class="submit-order-btn" id="submitBtn">Submit Order</button>
+        <button type="button" class="export-order-btn" onclick="exportOrderCSV()">Export CSV</button>
+        <div class="order-status" id="orderStatus"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- User Bar -->
+  <div class="user-bar">
+    <div class="user-bar-info">Welcome, <strong id="userName"></strong> &mdash; <span id="userCompany"></span></div>
+    <div class="user-bar-right">
+      <button class="refresh-btn" onclick="loadAllocations(true)">Refresh</button>
+      <button class="logout-btn" onclick="doLogout()">Log Out</button>
+    </div>
+  </div>
+
+  <!-- Sticky Header -->
+  <div class="sticky-header" id="stickyHeader">
+    <div class="country-nav" id="countryNav"></div>
+    <div class="toolbar">
+      <div class="search-bar">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search wines, producers, varietals..." oninput="filterWines()">
+        <button class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none">&times;</button>
+      </div>
+      <div class="view-toggle">
+        <button class="view-tab active" id="allocTab" onclick="switchTab('alloc')">Allocations</button>
+        <button class="view-tab" id="portfolioTab" onclick="switchTab('portfolio')">Full Portfolio</button>
+        <button class="view-tab" id="prearrivTab" onclick="switchTab('prearrival')">Pre-Arrival</button>
+        <div class="format-toggle" id="formatToggle">
+          <button class="format-btn active" id="formatCards" onclick="switchFormat('cards')">Full Version</button>
+          <button class="format-btn" id="formatTable" onclick="switchFormat('table')">Spreadsheet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading" id="loadingState">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading your allocations...</div>
+  </div>
+
+  <!-- Catalog View -->
+  <div class="catalog-container" id="catalogContainer">
+    <div class="content" id="catalogContent"></div>
+  </div>
+
+  <!-- Spreadsheet View -->
+  <div class="spreadsheet-container" id="spreadsheetContainer"></div>
+
+  <!-- Full Catalog View -->
+  <div class="fullcatalog-container" id="fullCatalogContainer">
+    <nav class="warehouse-nav" id="warehouseNav" style="display:none"></nav>
+    <div class="content" id="fullCatalogContent">
+      <div class="fc-loading" id="fcLoading">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading full catalog...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Catalog Spreadsheet View -->
+  <div class="catalog-spreadsheet-container" id="catalogSpreadsheetContainer"></div>
+
+  <!-- Pre-Arrival Card View -->
+  <div class="fullcatalog-container" id="preArrivalContainer" style="display:none">
+    <div class="content" id="preArrivalContent">
+      <div class="fc-loading" id="paLoading">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading pre-arrival wines...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pre-Arrival Spreadsheet View -->
+  <div class="catalog-spreadsheet-container" id="preArrivalSpreadsheetContainer" style="display:none"></div>
+
+  <!-- Floating Region Sidebar (Full Catalog) -->
+  <div class="region-float" id="fcRegionFloat"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   CONFIG — Update SCRIPT_URL after deploying Apps Script
+   ═══════════════════════════════════════════════════ */
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpMZ-gFXT0EyDBY2N1m-fG_Yj860GqXZrhY8GafsxW8bGJFsrl7Lzfch5bvIE3O6A9/exec'; // <-- Paste your deployed Apps Script Web App URL here
+
+var SESSION_KEY = 'src_dash_session';
+var CACHE_KEY = 'src_dash_wines';
+var SESSION_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
+var CACHE_TTL = 60 * 60 * 1000; // 1 hour
+
+var currentUser = null;
+var allAllocations = [];
+var groupedData = [];
+var cart = [];
+var currentView = 'catalog';
+var currentTab = 'alloc';
+var currentFormat = 'cards';
+var currentCountry = null;
+var portfolioData = null;
+var fullCatalogGrouped = [];
+var fullCatalogByWarehouse = {};
+var currentWarehouse = null;
+var catalogWineMap = {};
+var catalogWineCounter = 0;
+var fullCatalogLoaded = false;
+var fullCatalogRendered = false;
+var preArrivalGrouped = [];
+var preArrivalRendered = false;
+var _fcRenderGeneration = 0;
+var _paRenderGeneration = 0;
+var paSortColumn = null;
+var paSortDirection = 'asc';
+var sortColumn = null;
+var sortDirection = 'asc';
+var catSortColumn = null;
+var catSortDirection = 'asc';
+var CASES_PER_PALLET = 56;
+
+/* ═══════════ SESSION ═══════════ */
+function saveSession(user) {
+  var data = { user: user, ts: Date.now() };
+  localStorage.setItem(SESSION_KEY, JSON.stringify(data));
+}
+
+function loadSession() {
+  try {
+    var raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    var data = JSON.parse(raw);
+    if (Date.now() - data.ts > SESSION_TTL) { localStorage.removeItem(SESSION_KEY); return null; }
+    return data.user;
+  } catch (e) { return null; }
+}
+
+function clearSession() {
+  // Clear user-specific wine cache before losing currentUser
+  if (currentUser && currentUser.code) {
+    localStorage.removeItem(CACHE_KEY + '_' + currentUser.code);
+  }
+  localStorage.removeItem(SESSION_KEY);
+  localStorage.removeItem(CACHE_KEY); // legacy cleanup
+}
+
+/* ═══════════ WINE DATA CACHE (per-user) ═══════════ */
+function getUserCacheKey() {
+  return currentUser ? CACHE_KEY + '_' + currentUser.code : CACHE_KEY;
+}
+
+function cacheWines(allocations, grouped) {
+  var data = { allocations: allocations, grouped: grouped, ts: Date.now() };
+  try { localStorage.setItem(getUserCacheKey(), JSON.stringify(data)); } catch (e) { /* quota */ }
+}
+
+function loadCachedWines() {
+  try {
+    var key = getUserCacheKey();
+    var raw = localStorage.getItem(key);
+    if (!raw) return null;
+    var data = JSON.parse(raw);
+    if (Date.now() - data.ts > CACHE_TTL) { localStorage.removeItem(key); return null; }
+    return data;
+  } catch (e) { return null; }
+}
+
+/* ═══════════ API CALLS ═══════════ */
+function apiCall(action, body, callback) {
+  body.action = action;
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    redirect: 'follow'
+  })
+  .then(function(r) {
+    if (!r.ok) throw new Error('Server returned ' + r.status);
+    return r.text();
+  })
+  .then(function(text) {
+    try { var data = JSON.parse(text); callback(null, data); }
+    catch (e) { callback('Invalid response from server'); }
+  })
+  .catch(function(err) { callback(err.message || 'Network error'); });
+}
+
+/* ═══════════ LOGIN ═══════════ */
+function doLogin(e) {
+  e.preventDefault();
+  var code = document.getElementById('codeInput').value.trim();
+  if (!code) return;
+
+  var btn = document.getElementById('loginBtn');
+  var errEl = document.getElementById('loginError');
+  btn.disabled = true;
+  btn.textContent = 'Verifying...';
+  errEl.textContent = '';
+
+  apiCall('login', { code: code }, function(err, data) {
+    btn.disabled = false;
+    btn.textContent = 'Enter';
+    if (err) { errEl.textContent = err; return; }
+    if (!data.success) { errEl.textContent = data.error || 'Invalid access code.'; return; }
+
+    currentUser = data.user;
+    saveSession(currentUser);
+    showDashboard();
+    loadAllocations(false);
+  });
+}
+
+function doLogout() {
+  clearSession();
+  currentUser = null;
+  allAllocations = [];
+  groupedData = [];
+  cart = [];
+  portfolioData = null;
+  fullCatalogGrouped = [];
+  fullCatalogByWarehouse = {};
+  currentWarehouse = null;
+  catalogWineMap = {};
+  fullCatalogLoaded = false;
+  fullCatalogRendered = false;
+  preArrivalGrouped = [];
+  preArrivalRendered = false;
+  paSortColumn = null;
+  paSortDirection = 'asc';
+  cartOpen = false;
+  catSortColumn = null;
+  catSortDirection = 'asc';
+  document.getElementById('cartPage').classList.remove('open');
+  document.getElementById('loginScreen').classList.remove('hidden');
+  document.getElementById('dashboard').classList.remove('active');
+  document.getElementById('codeInput').value = '';
+}
+
+function showDashboard() {
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('dashboard').classList.add('active');
+  document.getElementById('userName').textContent = currentUser.name;
+  document.getElementById('userCompany').textContent = currentUser.company;
+
+  // Pre-fill checkout form
+  document.getElementById('coName').value = currentUser.company;
+  document.getElementById('coContact').value = currentUser.name;
+  document.getElementById('coEmail').value = currentUser.email || '';
+  document.getElementById('coPhone').value = currentUser.phone || '';
+}
+
+/* ═══════════ LOAD ALLOCATIONS ═══════════ */
+function loadAllocations(forceRefresh) {
+  if (!forceRefresh) {
+    var cached = loadCachedWines();
+    if (cached) {
+      allAllocations = cached.allocations;
+      groupedData = cached.grouped;
+      hideLoading();
+      renderAll();
+      return;
+    }
+  }
+
+  showLoading();
+  apiCall('allocations', { code: currentUser.code }, function(err, data) {
+    hideLoading();
+    if (err) { showError('Failed to load allocations: ' + err); return; }
+    if (!data.success) { showError(data.error || 'Failed to load allocations.'); return; }
+
+    allAllocations = data.allocations || [];
+    groupedData = data.grouped || [];
+    cacheWines(allAllocations, groupedData);
+    renderAll();
+  });
+}
+
+function showLoading() {
+  document.getElementById('loadingState').style.display = 'block';
+  document.getElementById('catalogContainer').style.display = 'none';
+  document.getElementById('spreadsheetContainer').style.display = 'none';
+  document.getElementById('fullCatalogContainer').style.display = 'none';
+  document.getElementById('catalogSpreadsheetContainer').style.display = 'none';
+  document.getElementById('preArrivalContainer').style.display = 'none';
+  document.getElementById('preArrivalSpreadsheetContainer').style.display = 'none';
+  document.getElementById('cartPage').classList.remove('open');
+  cartOpen = false;
+}
+function hideLoading() {
+  document.getElementById('loadingState').style.display = 'none';
+}
+function showError(msg) {
+  document.getElementById('catalogContent').innerHTML = '<div class="no-results">' + escapeHtml(msg) + '</div>';
+  document.getElementById('catalogContainer').style.display = 'block';
+}
+
+/* ═══════════ RENDER ALL ═══════════ */
+function renderAll() {
+  renderCountryNav();
+  renderCatalog();
+  renderSpreadsheet();
+  switchView(currentView);
+  updateCartUI();
+}
+
+/* ═══════════ COUNTRY NAV ═══════════ */
+function renderCountryNav() {
+  var nav = document.getElementById('countryNav');
+  var isPreArrival = currentView === 'prearrival' || currentView === 'prearrivalspreadsheet';
+  var isCatalogView = currentView === 'fullcatalog' || currentView === 'catalogspreadsheet';
+  var data = isPreArrival ? preArrivalGrouped : (isCatalogView ? fullCatalogGrouped : groupedData);
+
+  if (!data || data.length === 0) { nav.innerHTML = ''; return; }
+
+  var html = '';
+  data.forEach(function(c, i) {
+    var active = (currentCountry === null && i === 0) || currentCountry === c.country ? ' active' : '';
+    html += '<button class="country-tab' + active + '" data-country="' + escapeHtml(c.country) + '" onclick="scrollToCountry(\'' + escapeHtml(c.country) + '\')">' + escapeHtml(c.country) + '</button>';
+  });
+  nav.innerHTML = html;
+}
+
+function scrollToCountry(country) {
+  currentCountry = country;
+  document.querySelectorAll('.country-tab').forEach(function(t) {
+    t.classList.toggle('active', t.dataset.country === country);
+  });
+  var isPreArrival = currentView === 'prearrival' || currentView === 'prearrivalspreadsheet';
+  var isCatalogView = currentView === 'fullcatalog' || currentView === 'catalogspreadsheet';
+  var prefix = isPreArrival ? 'pa-country-' : (isCatalogView ? 'fc-country-' : 'country-');
+  var el = document.getElementById(prefix + slugify(country));
+  if (el) {
+    var header = document.getElementById('stickyHeader');
+    var offset = header ? header.offsetHeight : 0;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - offset - 10;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+}
+
+/* ═══════════ CATALOG VIEW ═══════════ */
+function renderCatalog() {
+  var container = document.getElementById('catalogContent');
+  if (groupedData.length === 0) {
+    container.innerHTML = '<div class="no-results">No allocations found for your account.</div>';
+    return;
+  }
+
+  var html = '';
+  groupedData.forEach(function(countryGroup) {
+    var countryLabel = countryGroup.country === 'Other' ? 'Allocations' : countryGroup.country;
+    html += '<div class="country-section" id="country-' + slugify(countryGroup.country) + '">';
+    html += '<h2 class="country-divider">' + escapeHtml(countryLabel) + '</h2>';
+
+    countryGroup.producers.forEach(function(producer) {
+      html += '<div class="producer-section">';
+
+      // Carousel
+      if (producer.images && producer.images.length > 0) {
+        html += buildCarousel(producer.images, producer.name);
+      }
+
+      html += '<h3 class="producer-title">' + escapeHtml(producer.name) + '</h3>';
+      if (producer.region) {
+        html += '<div class="region-header">' + escapeHtml(producer.region) + '</div>';
+      }
+      if (producer.description) {
+        html += '<p class="intro">' + escapeHtml(producer.description) + '</p>';
+      }
+
+      producer.wines.forEach(function(wine) {
+        html += renderWineEntry(wine);
+      });
+
+      html += '</div>'; // producer-section
+      html += '<hr class="flight-divider">';
+    });
+
+    html += '</div>'; // country-section
+  });
+
+  container.innerHTML = html;
+
+  // Trigger scroll reveal
+  requestAnimationFrame(function() {
+    initScrollReveal();
+    initCarousels();
+  });
+}
+
+function renderWineEntry(wine) {
+  var displayName = wine.name ? stripProducerPrefix(wine.name) : wine.sku;
+  var price = wine.price || 0;
+  var remaining = wine.qty_remaining || 0;
+  var allocated = wine.qty_allocated || 0;
+  var pct = allocated > 0 ? (remaining / allocated * 100) : 0;
+  var barClass = pct <= 25 ? ' low' : (remaining <= 0 ? ' empty' : '');
+  var varietalStr = formatVarietals(wine.varietals);
+  var wineId = 'wine-' + slugify(wine.sku);
+
+  var h = '<div class="wine-entry" data-wine="' + escapeHtml(wine.sku) + '" data-search="' + escapeHtml((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '')).toLowerCase() + '">';
+
+  h += '<div class="wine-title">' + escapeHtml(displayName);
+  if (wine.vintage) h += ' ' + escapeHtml(wine.vintage);
+  h += '</div>';
+
+  // Allocation bar
+  h += '<div class="allocation-bar-container">';
+  h += '<span class="allocation-label">' + remaining + ' of ' + allocated + ' cases remaining</span>';
+  h += '<div class="allocation-bar"><div class="allocation-bar-fill' + barClass + '" style="width:' + pct + '%"></div></div>';
+  h += '</div>';
+
+  // Wine description from sheet
+  if (wine.wine_description) {
+    h += '<p class="intro" style="margin:8px 0 12px">' + escapeHtml(wine.wine_description) + '</p>';
+  }
+
+  // Appellation / format
+  var meta = [];
+  if (wine.appellation) meta.push(wine.appellation);
+  if (wine.unit_set && wine.bottle_size) meta.push(wine.unit_set + '/' + wine.bottle_size);
+  if (varietalStr) meta.push(varietalStr);
+  if (meta.length) {
+    h += '<div class="wine-desc">' + escapeHtml(meta.join(' &mdash; ')) + '</div>';
+  }
+
+  // Details accordion
+  var hasDetails = wine.tasting_notes || wine.vineyard || wine.winemaking || wine.aging || wine.soil || wine.farming;
+  if (hasDetails) {
+    h += '<button class="wine-toggle" onclick="toggleWineDetails(this)"><span class="chevron">&#9654;</span> Details</button>';
+    h += '<div class="wine-details">';
+    if (wine.tasting_notes) h += '<div class="wine-desc" style="margin-top:8px"><span class="kw">Tasting Notes: </span>' + escapeHtml(wine.tasting_notes) + '</div>';
+    if (wine.vineyard) h += '<div class="wine-desc"><span class="kw">Vineyard: </span>' + escapeHtml(wine.vineyard) + '</div>';
+    if (wine.winemaking) h += '<div class="wine-desc"><span class="kw">Winemaking: </span>' + escapeHtml(wine.winemaking) + '</div>';
+    if (wine.aging) h += '<div class="wine-desc"><span class="kw">Aging: </span>' + escapeHtml(wine.aging) + '</div>';
+    if (wine.soil) h += '<div class="wine-desc"><span class="kw">Soil: </span>' + escapeHtml(wine.soil) + '</div>';
+    if (wine.farming) h += '<div class="wine-desc"><span class="kw">Farming: </span>' + escapeHtml(formatFarming(wine.farming)) + '</div>';
+    h += '</div>';
+  }
+
+  if (wine.notes) {
+    h += '<div class="wine-desc" style="margin-top:4px;color:#7b5ea7;font-style:italic">' + escapeHtml(wine.notes) + '</div>';
+  }
+
+  // Cart controls
+  h += '<div class="wine-cart-controls">';
+  h += '<div class="wine-price-display">' + (price > 0 ? '$' + price.toFixed(2) + '/cs' : 'Price TBD') + '</div>';
+  if (remaining > 0) {
+    h += '<span class="qty-label">Qty (cs):</span>';
+    h += '<input type="number" class="qty-input" id="qty-' + escapeHtml(wine.sku) + '" value="1" min="1" max="' + remaining + '" step="1">';
+    h += '<button class="add-to-cart-btn" onclick="addToCart(\'' + escapeHtml(wine.sku) + '\')">Add to Order</button>';
+  } else {
+    h += '<span class="qty-label" style="color:#c0392b">Fully allocated</span>';
+  }
+  h += '</div>';
+
+  h += '</div>'; // wine-entry
+  return h;
+}
+
+/* ═══════════ SPREADSHEET VIEW ═══════════ */
+function renderSpreadsheet() {
+  var rows = [];
+  allAllocations.forEach(function(wine) {
+    var displayName = wine.name ? stripProducerPrefix(wine.name) : wine.sku;
+    var varietalStr = formatVarietals(wine.varietals);
+    var price = wine.price || 0;
+    rows.push({
+      producer: wine.producer || '',
+      wine: displayName,
+      vintage: wine.vintage || '',
+      appellation: wine.appellation || '',
+      region: wine.region || '',
+      country: wine.country || '',
+      format: (wine.unit_set || '') + (wine.bottle_size ? '/' + wine.bottle_size : ''),
+      price: price,
+      allocated: wine.qty_allocated || 0,
+      remaining: wine.qty_remaining || 0,
+      varietals: varietalStr,
+      sku: wine.sku,
+      notes: wine.notes || '',
+      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '')).toLowerCase()
+    });
+  });
+
+  // Sort
+  if (sortColumn) {
+    rows.sort(function(a, b) {
+      var va = a[sortColumn]; var vb = b[sortColumn];
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb || '').toLowerCase(); }
+      if (va < vb) return sortDirection === 'asc' ? -1 : 1;
+      if (va > vb) return sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+  var columns = [
+    { key: 'producer', label: 'Producer' },
+    { key: 'wine', label: 'Wine' },
+    { key: 'vintage', label: 'Vintage' },
+    { key: 'appellation', label: 'Appellation' },
+    { key: 'country', label: 'Country' },
+    { key: 'format', label: 'Format' },
+    { key: 'price', label: 'Price' },
+    { key: 'allocated', label: 'Allocated' },
+    { key: 'remaining', label: 'Remaining' },
+    { key: 'varietals', label: 'Varietals' }
+  ];
+
+  var html = '<table class="spreadsheet-table"><thead><tr>';
+  columns.forEach(function(col) {
+    var sortClass = sortColumn === col.key ? ' sorted' : '';
+    var arrow = sortColumn === col.key ? (sortDirection === 'asc' ? '&#9650;' : '&#9660;') : '&#9650;';
+    html += '<th class="' + sortClass + '" onclick="sortTable(\'' + col.key + '\')">' + col.label + '<span class="sort-arrow">' + arrow + '</span></th>';
+  });
+  html += '<th>Order</th></tr></thead><tbody>';
+
+  rows.forEach(function(row, idx) {
+    html += '<tr class="ss-row" data-search="' + escapeHtml(row.searchText) + '">';
+    html += '<td>' + escapeHtml(row.producer) + '</td>';
+    html += '<td>' + escapeHtml(row.wine) + '</td>';
+    html += '<td>' + escapeHtml(row.vintage) + '</td>';
+    html += '<td>' + escapeHtml(row.appellation) + '</td>';
+    html += '<td>' + escapeHtml(row.country) + '</td>';
+    html += '<td>' + escapeHtml(row.format) + '</td>';
+    html += '<td class="price-cell">' + (row.price > 0 ? '$' + row.price.toFixed(2) : 'TBD') + '</td>';
+    html += '<td>' + row.allocated + ' cs</td>';
+
+    var remClass = row.remaining <= 0 ? ' style="color:#c0392b"' : '';
+    html += '<td' + remClass + '>' + row.remaining + ' cs</td>';
+    html += '<td>' + escapeHtml(row.varietals) + '</td>';
+
+    html += '<td><div class="ss-cart-cell">';
+    if (row.remaining > 0) {
+      html += '<input type="number" class="ss-qty" value="1" min="1" max="' + row.remaining + '" step="1" id="ssQty' + idx + '">';
+      html += '<button class="ss-add-btn" onclick="addToCartSS(this, \'' + escapeHtml(row.sku) + '\', ' + idx + ')">Add</button>';
+    } else {
+      html += '<span style="color:#999;font-style:italic;font-size:9pt">None</span>';
+    }
+    html += '</div></td></tr>';
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('spreadsheetContainer').innerHTML = html;
+  window._ssRows = rows;
+}
+
+function sortTable(column) {
+  if (sortColumn === column) {
+    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortColumn = column;
+    sortDirection = 'asc';
+  }
+  renderSpreadsheet();
+}
+
+/* ═══════════ VIEW TOGGLE ═══════════ */
+function resolveView() {
+  if (currentTab === 'alloc') return currentFormat === 'cards' ? 'catalog' : 'spreadsheet';
+  if (currentTab === 'prearrival') return currentFormat === 'cards' ? 'prearrival' : 'prearrivalspreadsheet';
+  return currentFormat === 'cards' ? 'fullcatalog' : 'catalogspreadsheet';
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  applyView();
+}
+
+function switchFormat(fmt) {
+  currentFormat = fmt;
+  applyView();
+}
+
+function applyView() {
+  var view = resolveView();
+  currentView = view;
+  currentCountry = null;
+
+  // Tab highlight
+  document.getElementById('allocTab').classList.toggle('active', currentTab === 'alloc');
+  document.getElementById('portfolioTab').classList.toggle('active', currentTab === 'portfolio');
+  document.getElementById('prearrivTab').classList.toggle('active', currentTab === 'prearrival');
+
+  // Format highlight
+  document.getElementById('formatCards').classList.toggle('active', currentFormat === 'cards');
+  document.getElementById('formatTable').classList.toggle('active', currentFormat === 'table');
+
+  // Container visibility
+  document.getElementById('catalogContainer').style.display = view === 'catalog' ? 'block' : 'none';
+  document.getElementById('spreadsheetContainer').style.display = view === 'spreadsheet' ? 'block' : 'none';
+  document.getElementById('fullCatalogContainer').style.display = view === 'fullcatalog' ? 'block' : 'none';
+  document.getElementById('catalogSpreadsheetContainer').style.display = view === 'catalogspreadsheet' ? 'block' : 'none';
+  document.getElementById('preArrivalContainer').style.display = view === 'prearrival' ? 'block' : 'none';
+  document.getElementById('preArrivalSpreadsheetContainer').style.display = view === 'prearrivalspreadsheet' ? 'block' : 'none';
+
+  // Warehouse nav only in full catalog views (not pre-arrival, it's already filtered)
+  var whNav = document.getElementById('warehouseNav');
+  if (whNav) whNav.style.display = (view === 'fullcatalog' && Object.keys(fullCatalogByWarehouse).length > 1) ? 'flex' : 'none';
+
+  // Region float only in full catalog or pre-arrival card view
+  var regionFloat = document.getElementById('fcRegionFloat');
+  if (regionFloat) {
+    if (view !== 'fullcatalog' && view !== 'prearrival') regionFloat.classList.remove('visible');
+    else if (regionFloat.innerHTML) regionFloat.classList.add('visible');
+  }
+
+  var needsPortfolio = (view === 'fullcatalog' || view === 'catalogspreadsheet' || view === 'prearrival' || view === 'prearrivalspreadsheet');
+  if (needsPortfolio && !fullCatalogLoaded) {
+    loadPortfolioData();
+  }
+  if (view === 'catalogspreadsheet' && fullCatalogLoaded) {
+    renderCatalogSpreadsheet();
+  }
+  if (view === 'prearrival' && fullCatalogLoaded) {
+    renderPreArrival();
+  }
+  if (view === 'prearrivalspreadsheet' && fullCatalogLoaded) {
+    renderPreArrivalSpreadsheet();
+  }
+
+  renderCountryNav();
+}
+
+// Backward compat for renderAll
+function switchView(view) {
+  if (view === 'catalog' || view === 'spreadsheet') currentTab = 'alloc';
+  else if (view === 'prearrival' || view === 'prearrivalspreadsheet') currentTab = 'prearrival';
+  else currentTab = 'portfolio';
+  currentFormat = (view === 'catalog' || view === 'fullcatalog' || view === 'prearrival') ? 'cards' : 'table';
+  applyView();
+}
+
+/* ═══════════ SEARCH ═══════════ */
+function filterWines() {
+  var query = document.getElementById('searchInput').value.trim().toLowerCase();
+  document.getElementById('searchClear').style.display = query ? 'block' : 'none';
+
+  // Filter allocations catalog
+  document.querySelectorAll('#catalogContent .wine-entry').forEach(function(el) {
+    var text = (el.dataset.search || '').toLowerCase();
+    el.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
+  });
+
+  // Filter allocations spreadsheet
+  document.querySelectorAll('#spreadsheetContainer .ss-row').forEach(function(row) {
+    var text = row.dataset.search || '';
+    row.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
+  });
+
+  // Filter full catalog
+  document.querySelectorAll('#fullCatalogContent .wine-entry').forEach(function(el) {
+    var text = (el.dataset.search || '').toLowerCase();
+    el.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
+  });
+
+  // Filter catalog spreadsheet
+  document.querySelectorAll('#catalogSpreadsheetContainer .ss-row').forEach(function(row) {
+    var text = row.dataset.search || '';
+    row.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
+  });
+
+  // Filter pre-arrival
+  document.querySelectorAll('#preArrivalContent .wine-entry').forEach(function(el) {
+    var text = (el.dataset.search || '').toLowerCase();
+    el.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
+  });
+
+  // Filter pre-arrival spreadsheet
+  document.querySelectorAll('#preArrivalSpreadsheetContainer .ss-row').forEach(function(row) {
+    var text = row.dataset.search || '';
+    row.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
+  });
+
+  // Show/hide producer sections with no visible wines
+  document.querySelectorAll('.producer-section').forEach(function(sec) {
+    var visibleWines = sec.querySelectorAll('.wine-entry:not([style*="display: none"])');
+    sec.style.display = visibleWines.length > 0 || !query ? '' : 'none';
+  });
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  filterWines();
+}
+
+/* ═══════════ CART ═══════════ */
+function findWine(sku) {
+  for (var i = 0; i < allAllocations.length; i++) {
+    if (allAllocations[i].sku === sku) return allAllocations[i];
+  }
+  return null;
+}
+
+function addToCart(sku) {
+  var wine = findWine(sku);
+  if (!wine) return;
+
+  var qtyInput = document.getElementById('qty-' + sku);
+  var qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+  var remaining = wine.qty_remaining || 0;
+
+  // Check existing cart qty
+  var existing = cart.find(function(c) { return c.sku === sku; });
+  var existingQty = existing ? existing.qty : 0;
+  if (existingQty + qty > remaining) {
+    qty = remaining - existingQty;
+    if (qty <= 0) { alert('You have already added the maximum allocation for this wine.'); return; }
+  }
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      sku: sku,
+      wine: wine.name ? stripProducerPrefix(wine.name) : sku,
+      producer: wine.producer || '',
+      price: wine.price || 0,
+      qty: qty,
+      maxQty: remaining,
+      source: 'allocation'
+    });
+  }
+
+  updateCartUI();
+
+  // Flash button
+  var btn = qtyInput ? qtyInput.nextElementSibling : null;
+  if (btn) {
+    btn.classList.add('added');
+    btn.textContent = 'Added';
+    setTimeout(function() { btn.classList.remove('added'); btn.textContent = 'Add to Order'; }, 1200);
+  }
+}
+
+function addToCartSS(btn, sku, idx) {
+  var wine = findWine(sku);
+  if (!wine) return;
+
+  var qtyInput = document.getElementById('ssQty' + idx);
+  var qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+  var remaining = wine.qty_remaining || 0;
+
+  var existing = cart.find(function(c) { return c.sku === sku; });
+  var existingQty = existing ? existing.qty : 0;
+  if (existingQty + qty > remaining) {
+    qty = remaining - existingQty;
+    if (qty <= 0) { alert('Maximum allocation already in cart.'); return; }
+  }
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      sku: sku,
+      wine: wine.name ? stripProducerPrefix(wine.name) : sku,
+      producer: wine.producer || '',
+      price: wine.price || 0,
+      qty: qty,
+      maxQty: remaining,
+      source: 'allocation'
+    });
+  }
+
+  updateCartUI();
+  btn.classList.add('added');
+  btn.textContent = 'Added';
+  setTimeout(function() { btn.classList.remove('added'); btn.textContent = 'Add'; }, 1200);
+}
+
+function updateCartQty(sku, delta) {
+  var item = cart.find(function(c) { return c.sku === sku; });
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { removeFromCart(sku); return; }
+  if (item.source !== 'catalog' && item.qty > item.maxQty) item.qty = item.maxQty;
+  updateCartUI();
+}
+
+function removeFromCart(sku) {
+  cart = cart.filter(function(c) { return c.sku !== sku; });
+  updateCartUI();
+}
+
+function updateCartUI() {
+  var badge = document.getElementById('cartBadge');
+  var body = document.getElementById('cartBody');
+  var footer = document.getElementById('cartFooter');
+
+  badge.textContent = cart.length;
+  badge.classList.toggle('show', cart.length > 0);
+
+  // Pallet tracker
+  updatePalletTracker();
+
+  if (cart.length === 0) {
+    body.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+    footer.style.display = 'none';
+    return;
+  }
+
+  footer.style.display = 'block';
+  var total = 0;
+  var html = '';
+
+  // Group by source
+  var allocationItems = cart.filter(function(c) { return c.source !== 'catalog'; });
+  var catalogItems = cart.filter(function(c) { return c.source === 'catalog'; });
+
+  if (allocationItems.length > 0) {
+    html += '<div class="cart-source-label">Allocations</div>';
+  }
+  allocationItems.forEach(function(item) {
+    var lineTotal = item.price * item.qty;
+    total += lineTotal;
+    html += renderCartItem(item, lineTotal);
+  });
+
+  // Group catalog items by warehouse
+  if (catalogItems.length > 0) {
+    var warehouseGroups = {};
+    var warehouseOrder = [];
+    catalogItems.forEach(function(item) {
+      var wl = item.warehouse_label || 'Catalog Requests';
+      if (!warehouseGroups[wl]) { warehouseGroups[wl] = []; warehouseOrder.push(wl); }
+      warehouseGroups[wl].push(item);
+    });
+
+    warehouseOrder.forEach(function(wl) {
+      html += '<div class="cart-source-label">' + escapeHtml(wl) + '</div>';
+      warehouseGroups[wl].forEach(function(item) {
+        var lineTotal = item.price * item.qty;
+        total += lineTotal;
+        html += renderCartItem(item, lineTotal);
+      });
+    });
+  }
+
+  body.innerHTML = html;
+  document.getElementById('cartTotal').textContent = total > 0 ? '$' + total.toFixed(2) : 'TBD';
+}
+
+function updatePalletTracker() {
+  var tracker = document.getElementById('palletTracker');
+  var ring = document.getElementById('palletRing');
+  var textEl = document.getElementById('palletText');
+  if (!tracker) return;
+
+  var totalCases = cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
+
+  if (totalCases === 0) {
+    tracker.classList.remove('show');
+    return;
+  }
+
+  tracker.classList.add('show');
+
+  var pallets = Math.floor(totalCases / CASES_PER_PALLET);
+  var remainder = totalCases % CASES_PER_PALLET;
+  var circumference = 2 * Math.PI * 15.9; // ~99.9
+  var pct = (remainder / CASES_PER_PALLET) * 100;
+  var offset = 100 - pct;
+
+  ring.style.strokeDashoffset = offset;
+
+  if (pallets >= 1) {
+    textEl.innerHTML = pallets + ' pallet' + (pallets > 1 ? 's' : '') + (remainder > 0 ? ' + ' + remainder + ' cs' : '') + '<small>' + totalCases + ' cases total</small>';
+  } else {
+    textEl.innerHTML = totalCases + ' / ' + CASES_PER_PALLET + ' cases<small>to fill a pallet</small>';
+  }
+}
+
+function renderCartItem(item, lineTotal) {
+  var html = '<div class="cart-item">';
+  html += '<div class="cart-item-name">' + escapeHtml(item.wine) + '</div>';
+  html += '<div class="cart-item-producer">' + escapeHtml(item.producer) + '</div>';
+  if (item.warehouse_label && item.source === 'catalog') {
+    html += '<div class="cart-item-warehouse">' + escapeHtml(item.warehouse_label) + '</div>';
+  }
+  html += '<div class="cart-item-row">';
+  html += '<div class="cart-item-qty-controls">';
+  html += '<button class="cart-qty-btn" onclick="updateCartQty(\'' + escapeHtml(item.sku) + '\', -1)">&minus;</button>';
+  html += '<span class="cart-item-qty">' + item.qty + '</span>';
+  html += '<button class="cart-qty-btn" onclick="updateCartQty(\'' + escapeHtml(item.sku) + '\', 1)">+</button>';
+  html += '</div>';
+  html += '<div class="cart-item-total">' + (item.price > 0 ? '$' + lineTotal.toFixed(2) : 'TBD') + '</div>';
+  html += '</div>';
+  html += '<button class="cart-item-remove" onclick="removeFromCart(\'' + escapeHtml(item.sku) + '\')">Remove</button>';
+  html += '</div>';
+  return html;
+}
+
+var cartOpen = false;
+function toggleCart() {
+  cartOpen = !cartOpen;
+  var cartPage = document.getElementById('cartPage');
+  var stickyHeader = document.getElementById('stickyHeader');
+  var cartIcon = document.getElementById('cartIcon');
+
+  // Hide/show all content containers and header
+  var containers = ['catalogContainer', 'spreadsheetContainer', 'fullCatalogContainer', 'catalogSpreadsheetContainer', 'preArrivalContainer', 'preArrivalSpreadsheetContainer'];
+  var palletTracker = document.getElementById('palletTracker');
+  if (cartOpen) {
+    cartPage.classList.add('open');
+    stickyHeader.style.display = 'none';
+    if (cartIcon) cartIcon.style.display = 'none';
+    if (palletTracker) palletTracker.style.display = 'none';
+    containers.forEach(function(id) { document.getElementById(id).style.display = 'none'; });
+    var regionFloat = document.getElementById('fcRegionFloat');
+    if (regionFloat) regionFloat.classList.remove('visible');
+    window.scrollTo({ top: 0 });
+  } else {
+    cartPage.classList.remove('open');
+    stickyHeader.style.display = '';
+    if (cartIcon) cartIcon.style.display = '';
+    if (palletTracker) palletTracker.style.display = '';
+    updatePalletTracker();
+    applyView(); // restore correct container visibility
+    window.scrollTo({ top: 0 });
+  }
+}
+
+/* ═══════════ ORDER SUBMISSION ═══════════ */
+function submitOrder(e) {
+  e.preventDefault();
+  if (cart.length === 0) return;
+
+  var btn = document.getElementById('submitBtn');
+  var status = document.getElementById('orderStatus');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  status.textContent = '';
+  status.className = 'order-status';
+
+  var items = cart.map(function(c) {
+    return {
+      sku: c.source === 'catalog' ? (c.fullWineName || c.wine) : c.sku,
+      wine: c.wine,
+      producer: c.producer,
+      qty: c.qty,
+      price: c.price,
+      source: c.source || 'allocation',
+      warehouse: c.warehouse || '',
+      warehouse_label: c.warehouse_label || ''
+    };
+  });
+
+  apiCall('order', {
+    code: currentUser.code,
+    company: document.getElementById('coName').value.trim(),
+    contact: document.getElementById('coContact').value.trim(),
+    email: document.getElementById('coEmail').value.trim(),
+    phone: document.getElementById('coPhone').value.trim(),
+    notes: document.getElementById('coNotes').value.trim(),
+    items: items
+  }, function(err, data) {
+    btn.disabled = false;
+    btn.textContent = 'Submit Order';
+
+    if (err) {
+      status.className = 'order-status error';
+      status.textContent = 'Error: ' + err;
+      return;
+    }
+    if (!data.success) {
+      status.className = 'order-status error';
+      status.textContent = data.error || 'Order failed.';
+      return;
+    }
+
+    status.className = 'order-status success';
+    status.textContent = data.message || 'Order submitted successfully!';
+    cart = [];
+    updateCartUI();
+
+    // Refresh allocations to get updated remaining quantities
+    localStorage.removeItem(getUserCacheKey());
+    setTimeout(function() { loadAllocations(true); }, 2000);
+  });
+}
+
+/* ═══════════ FULL CATALOG ═══════════ */
+function loadPortfolioData() {
+  if (fullCatalogLoaded) {
+    renderWarehouseNav();
+    renderCountryNav();
+    if (currentView === 'catalogspreadsheet') renderCatalogSpreadsheet();
+    if (currentView === 'prearrival') renderPreArrival();
+    if (currentView === 'prearrivalspreadsheet') renderPreArrivalSpreadsheet();
+    return;
+  }
+
+  var fcContent = document.getElementById('fullCatalogContent');
+  var fcLoading = document.getElementById('fcLoading');
+  var paLoading = document.getElementById('paLoading');
+  if (fcLoading) fcLoading.style.display = 'block';
+  if (paLoading) paLoading.style.display = 'block';
+
+  fetch('the-source-portfolio.html')
+    .then(function(r) { return r.text(); })
+    .then(function(html) {
+      // Use indexOf instead of regex — much faster on 2.6MB strings
+      var startMarker = 'const DATA = [';
+      var startIdx = html.indexOf(startMarker);
+      if (startIdx === -1) throw new Error('Could not find portfolio data');
+      startIdx += startMarker.length - 1; // point at the opening [
+      var endIdx = html.indexOf('];\n', startIdx);
+      if (endIdx === -1) endIdx = html.indexOf('];', startIdx);
+      if (endIdx === -1) throw new Error('Could not find end of portfolio data');
+      var jsonStr = html.substring(startIdx, endIdx + 1);
+      html = null; // free 2.7MB string
+      portfolioData = JSON.parse(jsonStr);
+      jsonStr = null; // free parsed string
+      fullCatalogLoaded = true;
+      processPortfolioData();
+      renderWarehouseNav();
+      renderFullCatalog();
+      if (currentView === 'prearrival') renderPreArrival();
+      if (currentView === 'catalogspreadsheet') renderCatalogSpreadsheet();
+      if (currentView === 'prearrivalspreadsheet') renderPreArrivalSpreadsheet();
+      if (fcLoading) fcLoading.style.display = 'none';
+      if (paLoading) paLoading.style.display = 'none';
+      renderCountryNav();
+    })
+    .catch(function(err) {
+      if (fcLoading) fcLoading.style.display = 'none';
+      if (fcContent) fcContent.innerHTML = '<div class="no-results">Unable to load full catalog: ' + escapeHtml(err.message) + '</div>';
+    });
+}
+
+function processPortfolioData() {
+  fullCatalogByWarehouse = {};
+  catalogWineMap = {};
+  catalogWineCounter = 0;
+
+  portfolioData.forEach(function(warehouse) {
+    var whKey = warehouse.warehouse || 'Unknown';
+    var whLabel = warehouse.warehouse_label || whKey;
+    var countryMap = {};
+
+    warehouse.countries.forEach(function(countryObj) {
+      var countryName = countryObj.country;
+      if (!countryMap[countryName]) countryMap[countryName] = {};
+
+      countryObj.producers.forEach(function(producer) {
+        var pKey = producer.name;
+        if (!countryMap[countryName][pKey]) {
+          countryMap[countryName][pKey] = {
+            name: producer.name,
+            region: producer.region || '',
+            about: producer.about || '',
+            farming: producer.farming || [],
+            carousel_images: producer.carousel_images || [],
+            wines: []
+          };
+        }
+
+        producer.wines.forEach(function(wine) {
+          var catId = 'cat-' + (++catalogWineCounter);
+          var wineEntry = {};
+          for (var k in wine) { wineEntry[k] = wine[k]; }
+          wineEntry.catId = catId;
+          wineEntry.producer = producer.name;
+          wineEntry.country = countryName;
+          wineEntry.warehouse = whKey;
+          wineEntry.warehouse_label = whLabel;
+          catalogWineMap[catId] = wineEntry;
+          countryMap[countryName][pKey].wines.push(wineEntry);
+        });
+      });
+    });
+
+    var countries = [];
+    Object.keys(countryMap).sort().forEach(function(country) {
+      var producers = countryMap[country];
+      var producerList = [];
+      Object.keys(producers).sort().forEach(function(pName) {
+        producerList.push(producers[pName]);
+      });
+      countries.push({ country: country, producers: producerList });
+    });
+
+    fullCatalogByWarehouse[whKey] = { label: whLabel, countries: countries };
+  });
+
+  // Default to "All Warehouses" view
+  var warehouseKeys = Object.keys(fullCatalogByWarehouse);
+  if (warehouseKeys.length > 0 && !currentWarehouse) {
+    currentWarehouse = 'all';
+  }
+  if (currentWarehouse === 'all') {
+    fullCatalogGrouped = buildMergedCatalog();
+  } else if (currentWarehouse && fullCatalogByWarehouse[currentWarehouse]) {
+    fullCatalogGrouped = fullCatalogByWarehouse[currentWarehouse].countries;
+  } else {
+    fullCatalogGrouped = [];
+  }
+
+  // Build pre-arrival data separately
+  preArrivalGrouped = fullCatalogByWarehouse['PreArrival']
+    ? fullCatalogByWarehouse['PreArrival'].countries
+    : [];
+}
+
+function renderWarehouseNav() {
+  var nav = document.getElementById('warehouseNav');
+  // Exclude PreArrival — it has its own tab
+  var keys = Object.keys(fullCatalogByWarehouse).filter(function(k) { return k !== 'PreArrival'; });
+  if (keys.length <= 1) { nav.style.display = 'none'; return; }
+
+  var allActive = currentWarehouse === 'all' ? ' active' : '';
+  var html = '<button class="warehouse-tab' + allActive + '" data-wh="all" onclick="switchWarehouse(\'all\')">All In-Stock</button>';
+  keys.forEach(function(key) {
+    var wh = fullCatalogByWarehouse[key];
+    var active = key === currentWarehouse ? ' active' : '';
+    html += '<button class="warehouse-tab' + active + '" data-wh="' + escapeHtml(key) + '" onclick="switchWarehouse(\'' + escapeHtml(key) + '\')">' + escapeHtml(wh.label) + '</button>';
+  });
+  nav.innerHTML = html;
+  nav.style.display = 'flex';
+}
+
+function buildMergedCatalog() {
+  var countryMap = {};
+  // Exclude PreArrival — it has its own tab
+  Object.keys(fullCatalogByWarehouse).filter(function(k) { return k !== 'PreArrival'; }).forEach(function(whKey) {
+    var wh = fullCatalogByWarehouse[whKey];
+    wh.countries.forEach(function(countryGroup) {
+      var cName = countryGroup.country;
+      if (!countryMap[cName]) countryMap[cName] = {};
+      countryGroup.producers.forEach(function(producer) {
+        var pKey = producer.name;
+        if (!countryMap[cName][pKey]) {
+          countryMap[cName][pKey] = {
+            name: producer.name,
+            region: producer.region || '',
+            about: producer.about || '',
+            farming: producer.farming || [],
+            carousel_images: producer.carousel_images || [],
+            wines: []
+          };
+        }
+        producer.wines.forEach(function(w) { countryMap[cName][pKey].wines.push(w); });
+      });
+    });
+  });
+
+  var merged = [];
+  Object.keys(countryMap).sort().forEach(function(country) {
+    var producers = countryMap[country];
+    var producerList = [];
+    Object.keys(producers).sort().forEach(function(pName) {
+      producerList.push(producers[pName]);
+    });
+    merged.push({ country: country, producers: producerList });
+  });
+  return merged;
+}
+
+function switchWarehouse(key) {
+  if (key !== 'all' && !fullCatalogByWarehouse[key]) return;
+  currentWarehouse = key;
+  fullCatalogGrouped = key === 'all' ? buildMergedCatalog() : fullCatalogByWarehouse[key].countries;
+  fullCatalogRendered = false;
+  currentCountry = null;
+
+  // Update tab highlights
+  document.querySelectorAll('.warehouse-tab').forEach(function(t) {
+    t.classList.toggle('active', t.dataset.wh === key);
+  });
+
+  renderFullCatalog();
+  renderCountryNav();
+  if (currentView === 'catalogspreadsheet') renderCatalogSpreadsheet();
+}
+
+function renderFullCatalog() {
+  var container = document.getElementById('fullCatalogContent');
+  if (!fullCatalogLoaded || fullCatalogGrouped.length === 0) return;
+
+  // If already rendered, don't re-render
+  if (fullCatalogRendered) return;
+
+  container.innerHTML = '';
+  var countryIndex = 0;
+  var gen = ++_fcRenderGeneration; // cancel any prior progressive render
+
+  function renderCountryHTML(countryGroup) {
+    var countrySlug = slugify(countryGroup.country);
+    var html = '<div class="country-section" id="fc-country-' + countrySlug + '">';
+    html += '<h2 class="country-divider">' + escapeHtml(countryGroup.country) + '</h2>';
+
+    var regionMap = {};
+    var regionOrder = [];
+    countryGroup.producers.forEach(function(p) {
+      var r = p.region || '';
+      if (!regionMap[r]) { regionMap[r] = []; regionOrder.push(r); }
+      regionMap[r].push(p);
+    });
+
+    if (regionOrder.length > 1 || (regionOrder.length === 1 && regionOrder[0])) {
+      html += '<nav class="fc-region-nav">';
+      regionOrder.forEach(function(rn) {
+        var regionLabel = rn || 'Other';
+        var regionId = 'fc-region-' + countrySlug + '-' + slugify(regionLabel);
+        html += '<button class="fc-region-nav-btn" onclick="scrollToFCRegion(\'' + regionId + '\')">' + escapeHtml(regionLabel) + '</button>';
+      });
+      html += '</nav>';
+    }
+
+    regionOrder.forEach(function(regionName) {
+      var regionLabel = regionName || 'Other';
+      var regionId = 'fc-region-' + countrySlug + '-' + slugify(regionLabel);
+      var hasRegionHeader = regionOrder.length > 1 || regionName;
+
+      if (hasRegionHeader) {
+        html += '<div id="' + regionId + '" class="fc-region-section" data-region="' + escapeHtml(regionLabel) + '">';
+        html += '<h3 class="region-header">' + escapeHtml(regionLabel) + '</h3>';
+      }
+
+      regionMap[regionName].forEach(function(producer) {
+        html += '<div class="producer-section">';
+        if (producer.carousel_images && producer.carousel_images.length > 0) {
+          html += buildCarousel(producer.carousel_images, producer.name);
+        }
+        html += '<h3 class="producer-title">' + escapeHtml(producer.name) + '</h3>';
+        if (producer.about) html += '<p class="intro">' + escapeHtml(producer.about) + '</p>';
+        producer.wines.forEach(function(wine) { html += renderCatalogWineEntry(wine); });
+        html += '</div><hr class="flight-divider">';
+      });
+
+      if (hasRegionHeader) html += '</div>';
+    });
+
+    html += '</div>';
+    return html;
+  }
+
+  // Progressive render — one country per frame so the browser stays responsive
+  function renderNextCountry() {
+    if (gen !== _fcRenderGeneration) return; // cancelled
+    if (countryIndex >= fullCatalogGrouped.length) {
+      fullCatalogRendered = true;
+      initFCRegionFloat();
+      return;
+    }
+
+    var frag = document.createElement('div');
+    frag.innerHTML = renderCountryHTML(fullCatalogGrouped[countryIndex]);
+    var section = frag.firstChild;
+    container.appendChild(section);
+
+    // Init only the just-appended section's carousels and reveals
+    initCarouselsIn(section);
+    initScrollRevealIn(section);
+
+    countryIndex++;
+    requestAnimationFrame(renderNextCountry);
+  }
+
+  requestAnimationFrame(renderNextCountry);
+}
+
+function renderCatalogWineEntry(wine) {
+  var displayName = wine.name ? stripProducerPrefix(wine.name) : 'Unknown Wine';
+  var price = parsePortfolioPrice(wine.dist);
+  var varietalStr = wine.varietals ? wine.varietals.map(function(v) { return v.name; }).join(', ') : '';
+  var catId = wine.catId;
+
+  var searchText = ((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.warehouse_label || '')).toLowerCase();
+
+  var h = '<div class="wine-entry fc-wine-entry" data-wine="' + escapeHtml(catId) + '" data-search="' + escapeHtml(searchText) + '">';
+
+  h += '<div class="wine-title">' + escapeHtml(displayName);
+  if (wine.vintage) h += ' ' + wine.vintage;
+  if (wine.unit_set && wine.bottle_size) h += ' <span style="font-size:11pt;color:#888">' + wine.unit_set + '/' + wine.bottle_size + '</span>';
+  h += '</div>';
+
+  // Stock status
+  var stockHtml = getStockBadge(wine);
+  if (stockHtml) h += stockHtml;
+
+  // Pre-arrival notes (inbounding details)
+  if (wine.prearrival_notes) {
+    h += '<div class="prearrival-note"><span class="prearrival-label">ETA: </span>' + escapeHtml(wine.prearrival_notes) + '</div>';
+  }
+
+  // Meta info
+  var meta = [];
+  if (wine.appellation) meta.push(wine.appellation);
+  if (varietalStr) meta.push(varietalStr);
+  if (meta.length) {
+    h += '<div class="wine-desc">' + escapeHtml(meta.join(' \u2014 ')) + '</div>';
+  }
+
+  // Badges
+  var badges = '';
+  if (wine.organic) badges += '<span class="fc-badge">Organic</span>';
+  if (wine.biodynamic) badges += '<span class="fc-badge">Biodynamic</span>';
+  if (badges) h += '<div style="margin:4px 0">' + badges + '</div>';
+
+  // Details accordion
+  var hasDetails = wine.tasting_notes || wine.vineyard || wine.vinification || wine.aging;
+  if (hasDetails) {
+    h += '<button class="wine-toggle" onclick="toggleWineDetails(this)"><span class="chevron">&#9654;</span> Details</button>';
+    h += '<div class="wine-details">';
+    if (wine.tasting_notes) h += '<div class="wine-desc" style="margin-top:8px"><span class="kw">Tasting Notes: </span>' + escapeHtml(wine.tasting_notes) + '</div>';
+    if (wine.vineyard) h += '<div class="wine-desc"><span class="kw">Vineyard: </span>' + escapeHtml(wine.vineyard) + '</div>';
+    if (wine.vinification) h += '<div class="wine-desc"><span class="kw">Vinification: </span>' + escapeHtml(wine.vinification) + '</div>';
+    if (wine.aging) h += '<div class="wine-desc"><span class="kw">Aging: </span>' + escapeHtml(wine.aging) + '</div>';
+    h += '</div>';
+  }
+
+  // Cart controls
+  h += '<div class="wine-cart-controls">';
+  if (price > 0) {
+    h += '<div class="wine-price-display">$' + price.toFixed(2) + '/cs</div>';
+  } else {
+    h += '<div class="wine-price-display">Price on request</div>';
+  }
+  h += '<span class="qty-label">Qty (cs):</span>';
+  h += '<input type="number" class="qty-input" id="qty-' + escapeHtml(catId) + '" value="1" min="1" step="1">';
+  h += '<button class="add-to-cart-btn" onclick="addToCartCatalog(\'' + escapeHtml(catId) + '\')">Request</button>';
+  h += '</div>';
+
+  h += '</div>';
+  return h;
+}
+
+function addToCartCatalog(catId) {
+  var wine = catalogWineMap[catId];
+  if (!wine) return;
+
+  var qtyInput = document.getElementById('qty-' + catId);
+  var qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+  var existing = cart.find(function(c) { return c.sku === catId; });
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    var price = parsePortfolioPrice(wine.dist);
+    cart.push({
+      sku: catId,
+      wine: wine.name ? stripProducerPrefix(wine.name) : 'Unknown',
+      producer: wine.producer || '',
+      price: price,
+      qty: qty,
+      maxQty: Infinity,
+      source: 'catalog',
+      vintage: wine.vintage || '',
+      format: (wine.unit_set || '') + '/' + (wine.bottle_size || ''),
+      fullWineName: wine.name || '',
+      warehouse: wine.warehouse || '',
+      warehouse_label: wine.warehouse_label || ''
+    });
+  }
+
+  updateCartUI();
+
+  // Flash button
+  var btn = qtyInput ? qtyInput.nextElementSibling : null;
+  if (btn) {
+    btn.classList.add('added');
+    btn.textContent = 'Added';
+    setTimeout(function() { btn.classList.remove('added'); btn.textContent = 'Request'; }, 1200);
+  }
+}
+
+function parsePortfolioPrice(dist) {
+  if (!dist) return 0;
+  var match = String(dist).match(/[\d.]+/);
+  return match ? parseFloat(match[0]) : 0;
+}
+
+function scrollToFCRegion(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    var header = document.getElementById('stickyHeader');
+    var offset = header ? header.offsetHeight : 0;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - offset - 10;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
+function initFCRegionFloat() {
+  var floatEl = document.getElementById('fcRegionFloat');
+  if (!floatEl) return;
+
+  if (window._fcRegionObserver) {
+    window._fcRegionObserver.disconnect();
+  }
+
+  var countrySections = document.querySelectorAll('#fullCatalogContent .country-section');
+  if (countrySections.length === 0) return;
+
+  window._fcCurrentCountryId = null;
+  window._fcRegionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && entry.intersectionRatio > 0) {
+        buildFCRegionFloat(entry.target, floatEl);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '-80px 0px -60% 0px' });
+
+  countrySections.forEach(function(sec) {
+    window._fcRegionObserver.observe(sec);
+  });
+}
+
+function buildFCRegionFloat(countrySection, floatEl) {
+  if (window._fcCurrentCountryId === countrySection.id) return;
+  window._fcCurrentCountryId = countrySection.id;
+
+  var regions = countrySection.querySelectorAll('.fc-region-section');
+  if (regions.length === 0) {
+    floatEl.classList.remove('visible');
+    floatEl.innerHTML = '';
+    return;
+  }
+
+  var countryHeading = countrySection.querySelector('.country-divider');
+  var countryLabel = countryHeading ? countryHeading.textContent : '';
+
+  var html = '<div class="region-float-label">' + escapeHtml(countryLabel) + '</div>';
+  regions.forEach(function(r) {
+    var label = r.dataset.region || '';
+    var id = r.id || '';
+    html += '<button class="region-float-link" onclick="scrollToFCRegion(\'' + id + '\')">' + escapeHtml(label) + '</button>';
+  });
+
+  floatEl.innerHTML = html;
+  if (currentView === 'fullcatalog') floatEl.classList.add('visible');
+}
+
+/* ═══════════ CATALOG SPREADSHEET ═══════════ */
+function renderCatalogSpreadsheet() {
+  var container = document.getElementById('catalogSpreadsheetContainer');
+  if (!fullCatalogLoaded || !portfolioData) {
+    container.innerHTML = '<div class="no-results" style="padding:60px 20px;font-family:EB Garamond,serif;font-size:14pt;color:#999;font-style:italic;text-align:center">Loading catalog data...</div>';
+    return;
+  }
+
+  var rows = [];
+  Object.keys(catalogWineMap).forEach(function(catId) {
+    var wine = catalogWineMap[catId];
+    var displayName = wine.name ? stripProducerPrefix(wine.name) : 'Unknown';
+    var varietalStr = wine.varietals ? wine.varietals.map(function(v) { return v.name; }).join(', ') : '';
+    var price = parsePortfolioPrice(wine.dist);
+    var available = wine.available || 0;
+    var onHand = wine.on_hand || 0;
+    var stockStatus = '';
+    if (available > 0 && onHand > 0) stockStatus = available <= 5 ? 'Low Stock' : 'In Stock';
+    else if (available > 0) stockStatus = 'Pre-Arrival';
+    else stockStatus = 'Inquire';
+
+    rows.push({
+      producer: wine.producer || '',
+      wine: displayName,
+      vintage: wine.vintage || '',
+      appellation: wine.appellation || '',
+      region: wine.region || '',
+      country: wine.country || '',
+      warehouse: wine.warehouse_label || wine.warehouse || '',
+      format: (wine.unit_set || '') + (wine.bottle_size ? '/' + wine.bottle_size : ''),
+      price: price,
+      available: available,
+      stock: stockStatus,
+      varietals: varietalStr,
+      notes: wine.prearrival_notes || '',
+      catId: catId,
+      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '') + ' ' + (wine.country || '') + ' ' + (wine.warehouse_label || '') + ' ' + (wine.prearrival_notes || '')).toLowerCase()
+    });
+  });
+
+  if (catSortColumn) {
+    rows.sort(function(a, b) {
+      var va = a[catSortColumn]; var vb = b[catSortColumn];
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb || '').toLowerCase(); }
+      if (va < vb) return catSortDirection === 'asc' ? -1 : 1;
+      if (va > vb) return catSortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+  var columns = [
+    { key: 'producer', label: 'Producer' },
+    { key: 'wine', label: 'Wine' },
+    { key: 'vintage', label: 'Vintage' },
+    { key: 'appellation', label: 'Appellation' },
+    { key: 'country', label: 'Country' },
+    { key: 'region', label: 'Region' },
+    { key: 'warehouse', label: 'Warehouse' },
+    { key: 'format', label: 'Format' },
+    { key: 'price', label: 'Price' },
+    { key: 'available', label: 'Available' },
+    { key: 'stock', label: 'Status' },
+    { key: 'notes', label: 'Notes' },
+    { key: 'varietals', label: 'Varietals' }
+  ];
+
+  var html = '<table class="spreadsheet-table"><thead><tr>';
+  columns.forEach(function(col) {
+    var sortClass = catSortColumn === col.key ? ' sorted' : '';
+    var arrow = catSortColumn === col.key ? (catSortDirection === 'asc' ? '&#9650;' : '&#9660;') : '&#9650;';
+    html += '<th class="' + sortClass + '" onclick="sortCatalogTable(\'' + col.key + '\')">' + col.label + '<span class="sort-arrow">' + arrow + '</span></th>';
+  });
+  html += '<th>Order</th></tr></thead><tbody>';
+
+  rows.forEach(function(row, idx) {
+    html += '<tr class="ss-row" data-search="' + escapeHtml(row.searchText) + '">';
+    html += '<td>' + escapeHtml(row.producer) + '</td>';
+    html += '<td>' + escapeHtml(row.wine) + '</td>';
+    html += '<td>' + escapeHtml(row.vintage) + '</td>';
+    html += '<td>' + escapeHtml(row.appellation) + '</td>';
+    html += '<td>' + escapeHtml(row.country) + '</td>';
+    html += '<td>' + escapeHtml(row.region) + '</td>';
+    html += '<td>' + escapeHtml(row.warehouse) + '</td>';
+    html += '<td>' + escapeHtml(row.format) + '</td>';
+    html += '<td class="price-cell">' + (row.price > 0 ? '$' + row.price.toFixed(2) : 'TBD') + '</td>';
+    html += '<td>' + row.available + ' cs</td>';
+    html += '<td>' + escapeHtml(row.stock) + '</td>';
+    html += '<td>' + escapeHtml(row.notes) + '</td>';
+    html += '<td>' + escapeHtml(row.varietals) + '</td>';
+    html += '<td><div class="ss-cart-cell">';
+    html += '<input type="number" class="ss-qty" value="1" min="1" step="1" id="csQty' + idx + '">';
+    html += '<button class="ss-add-btn" onclick="addToCartCatalogSS(this, \'' + escapeHtml(row.catId) + '\', ' + idx + ')">Add</button>';
+    html += '</div></td></tr>';
+  });
+
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+function sortCatalogTable(column) {
+  if (catSortColumn === column) {
+    catSortDirection = catSortDirection === 'asc' ? 'desc' : 'asc';
+  } else {
+    catSortColumn = column;
+    catSortDirection = 'asc';
+  }
+  renderCatalogSpreadsheet();
+}
+
+function addToCartCatalogSS(btn, catId, idx) {
+  var wine = catalogWineMap[catId];
+  if (!wine) return;
+
+  var qtyInput = document.getElementById('csQty' + idx);
+  var qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+  var existing = cart.find(function(c) { return c.sku === catId; });
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    var price = parsePortfolioPrice(wine.dist);
+    cart.push({
+      sku: catId,
+      wine: wine.name ? stripProducerPrefix(wine.name) : 'Unknown',
+      producer: wine.producer || '',
+      price: price,
+      qty: qty,
+      maxQty: Infinity,
+      source: 'catalog',
+      vintage: wine.vintage || '',
+      format: (wine.unit_set || '') + '/' + (wine.bottle_size || ''),
+      fullWineName: wine.name || '',
+      warehouse: wine.warehouse || '',
+      warehouse_label: wine.warehouse_label || ''
+    });
+  }
+
+  updateCartUI();
+  btn.classList.add('added');
+  btn.textContent = 'Added';
+  setTimeout(function() { btn.classList.remove('added'); btn.textContent = 'Add'; }, 1200);
+}
+
+/* ═══════════ PRE-ARRIVAL ═══════════ */
+function renderPreArrival() {
+  var container = document.getElementById('preArrivalContent');
+  if (!fullCatalogLoaded || preArrivalGrouped.length === 0) {
+    container.innerHTML = '<div class="no-results">No pre-arrival wines available.</div>';
+    return;
+  }
+
+  if (preArrivalRendered) return;
+
+  container.innerHTML = '';
+  var countryIndex = 0;
+  var gen = ++_paRenderGeneration;
+
+  function renderCountryHTML(countryGroup) {
+    var countrySlug = slugify(countryGroup.country);
+    var html = '<div class="country-section" id="pa-country-' + countrySlug + '">';
+    html += '<h2 class="country-divider">' + escapeHtml(countryGroup.country) + '</h2>';
+
+    var regionMap = {};
+    var regionOrder = [];
+    countryGroup.producers.forEach(function(p) {
+      var r = p.region || '';
+      if (!regionMap[r]) { regionMap[r] = []; regionOrder.push(r); }
+      regionMap[r].push(p);
+    });
+
+    if (regionOrder.length > 1 || (regionOrder.length === 1 && regionOrder[0])) {
+      html += '<nav class="fc-region-nav">';
+      regionOrder.forEach(function(rn) {
+        var regionLabel = rn || 'Other';
+        var regionId = 'pa-region-' + countrySlug + '-' + slugify(regionLabel);
+        html += '<button class="fc-region-nav-btn" onclick="scrollToFCRegion(\'' + regionId + '\')">' + escapeHtml(regionLabel) + '</button>';
+      });
+      html += '</nav>';
+    }
+
+    regionOrder.forEach(function(regionName) {
+      var regionLabel = regionName || 'Other';
+      var regionId = 'pa-region-' + countrySlug + '-' + slugify(regionLabel);
+      var hasRegionHeader = regionOrder.length > 1 || regionName;
+
+      if (hasRegionHeader) {
+        html += '<div id="' + regionId + '" class="fc-region-section" data-region="' + escapeHtml(regionLabel) + '">';
+        html += '<h3 class="region-header">' + escapeHtml(regionLabel) + '</h3>';
+      }
+
+      regionMap[regionName].forEach(function(producer) {
+        html += '<div class="producer-section">';
+        if (producer.carousel_images && producer.carousel_images.length > 0) {
+          html += buildCarousel(producer.carousel_images, producer.name);
+        }
+        html += '<h3 class="producer-title">' + escapeHtml(producer.name) + '</h3>';
+        if (producer.about) html += '<p class="intro">' + escapeHtml(producer.about) + '</p>';
+        producer.wines.forEach(function(wine) { html += renderCatalogWineEntry(wine); });
+        html += '</div><hr class="flight-divider">';
+      });
+
+      if (hasRegionHeader) html += '</div>';
+    });
+
+    html += '</div>';
+    return html;
+  }
+
+  function renderNextCountry() {
+    if (gen !== _paRenderGeneration) return;
+    if (countryIndex >= preArrivalGrouped.length) {
+      preArrivalRendered = true;
+      return;
+    }
+
+    var frag = document.createElement('div');
+    frag.innerHTML = renderCountryHTML(preArrivalGrouped[countryIndex]);
+    var section = frag.firstChild;
+    container.appendChild(section);
+
+    initCarouselsIn(section);
+    initScrollRevealIn(section);
+
+    countryIndex++;
+    requestAnimationFrame(renderNextCountry);
+  }
+
+  requestAnimationFrame(renderNextCountry);
+}
+
+function renderPreArrivalSpreadsheet() {
+  var container = document.getElementById('preArrivalSpreadsheetContainer');
+  if (!fullCatalogLoaded || !portfolioData) {
+    container.innerHTML = '<div class="no-results" style="padding:60px 20px;font-family:EB Garamond,serif;font-size:14pt;color:#999;font-style:italic;text-align:center">Loading pre-arrival data...</div>';
+    return;
+  }
+
+  // Collect only PreArrival wines
+  var rows = [];
+  Object.keys(catalogWineMap).forEach(function(catId) {
+    var wine = catalogWineMap[catId];
+    if (wine.warehouse !== 'PreArrival') return;
+
+    var displayName = wine.name ? stripProducerPrefix(wine.name) : 'Unknown';
+    var varietalStr = wine.varietals ? wine.varietals.map(function(v) { return v.name; }).join(', ') : '';
+    var price = parsePortfolioPrice(wine.dist);
+    var paQty = wine.prearrival_qty || '';
+
+    rows.push({
+      producer: wine.producer || '',
+      wine: displayName,
+      vintage: wine.vintage || '',
+      appellation: wine.appellation || '',
+      region: wine.region || '',
+      country: wine.country || '',
+      format: (wine.unit_set || '') + (wine.bottle_size ? '/' + wine.bottle_size : ''),
+      price: price,
+      paQty: paQty,
+      notes: wine.prearrival_notes || '',
+      varietals: varietalStr,
+      catId: catId,
+      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '') + ' ' + (wine.country || '') + ' ' + (wine.prearrival_notes || '')).toLowerCase()
+    });
+  });
+
+  if (paSortColumn) {
+    rows.sort(function(a, b) {
+      var va = a[paSortColumn]; var vb = b[paSortColumn];
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb || '').toLowerCase(); }
+      if (va < vb) return paSortDirection === 'asc' ? -1 : 1;
+      if (va > vb) return paSortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+  var columns = [
+    { key: 'producer', label: 'Producer' },
+    { key: 'wine', label: 'Wine' },
+    { key: 'vintage', label: 'Vintage' },
+    { key: 'appellation', label: 'Appellation' },
+    { key: 'country', label: 'Country' },
+    { key: 'region', label: 'Region' },
+    { key: 'format', label: 'Format' },
+    { key: 'price', label: 'Price' },
+    { key: 'paQty', label: 'Qty Expected' },
+    { key: 'notes', label: 'ETA / Notes' },
+    { key: 'varietals', label: 'Varietals' }
+  ];
+
+  var html = '<table class="spreadsheet-table"><thead><tr>';
+  columns.forEach(function(col) {
+    var sortClass = paSortColumn === col.key ? ' sorted' : '';
+    var arrow = paSortColumn === col.key ? (paSortDirection === 'asc' ? '&#9650;' : '&#9660;') : '&#9650;';
+    html += '<th class="' + sortClass + '" onclick="sortPATable(\'' + col.key + '\')">' + col.label + '<span class="sort-arrow">' + arrow + '</span></th>';
+  });
+  html += '<th>Order</th></tr></thead><tbody>';
+
+  rows.forEach(function(row, idx) {
+    html += '<tr class="ss-row" data-search="' + escapeHtml(row.searchText) + '">';
+    html += '<td>' + escapeHtml(row.producer) + '</td>';
+    html += '<td>' + escapeHtml(row.wine) + '</td>';
+    html += '<td>' + escapeHtml(row.vintage) + '</td>';
+    html += '<td>' + escapeHtml(row.appellation) + '</td>';
+    html += '<td>' + escapeHtml(row.country) + '</td>';
+    html += '<td>' + escapeHtml(row.region) + '</td>';
+    html += '<td>' + escapeHtml(row.format) + '</td>';
+    html += '<td class="price-cell">' + (row.price > 0 ? '$' + row.price.toFixed(2) : 'TBD') + '</td>';
+    html += '<td>' + escapeHtml(String(row.paQty)) + '</td>';
+    html += '<td>' + escapeHtml(row.notes) + '</td>';
+    html += '<td>' + escapeHtml(row.varietals) + '</td>';
+    html += '<td><div class="ss-cart-cell">';
+    html += '<input type="number" class="ss-qty" value="1" min="1" step="1" id="paQty' + idx + '">';
+    html += '<button class="ss-add-btn" onclick="addToCartPASS(this, \'' + escapeHtml(row.catId) + '\', ' + idx + ')">Add</button>';
+    html += '</div></td></tr>';
+  });
+
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+function sortPATable(column) {
+  if (paSortColumn === column) {
+    paSortDirection = paSortDirection === 'asc' ? 'desc' : 'asc';
+  } else {
+    paSortColumn = column;
+    paSortDirection = 'asc';
+  }
+  renderPreArrivalSpreadsheet();
+}
+
+function addToCartPASS(btn, catId, idx) {
+  var wine = catalogWineMap[catId];
+  if (!wine) return;
+
+  var qtyInput = document.getElementById('paQty' + idx);
+  var qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+  var existing = cart.find(function(c) { return c.sku === catId; });
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    var price = parsePortfolioPrice(wine.dist);
+    cart.push({
+      sku: catId,
+      wine: wine.name ? stripProducerPrefix(wine.name) : 'Unknown',
+      producer: wine.producer || '',
+      price: price,
+      qty: qty,
+      maxQty: Infinity,
+      source: 'catalog',
+      vintage: wine.vintage || '',
+      format: (wine.unit_set || '') + '/' + (wine.bottle_size || ''),
+      fullWineName: wine.name || '',
+      warehouse: wine.warehouse || '',
+      warehouse_label: wine.warehouse_label || ''
+    });
+  }
+
+  updateCartUI();
+  btn.classList.add('added');
+  btn.textContent = 'Added';
+  setTimeout(function() { btn.classList.remove('added'); btn.textContent = 'Add'; }, 1200);
+}
+
+/* ═══════════ CSV EXPORT ═══════════ */
+function exportOrderCSV() {
+  if (cart.length === 0) {
+    alert('Your cart is empty.');
+    return;
+  }
+
+  var company = document.getElementById('coName').value.trim() || 'Order';
+  var contact = document.getElementById('coContact').value.trim();
+  var email = document.getElementById('coEmail').value.trim();
+  var phone = document.getElementById('coPhone').value.trim();
+  var notes = document.getElementById('coNotes').value.trim();
+
+  var headers = ['Source', 'Warehouse', 'Producer', 'Wine', 'Qty (cases)', 'Unit Price', 'Line Total'];
+  var csvRows = [];
+
+  if (company) csvRows.push('Company,' + csvEscape(company));
+  if (contact) csvRows.push('Contact,' + csvEscape(contact));
+  if (email) csvRows.push('Email,' + csvEscape(email));
+  if (phone) csvRows.push('Phone,' + csvEscape(phone));
+  if (notes) csvRows.push('Notes,' + csvEscape(notes));
+  csvRows.push('');
+  csvRows.push(headers.join(','));
+
+  var grandTotal = 0;
+
+  var allocationItems = cart.filter(function(c) { return c.source !== 'catalog'; });
+  var catalogItems = cart.filter(function(c) { return c.source === 'catalog'; });
+
+  allocationItems.forEach(function(item) {
+    var lineTotal = item.price * item.qty;
+    grandTotal += lineTotal;
+    csvRows.push([
+      'Allocation',
+      '',
+      csvEscape(item.producer),
+      csvEscape(item.wine),
+      item.qty,
+      item.price > 0 ? item.price.toFixed(2) : '',
+      item.price > 0 ? lineTotal.toFixed(2) : 'TBD'
+    ].join(','));
+  });
+
+  catalogItems.forEach(function(item) {
+    var lineTotal = item.price * item.qty;
+    grandTotal += lineTotal;
+    csvRows.push([
+      'Catalog Request',
+      csvEscape(item.warehouse_label || item.warehouse || ''),
+      csvEscape(item.producer),
+      csvEscape(item.wine),
+      item.qty,
+      item.price > 0 ? item.price.toFixed(2) : '',
+      item.price > 0 ? lineTotal.toFixed(2) : 'TBD'
+    ].join(','));
+  });
+
+  csvRows.push('');
+  csvRows.push(',,,,,Total,' + (grandTotal > 0 ? grandTotal.toFixed(2) : 'TBD'));
+
+  var csvContent = csvRows.join('\n');
+  var blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  var safeName = company.replace(/[^a-zA-Z0-9]/g, '_') || 'Order';
+  a.download = 'The_Source_Order_' + safeName + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function csvEscape(str) {
+  if (!str) return '';
+  str = String(str);
+  if (str.indexOf(',') !== -1 || str.indexOf('"') !== -1 || str.indexOf('\n') !== -1) {
+    return '"' + str.replace(/"/g, '""') + '"';
+  }
+  return str;
+}
+
+function getStockBadge(wine) {
+  var available = wine.available || 0;
+  var onHand = wine.on_hand || 0;
+
+  if (available > 0 && onHand > 0) {
+    if (available <= 5) return '<span class="stock-badge low-stock">Low Stock (' + available + ' cs)</span>';
+    return '<span class="stock-badge in-stock">In Stock (' + available + ' cs)</span>';
+  }
+  if (available > 0 && onHand <= 0) {
+    return '<span class="stock-badge pre-arrival">Pre-Arrival</span>';
+  }
+  return '<span class="stock-badge inquire">Inquire</span>';
+}
+
+/* ═══════════ UTILITIES ═══════════ */
+function escapeHtml(text) {
+  if (!text) return '';
+  var div = document.createElement('div');
+  div.textContent = String(text);
+  return div.innerHTML;
+}
+
+function stripProducerPrefix(wineName) {
+  var idx = wineName.indexOf(',');
+  if (idx === -1) return wineName;
+  return wineName.substring(idx + 1).trim();
+}
+
+function slugify(str) {
+  return (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function formatVarietals(varietals) {
+  if (!varietals || !varietals.length) return '';
+  return varietals.map(function(v) { return v.name || v; }).join(', ');
+}
+
+function formatFarming(farming) {
+  if (!farming || farming === '[]') return '';
+  if (Array.isArray(farming)) return farming.join(', ');
+  try { var arr = JSON.parse(farming); if (Array.isArray(arr)) return arr.join(', '); } catch(e) {}
+  return String(farming);
+}
+
+function toggleWineDetails(btn) {
+  var details = btn.nextElementSibling;
+  btn.classList.toggle('open');
+  details.classList.toggle('open');
+}
+
+function buildCarousel(images, producerName) {
+  if (!images || images.length === 0) return '';
+  var slides = '';
+  images.forEach(function(img, i) {
+    slides += '<div class="carousel-slide"><img src="' + escapeHtml(img) + '" alt="' + escapeHtml(producerName) + '"' + (i > 0 ? ' loading="lazy"' : '') + '></div>';
+  });
+  return '<div class="carousel" data-autoplay="5000">' +
+    '<div class="carousel-track">' + slides + '</div>' +
+    '<button class="carousel-btn prev">&#8249;</button>' +
+    '<button class="carousel-btn next">&#8250;</button>' +
+    '<div class="carousel-dots"></div></div>';
+}
+
+function initCarousels() { initCarouselsIn(document); }
+function initCarouselsIn(root) {
+  root.querySelectorAll('.carousel').forEach(function(carousel) {
+    if (carousel.dataset.init) return; // already initialized
+    carousel.dataset.init = '1';
+
+    var track = carousel.querySelector('.carousel-track');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var prevBtn = carousel.querySelector('.carousel-btn.prev');
+    var nextBtn = carousel.querySelector('.carousel-btn.next');
+    var dotsContainer = carousel.querySelector('.carousel-dots');
+    var totalSlides = slides.length;
+    var currentIndex = 0;
+    var autoplayInterval = null;
+    var autoplayDelay = parseInt(carousel.dataset.autoplay) || 4000;
+
+    if (totalSlides <= 1) {
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      if (dotsContainer) dotsContainer.style.display = 'none';
+      return;
+    }
+
+    for (var i = 0; i < totalSlides; i++) {
+      var dot = document.createElement('button');
+      dot.classList.add('carousel-dot');
+      if (i === 0) dot.classList.add('active');
+      (function(idx) { dot.addEventListener('click', function() { goTo(idx); }); })(i);
+      dotsContainer.appendChild(dot);
+    }
+    var dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+    function goTo(index) {
+      currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
+      track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === currentIndex); });
+    }
+    function next() { goTo(currentIndex + 1); }
+    function prev() { goTo(currentIndex - 1); }
+
+    prevBtn.addEventListener('click', function() { prev(); resetAutoplay(); });
+    nextBtn.addEventListener('click', function() { next(); resetAutoplay(); });
+
+    function startAutoplay() { autoplayInterval = setInterval(next, autoplayDelay); }
+    function resetAutoplay() { clearInterval(autoplayInterval); startAutoplay(); }
+
+    carousel.addEventListener('mouseenter', function() { clearInterval(autoplayInterval); });
+    carousel.addEventListener('mouseleave', function() { startAutoplay(); });
+
+    var touchStartX = 0;
+    carousel.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    carousel.addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) { if (diff > 0) next(); else prev(); resetAutoplay(); }
+    });
+    startAutoplay();
+  });
+}
+
+// Shared observer for scroll reveal — reused across progressive renders
+var _scrollRevealObserver = null;
+function initScrollReveal() { initScrollRevealIn(document); }
+function initScrollRevealIn(root) {
+  if (!_scrollRevealObserver) {
+    _scrollRevealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  }
+  root.querySelectorAll('.producer-section').forEach(function(s) {
+    if (!s.dataset.observed) {
+      s.dataset.observed = '1';
+      _scrollRevealObserver.observe(s);
+    }
+  });
+}
+
+/* ═══════════ INIT ═══════════ */
+document.addEventListener('DOMContentLoaded', function() {
+  var user = loadSession();
+  if (user) {
+    currentUser = user;
+    showDashboard();
+    loadAllocations(false);
+  }
+});
+</script>
+</body>
+</html>
