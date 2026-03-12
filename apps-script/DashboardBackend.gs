@@ -131,6 +131,7 @@ function handleAllocations(body) {
     var customName = String(row[7] || '').trim();
     var customVintage = String(row[8] || '').trim();
     var customFormat = String(row[9] || '').trim();
+    var customProducer = String(row[10] || '').trim();
 
     var qtyOrdered = orderedQty[sku] || 0;
     var qtyRemaining = Math.max(0, qtyAllocated - qtyOrdered);
@@ -146,7 +147,8 @@ function handleAllocations(body) {
       wine_description: wineDescription,
       custom_name: customName,
       custom_vintage: customVintage,
-      custom_format: customFormat
+      custom_format: customFormat,
+      custom_producer: customProducer
     });
   }
 
@@ -187,6 +189,7 @@ function enrichWithVinosmith(allocations) {
     if (!vid) {
       // No Vinosmith ID — use sheet columns directly
       alloc.name = alloc.custom_name || alloc.sku;
+      alloc.producer = alloc.custom_producer || '';
       alloc.vintage = alloc.custom_vintage || '';
       if (alloc.custom_format) {
         var fp = alloc.custom_format.split('/');
@@ -288,7 +291,7 @@ function extractImages(wine) {
 function mergeWineData(alloc, wineData) {
   // Sheet columns override API values when present
   alloc.name = alloc.custom_name || wineData.name;
-  alloc.producer = wineData.producer;
+  alloc.producer = wineData.producer || alloc.custom_producer || '';
   alloc.producer_description = wineData.producer_description;
   alloc.country = wineData.country;
   alloc.region = wineData.region;
