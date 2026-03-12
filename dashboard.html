@@ -1004,7 +1004,7 @@ function renderWineEntry(wine) {
   var varietalStr = formatVarietals(wine.varietals);
   var wineId = 'wine-' + slugify(wine.sku);
 
-  var h = '<div class="wine-entry" data-wine="' + escapeHtml(wine.sku) + '" data-search="' + escapeHtml((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '')).toLowerCase() + '">';
+  var h = '<div class="wine-entry" data-wine="' + escapeHtml(wine.sku) + '" data-search="' + escapeHtml((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.country || '') + ' ' + (wine.vintage || '')).toLowerCase() + '">';
 
   h += '<div class="wine-title">' + escapeHtml(displayName);
   if (wine.vintage) h += ' ' + escapeHtml(wine.vintage);
@@ -1238,51 +1238,63 @@ function switchView(view) {
 }
 
 /* ═══════════ SEARCH ═══════════ */
+var _searchTimer = null;
 function filterWines() {
+  clearTimeout(_searchTimer);
+  _searchTimer = setTimeout(_doFilter, 150);
+}
+function _doFilter() {
   var query = document.getElementById('searchInput').value.trim().toLowerCase();
   document.getElementById('searchClear').style.display = query ? 'block' : 'none';
 
-  // Filter allocations catalog
-  document.querySelectorAll('#catalogContent .wine-entry').forEach(function(el) {
-    var text = (el.dataset.search || '').toLowerCase();
-    el.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
-  });
+  // Split into words so "riesling 2023" matches entries containing both words anywhere
+  var words = query ? query.split(/\s+/) : [];
 
-  // Filter allocations spreadsheet
-  document.querySelectorAll('#spreadsheetContainer .ss-row').forEach(function(row) {
-    var text = row.dataset.search || '';
-    row.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
-  });
+  function matches(text) {
+    if (!words.length) return true;
+    for (var i = 0; i < words.length; i++) {
+      if (text.indexOf(words[i]) === -1) return false;
+    }
+    return true;
+  }
 
-  // Filter full catalog
-  document.querySelectorAll('#fullCatalogContent .wine-entry').forEach(function(el) {
-    var text = (el.dataset.search || '').toLowerCase();
-    el.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
-  });
+  // Only filter the currently visible view
+  var view = resolveView();
+  var cardSel = null, rowSel = null, prodSel = null;
 
-  // Filter catalog spreadsheet
-  document.querySelectorAll('#catalogSpreadsheetContainer .ss-row').forEach(function(row) {
-    var text = row.dataset.search || '';
-    row.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
-  });
+  if (view === 'catalog') {
+    cardSel = '#catalogContent .wine-entry';
+    prodSel = '#catalogContent .producer-section';
+  } else if (view === 'spreadsheet') {
+    rowSel = '#spreadsheetContainer .ss-row';
+  } else if (view === 'fullcatalog') {
+    cardSel = '#fullCatalogContent .wine-entry';
+    prodSel = '#fullCatalogContent .producer-section';
+  } else if (view === 'catalogspreadsheet') {
+    rowSel = '#catalogSpreadsheetContainer .ss-row';
+  } else if (view === 'prearrival') {
+    cardSel = '#preArrivalContent .wine-entry';
+    prodSel = '#preArrivalContent .producer-section';
+  } else if (view === 'prearrivalspreadsheet') {
+    rowSel = '#preArrivalSpreadsheetContainer .ss-row';
+  }
 
-  // Filter pre-arrival
-  document.querySelectorAll('#preArrivalContent .wine-entry').forEach(function(el) {
-    var text = (el.dataset.search || '').toLowerCase();
-    el.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
-  });
-
-  // Filter pre-arrival spreadsheet
-  document.querySelectorAll('#preArrivalSpreadsheetContainer .ss-row').forEach(function(row) {
-    var text = row.dataset.search || '';
-    row.style.display = !query || text.indexOf(query) !== -1 ? '' : 'none';
-  });
-
-  // Show/hide producer sections with no visible wines
-  document.querySelectorAll('.producer-section').forEach(function(sec) {
-    var visibleWines = sec.querySelectorAll('.wine-entry:not([style*="display: none"])');
-    sec.style.display = visibleWines.length > 0 || !query ? '' : 'none';
-  });
+  if (cardSel) {
+    document.querySelectorAll(cardSel).forEach(function(el) {
+      el.style.display = matches((el.dataset.search || '')) ? '' : 'none';
+    });
+  }
+  if (rowSel) {
+    document.querySelectorAll(rowSel).forEach(function(row) {
+      row.style.display = matches((row.dataset.search || '')) ? '' : 'none';
+    });
+  }
+  if (prodSel) {
+    document.querySelectorAll(prodSel).forEach(function(sec) {
+      var visible = sec.querySelectorAll('.wine-entry:not([style*="display: none"])');
+      sec.style.display = visible.length > 0 || !query ? '' : 'none';
+    });
+  }
 }
 
 function clearSearch() {
