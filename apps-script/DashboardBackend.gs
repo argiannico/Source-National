@@ -260,10 +260,38 @@ function enrichWithVinosmith(allocations) {
         } catch (ce) { /* cache put failed, non-critical */ }
 
         mergeWineData(alloc, wineData);
+      } else {
+        // Non-200 response — fall back to sheet data
+        alloc.name = alloc.custom_name || alloc.sku;
+        alloc.producer = alloc.custom_producer || '';
+        alloc.vintage = alloc.custom_vintage || '';
+        if (alloc.custom_format) {
+          var fp = alloc.custom_format.split('/');
+          alloc.unit_set = fp[0] ? fp[0].trim() : '';
+          alloc.bottle_size = fp[1] ? fp[1].trim() : '';
+        }
+        if (alloc.custom_price !== null && alloc.custom_price !== undefined && !isNaN(alloc.custom_price)) {
+          alloc.price = alloc.custom_price;
+        } else {
+          alloc.price = 0;
+        }
       }
     } catch (err) {
-      // API failed — alloc keeps its sheet data (sku, qty, notes)
+      // API failed — fall back to sheet data
       alloc.api_error = err.message;
+      alloc.name = alloc.custom_name || alloc.sku;
+      alloc.producer = alloc.custom_producer || '';
+      alloc.vintage = alloc.custom_vintage || '';
+      if (alloc.custom_format) {
+        var fp = alloc.custom_format.split('/');
+        alloc.unit_set = fp[0] ? fp[0].trim() : '';
+        alloc.bottle_size = fp[1] ? fp[1].trim() : '';
+      }
+      if (alloc.custom_price !== null && alloc.custom_price !== undefined && !isNaN(alloc.custom_price)) {
+        alloc.price = alloc.custom_price;
+      } else {
+        alloc.price = 0;
+      }
     }
   }
 
