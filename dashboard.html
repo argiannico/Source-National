@@ -1879,6 +1879,11 @@ function renderFullCatalog() {
 }
 
 function renderCatalogWineEntry(wine) {
+  // Skip wines with no stock data
+  var avail = wine.available || 0;
+  var onHand = wine.on_hand || 0;
+  if (avail <= 0 && onHand <= 0) return '';
+
   var displayName = wine.name ? stripProducerPrefix(wine.name) : 'Unknown Wine';
   var price = parsePortfolioPrice(wine.dist);
   var varietalStr = wine.varietals ? wine.varietals.map(function(v) { return v.name; }).join(', ') : '';
@@ -2069,7 +2074,7 @@ function renderCatalogSpreadsheet() {
     var stockStatus = '';
     if (available > 0 && onHand > 0) stockStatus = available <= 5 ? 'Low Stock' : 'In Stock';
     else if (available > 0) stockStatus = 'Pre-Arrival';
-    else stockStatus = 'Inquire';
+    else return; // Skip wines with no stock data
 
     rows.push({
       producer: wine.producer || '',
@@ -2509,7 +2514,7 @@ function getStockBadge(wine) {
   if (available > 0 && onHand <= 0) {
     return '<span class="stock-badge pre-arrival">Pre-Arrival</span>';
   }
-  return '<span class="stock-badge inquire">Inquire</span>';
+  return '';
 }
 
 /* ═══════════ UTILITIES ═══════════ */
