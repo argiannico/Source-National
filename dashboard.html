@@ -934,6 +934,14 @@
             <button type="button" class="ob-logo-remove" id="obLogoRemoveBtn" style="display:none" onclick="removeOfferLogo()">&times; Remove</button>
           </div>
         </div>
+        <div>
+          <label>Hero Photo <span style="font-weight:normal;color:#999;text-transform:none;letter-spacing:0">(optional center image)</span></label>
+          <div class="ob-logo-area">
+            <input type="file" id="obHeroInput" accept="image/*" onchange="handleOfferHero(this)" style="font-size:10pt">
+            <img id="obHeroPreview" class="ob-logo-preview" style="display:none;max-height:80px;max-width:200px">
+            <button type="button" class="ob-logo-remove" id="obHeroRemoveBtn" style="display:none" onclick="removeOfferHero()">&times; Remove</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1117,7 +1125,7 @@ var showFavoritesOnly = false;
 var offerItems = [];
 var offerBuilderOpen = false;
 var offerSettings = {
-  companyName: '', logoBase64: '', offerTitle: '', validThrough: '',
+  companyName: '', logoBase64: '', heroBase64: '', offerTitle: '', validThrough: '',
   contactInfo: '', showTastingNotes: true, showTechDetails: true,
   showImages: true, showVintage: true, groupBy: 'none', priceUnit: 'case'
 };
@@ -3769,6 +3777,26 @@ function removeOfferLogo() {
   document.getElementById('obLogoInput').value = '';
 }
 
+function handleOfferHero(input) {
+  if (!input.files || !input.files[0]) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    offerSettings.heroBase64 = e.target.result;
+    var preview = document.getElementById('obHeroPreview');
+    preview.src = e.target.result;
+    preview.style.display = '';
+    document.getElementById('obHeroRemoveBtn').style.display = '';
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function removeOfferHero() {
+  offerSettings.heroBase64 = '';
+  document.getElementById('obHeroPreview').style.display = 'none';
+  document.getElementById('obHeroRemoveBtn').style.display = 'none';
+  document.getElementById('obHeroInput').value = '';
+}
+
 function groupOfferWines(wines, groupBy) {
   if (groupBy === 'none') return [{ label: '', items: wines }];
   var map = {};
@@ -3800,6 +3828,10 @@ function buildOfferStyles() {
   /* ── Top branding ── */
   '.offer-top-brand{text-align:center;padding:24px 0 8px}' +
   '.offer-top-brand .brand-name{font-family:"The Source","EB Garamond",serif;font-size:28pt;font-weight:normal;letter-spacing:8px;text-transform:uppercase;color:#1a1a1a}' +
+
+  /* ── Hero photo ── */
+  '.offer-hero{text-align:center;margin-bottom:16px}' +
+  '.offer-hero img{max-width:100%;max-height:280px;object-fit:cover;border-radius:3px}' +
 
   /* ── Header ── */
   '.offer-header{text-align:center;padding:12px 0 16px;margin-bottom:20px}' +
@@ -3895,6 +3927,11 @@ function generateOffer() {
     if (s.contactInfo) html += '<div class="offer-contact-header">' + escapeHtml(s.contactInfo) + '</div>';
   }
   html += '</div>';
+
+  // Hero photo
+  if (s.heroBase64) {
+    html += '<div class="offer-hero"><img src="' + s.heroBase64 + '" alt=""></div>';
+  }
 
   // Iterate flat list: sections become headings, wines get grouped by producer between sections
   var i = 0;
