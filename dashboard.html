@@ -3746,38 +3746,86 @@ function groupOfferWines(wines, groupBy) {
 }
 
 function buildOfferStyles() {
+  // Embed The Source @font-face (base64)
+  var fontFace = "@font-face{font-family:'The Source';src:local('The Source 4 Regular'),local('TheSource4-Regular')," +
+    "url(data:font/truetype;base64,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) format('truetype');" +
+    "font-weight:normal;font-style:normal}";
+
   return '@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap");' +
-  'body{margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:"EB Garamond",Georgia,serif;-webkit-font-smoothing:antialiased;font-size:11pt;line-height:1.6}' +
-  '.offer-wrap{max-width:850px;margin:0 auto;padding:40px 48px}' +
-  '.offer-header{text-align:center;margin-bottom:32px}' +
-  '.offer-logo{max-height:70px;max-width:200px;margin-bottom:12px}' +
-  '.offer-company{font-size:24pt;font-weight:500;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}' +
-  '.offer-title{font-size:14pt;font-weight:400;color:#5a3e2b;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}' +
-  '.offer-divider{width:60px;height:1px;background:#c5b9a8;margin:16px auto}' +
-  '.offer-validity{font-size:10pt;color:#888;letter-spacing:1px}' +
-  '.offer-contact-header{font-size:10pt;color:#888;margin-top:4px}' +
-  '.offer-group-heading{font-size:13pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#5a3e2b;border-bottom:1px solid #e0d8cc;padding-bottom:4px;margin:28px 0 12px}' +
-  '.offer-producer-block{margin-bottom:24px}' +
-  '.offer-producer-img{width:100%;max-height:180px;object-fit:cover;border-radius:4px;margin-bottom:8px}' +
-  '.offer-producer-name{font-size:12pt;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}' +
-  '.offer-producer-bio{font-size:10pt;font-style:italic;color:#666;margin-bottom:10px;line-height:1.5}' +
-  'table.offer-table{width:100%;border-collapse:collapse;margin-bottom:12px}' +
-  'table.offer-table th{text-align:left;font-size:8.5pt;text-transform:uppercase;letter-spacing:1.5px;color:#888;border-bottom:2px solid #c5b9a8;padding:6px 8px;font-weight:500}' +
-  'table.offer-table th.qty-col{text-align:center;width:70px}' +
-  'table.offer-table th.price-col{text-align:right;width:90px}' +
-  'table.offer-table td{padding:8px;border-bottom:1px solid #eee;vertical-align:top;font-size:10.5pt}' +
-  'table.offer-table td.qty-cell{text-align:center;border-bottom:1px solid #ccc}' +
-  'table.offer-table td.price-cell{text-align:right;font-weight:500;white-space:nowrap}' +
-  '.wine-name-cell{font-weight:500}' +
+  fontFace +
+  '@page{size:letter;margin:0.5in 0.6in}' +
+  '*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}' +
+  'body{margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:"EB Garamond",Georgia,serif;-webkit-font-smoothing:antialiased;font-size:10pt;line-height:1.5}' +
+  '.offer-wrap{width:7.3in;max-width:100%;margin:0 auto;padding:0}' +
+
+  /* ── Top brand bar ── */
+  '.offer-brand-bar{background:#1a1a1a;color:#fff;padding:14px 0;text-align:center;margin-bottom:0}' +
+  '.offer-brand-bar .brand-name{font-family:"The Source","EB Garamond",serif;font-size:22pt;font-weight:normal;letter-spacing:8px;text-transform:uppercase}' +
+  '.offer-brand-bar .brand-sub{font-family:"EB Garamond",serif;font-size:9pt;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:2px}' +
+
+  /* ── Header ── */
+  '.offer-header{text-align:center;padding:20px 0 16px;border-bottom:1px solid #e0d8cc;margin-bottom:20px}' +
+  '.offer-logo{max-height:50px;max-width:160px;margin-bottom:8px}' +
+  '.offer-company{font-family:"The Source","EB Garamond",serif;font-size:16pt;font-weight:normal;letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;color:#1a1a1a}' +
+  '.offer-title{font-family:"The Source","EB Garamond",serif;font-size:11pt;font-weight:normal;color:#5a3e2b;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}' +
+  '.offer-divider{width:50px;height:1px;background:#c5b9a8;margin:10px auto}' +
+  '.offer-validity{font-size:9pt;color:#888;letter-spacing:1px}' +
+  '.offer-contact-header{font-size:9pt;color:#888;margin-top:2px}' +
+
+  /* ── Group headings ── */
+  '.offer-group-heading{font-family:"The Source","EB Garamond",serif;font-size:11pt;font-weight:normal;letter-spacing:2px;text-transform:uppercase;color:#5a3e2b;border-bottom:1px solid #c5b9a8;padding-bottom:3px;margin:22px 0 8px}' +
+
+  /* ── Producer blocks ── */
+  '.offer-producer-block{margin-bottom:16px;page-break-inside:avoid}' +
+  '.offer-producer-img{width:100%;max-height:140px;object-fit:cover;border-radius:3px;margin-bottom:6px}' +
+  '.offer-producer-name{font-family:"The Source","EB Garamond",serif;font-size:10.5pt;font-weight:normal;letter-spacing:1px;text-transform:uppercase;margin-bottom:1px;color:#1a1a1a}' +
+  '.offer-producer-bio{font-size:9pt;font-style:italic;color:#666;margin-bottom:6px;line-height:1.4}' +
+
+  /* ── Wine table ── */
+  'table.offer-table{width:100%;border-collapse:collapse;margin-bottom:8px}' +
+  'table.offer-table th{text-align:left;font-family:"The Source","EB Garamond",serif;font-size:7.5pt;text-transform:uppercase;letter-spacing:1.5px;color:#5a3e2b;border-bottom:2px solid #c5b9a8;padding:4px 6px;font-weight:normal}' +
+  'table.offer-table th.qty-col{text-align:center;width:60px}' +
+  'table.offer-table th.price-col{text-align:right;width:80px}' +
+  'table.offer-table td{padding:5px 6px;border-bottom:1px solid #e8e2d8;vertical-align:top;font-size:9.5pt}' +
+  'table.offer-table td.qty-cell{text-align:center;border-bottom:1px solid #c5b9a8;color:#999;font-size:9pt;letter-spacing:1px}' +
+  'table.offer-table td.price-cell{text-align:right;font-weight:500;white-space:nowrap;color:#1a1a1a}' +
+  'table.offer-table tr:nth-child(even) td{background:rgba(250,248,245,0.6)}' +
+
+  /* ── Wine detail cells ── */
+  '.wine-name-cell{font-weight:500;color:#1a1a1a}' +
   '.wine-vintage{color:#888}' +
-  '.wine-appellation{font-size:9.5pt;color:#888}' +
-  '.wine-varietals{font-size:9.5pt;color:#999;font-style:italic}' +
-  '.wine-notes{font-size:9.5pt;font-style:italic;color:#666;margin-top:3px;line-height:1.4}' +
-  '.wine-tech{font-size:9pt;color:#999;margin-top:2px}' +
-  '.wine-badges span{display:inline-block;font-size:8pt;text-transform:uppercase;letter-spacing:1px;padding:1px 6px;border:1px solid #6b8e23;color:#6b8e23;border-radius:2px;margin-right:4px;margin-top:2px}' +
-  '.offer-footer{text-align:center;margin-top:36px;padding-top:16px;border-top:1px solid #e0d8cc;font-size:10pt;color:#888}' +
-  '@media print{body{font-size:10pt}.offer-wrap{padding:24px 32px}.offer-producer-img{max-height:120px}table.offer-table{page-break-inside:auto}table.offer-table tr{page-break-inside:avoid}.offer-group-heading{page-break-after:avoid}@page{margin:0.6in}}' +
-  '@media(max-width:600px){.offer-wrap{padding:20px 16px}table.offer-table th,table.offer-table td{padding:5px 4px;font-size:9.5pt}}';
+  '.wine-appellation{font-size:8.5pt;color:#888}' +
+  '.wine-varietals{font-size:8.5pt;color:#999;font-style:italic}' +
+  '.wine-notes{font-size:8.5pt;font-style:italic;color:#666;margin-top:2px;line-height:1.35}' +
+  '.wine-tech{font-size:8pt;color:#999;margin-top:1px}' +
+  '.wine-badges span{display:inline-block;font-size:7pt;text-transform:uppercase;letter-spacing:0.8px;padding:0px 4px;border:1px solid #6b8e23;color:#6b8e23;border-radius:2px;margin-right:3px;margin-top:1px}' +
+
+  /* ── Footer ── */
+  '.offer-footer{text-align:center;margin-top:24px;padding-top:12px;border-top:1px solid #c5b9a8}' +
+  '.offer-footer-contact{font-size:9pt;color:#888;margin-bottom:8px}' +
+  '.offer-footer-brand{font-family:"The Source","EB Garamond",serif;font-size:9pt;letter-spacing:3px;text-transform:uppercase;color:#c5b9a8}' +
+  '.offer-footer-tagline{font-size:7.5pt;color:#c5b9a8;letter-spacing:1px;margin-top:1px}' +
+
+  /* ── Print ── */
+  '@media print{' +
+    'body{-webkit-print-color-adjust:exact;print-color-adjust:exact}' +
+    '.offer-brand-bar{-webkit-print-color-adjust:exact;print-color-adjust:exact}' +
+    '.offer-wrap{width:100%;padding:0}' +
+    '.offer-producer-block{page-break-inside:avoid}' +
+    'table.offer-table{page-break-inside:auto}' +
+    'table.offer-table tr{page-break-inside:avoid}' +
+    'table.offer-table thead{display:table-header-group}' +
+    '.offer-group-heading{page-break-after:avoid}' +
+    '.offer-producer-name{page-break-after:avoid}' +
+    '.offer-footer{page-break-inside:avoid}' +
+  '}' +
+
+  /* ── Screen preview: simulate letter page ── */
+  '@media screen{' +
+    'body{background:#e0d8cc;padding:20px 0}' +
+    '.offer-page-sheet{background:#fff;width:8.5in;min-height:11in;margin:0 auto;padding:0;box-shadow:0 2px 16px rgba(0,0,0,0.15)}' +
+    '.offer-wrap{padding:0 0.6in 0.5in}' +
+  '}';
 }
 
 function generateOffer() {
@@ -3790,18 +3838,30 @@ function generateOffer() {
   var grouped = groupOfferWines(items, s.groupBy);
 
   var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">';
-  html += '<title>' + escapeHtml(s.offerTitle || s.companyName || 'Wine Offer') + '</title>';
+  html += '<title>' + escapeHtml(s.offerTitle || s.companyName || 'Wine Offer') + ' — THE SOURCE</title>';
   html += '<style>' + buildOfferStyles() + '</style></head><body>';
+
+  // Outer page sheet (screen preview shows as white paper on tan bg)
+  html += '<div class="offer-page-sheet">';
+
+  // The Source brand bar
+  html += '<div class="offer-brand-bar">';
+  html += '<div class="brand-name">THE SOURCE</div>';
+  html += '<div class="brand-sub">Fine Wine Imports</div>';
+  html += '</div>';
+
   html += '<div class="offer-wrap">';
 
-  // Header
+  // Distributor header
   html += '<div class="offer-header">';
   if (s.logoBase64) html += '<img class="offer-logo" src="' + s.logoBase64 + '" alt="Logo"><br>';
   if (s.companyName) html += '<div class="offer-company">' + escapeHtml(s.companyName) + '</div>';
   if (s.offerTitle) html += '<div class="offer-title">' + escapeHtml(s.offerTitle) + '</div>';
-  html += '<div class="offer-divider"></div>';
-  if (s.validThrough) html += '<div class="offer-validity">Valid through ' + escapeHtml(s.validThrough) + '</div>';
-  if (s.contactInfo) html += '<div class="offer-contact-header">' + escapeHtml(s.contactInfo) + '</div>';
+  if (s.validThrough || s.contactInfo) {
+    html += '<div class="offer-divider"></div>';
+    if (s.validThrough) html += '<div class="offer-validity">Valid through ' + escapeHtml(s.validThrough) + '</div>';
+    if (s.contactInfo) html += '<div class="offer-contact-header">' + escapeHtml(s.contactInfo) + '</div>';
+  }
   html += '</div>';
 
   // Grouped wine sections
@@ -3810,7 +3870,7 @@ function generateOffer() {
       html += '<div class="offer-group-heading">' + escapeHtml(group.label) + '</div>';
     }
 
-    // Sub-group by producer within each group for images/bio display
+    // Sub-group by producer within each group
     var producerBlocks = {};
     var producerOrder = [];
     group.items.forEach(function(w) {
@@ -3875,12 +3935,17 @@ function generateOffer() {
     });
   });
 
-  // Footer
+  // Footer with The Source branding
   html += '<div class="offer-footer">';
-  if (s.contactInfo) html += '<div>' + escapeHtml(s.contactInfo) + '</div>';
-  if (s.companyName) html += '<div>' + escapeHtml(s.companyName) + '</div>';
+  if (s.contactInfo) html += '<div class="offer-footer-contact">' + escapeHtml(s.contactInfo) + '</div>';
+  html += '<div class="offer-divider"></div>';
+  html += '<div class="offer-footer-brand">THE SOURCE</div>';
+  html += '<div class="offer-footer-tagline">Fine Wine Imports</div>';
   html += '</div>';
-  html += '</div></body></html>';
+
+  html += '</div>'; // .offer-wrap
+  html += '</div>'; // .offer-page-sheet
+  html += '</body></html>';
 
   var w = window.open('', '_blank');
   if (w) { w.document.write(html); w.document.close(); }
