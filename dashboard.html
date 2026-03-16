@@ -3979,9 +3979,9 @@ function generateOffer() {
       wines.forEach(function(w) {
         var displayPrice = s.priceUnit === 'bottle' ? (w.sellPrice / 12) : w.sellPrice;
         html += '<tr><td>';
-        html += '<div class="wine-name-cell">' + escapeHtml(w.wine);
-        if (s.showVintage && w.vintage) html += ' <span class="wine-vintage">' + escapeHtml(w.vintage) + '</span>';
-        html += '</div>';
+        html += '<div class="wine-name-cell">';
+        if (s.showVintage && w.vintage) html += '<span class="wine-vintage">' + escapeHtml(w.vintage) + '</span> ';
+        html += escapeHtml(w.wine) + '</div>';
         if (w.appellation) html += '<div class="wine-appellation">' + escapeHtml(w.appellation) + '</div>';
         if (w.varietals) html += '<div class="wine-varietals">' + escapeHtml(w.varietals) + '</div>';
         if (w.farming) {
