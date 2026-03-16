@@ -790,6 +790,24 @@
       padding-bottom: 4px; border-bottom: 1px solid #e0d8cc;
     }
     .ob-count { font-family: 'EB Garamond', serif; font-size: 10pt; color: #888; margin-bottom: 12px; }
+    .ob-section-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #e8e2d8;
+      background: rgba(90,62,43,0.04);  margin: 0 -8px; padding-left: 8px; padding-right: 8px;
+    }
+    .ob-section-item input[type="text"] {
+      flex: 1; padding: 6px 10px; border: 1px solid #c5b9a8; border-radius: 3px;
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 11pt; letter-spacing: 1px;
+      color: #5a3e2b; outline: none;
+    }
+    .ob-section-item input[type="text"]:focus { border-color: #5a3e2b; }
+    .ob-section-remove {
+      background: none; border: none; color: #8b2e2e; cursor: pointer; font-size: 14px;
+      font-family: 'EB Garamond', serif; padding: 4px; line-height: 1;
+    }
+    .ob-section-label {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 8pt; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #888;
+    }
 
     @media (max-width: 768px) {
       .offer-builder-page { padding: 24px 16px 60px; max-width: 100%; }
@@ -934,14 +952,7 @@
             <option value="bottle">Per Bottle</option>
           </select>
         </label>
-        <label>Group by:
-          <select id="obGroupBy" class="ob-inline-select" onchange="offerSettings.groupBy=this.value;renderOfferBuilder()">
-            <option value="none">None</option>
-            <option value="country" selected>Country</option>
-            <option value="region">Region</option>
-            <option value="producer">Producer</option>
-          </select>
-        </label>
+        <button type="button" class="ob-apply-btn" onclick="addOfferSection()">+ Add Section Title</button>
       </div>
     </div>
 
@@ -1108,7 +1119,7 @@ var offerBuilderOpen = false;
 var offerSettings = {
   companyName: '', logoBase64: '', offerTitle: '', validThrough: '',
   contactInfo: '', showTastingNotes: true, showTechDetails: true,
-  showImages: true, showVintage: true, groupBy: 'country', priceUnit: 'case'
+  showImages: true, showVintage: true, groupBy: 'none', priceUnit: 'case'
 };
 
 /* ═══════════ CART PERSISTENCE ═══════════ */
@@ -3632,44 +3643,53 @@ function enrichOfferItem(item, i) {
 
 function renderOfferBuilder() {
   var container = document.getElementById('offerWineList');
-  var included = offerItems.filter(function(it) { return it.included; });
-  document.getElementById('obWineCount').textContent = included.length + ' of ' + offerItems.length + ' wines included';
+  var wineItems = offerItems.filter(function(it) { return it.type !== 'section'; });
+  var included = wineItems.filter(function(it) { return it.included; });
+  document.getElementById('obWineCount').textContent = included.length + ' of ' + wineItems.length + ' wines included';
 
   var sorted = offerItems.slice().sort(function(a, b) { return a.sortOrder - b.sortOrder; });
-  var grouped = groupOfferWines(sorted, offerSettings.groupBy);
 
   var html = '';
-  grouped.forEach(function(group) {
-    if (group.label) {
-      html += '<div class="ob-group-header">' + escapeHtml(group.label) + '</div>';
-    }
-    group.items.forEach(function(item) {
-      var idx = offerItems.indexOf(item);
-      var excClass = item.included ? '' : ' excluded';
-      var priceLabel = offerSettings.priceUnit === 'bottle' ? '/bottle' : '/case';
-      var displaySell = offerSettings.priceUnit === 'bottle' ? (item.sellPrice / 12).toFixed(2) : item.sellPrice.toFixed(2);
-      var costLabel = offerSettings.priceUnit === 'bottle' ? '$' + (item.price / 12).toFixed(2) + '/bt' : '$' + item.price.toFixed(2) + '/cs';
+  sorted.forEach(function(item) {
+    var idx = offerItems.indexOf(item);
 
-      html += '<div class="ob-wine-item' + excClass + '">';
-      html += '<input type="checkbox" class="ob-wine-check" ' + (item.included ? 'checked' : '') + ' onchange="toggleOfferItem(' + idx + ')">';
-      html += '<div class="ob-wine-info">';
-      html += '<div class="ob-wine-name">' + escapeHtml(item.wine) + (offerSettings.showVintage && item.vintage ? ' ' + escapeHtml(item.vintage) : '') + '</div>';
-      html += '<div class="ob-wine-producer">' + escapeHtml(item.producer) + '</div>';
-      if (item.appellation || item.region) {
-        html += '<div class="ob-wine-meta">' + escapeHtml(item.appellation || item.region) + (item.country ? ' &mdash; ' + escapeHtml(item.country) : '') + '</div>';
-      }
-      html += '<div class="ob-wine-prices">';
-      html += '<span class="ob-wine-cost">Cost: ' + costLabel + '</span>';
-      html += '<span class="ob-wine-sell"><input type="number" step="0.01" min="0" value="' + displaySell + '" onchange="updateOfferSellPrice(' + idx + ',this.value)"></span>';
-      html += '<span class="ob-wine-sell-label">sell ' + escapeHtml(priceLabel) + '</span>';
-      html += '</div>';
-      html += '</div>';
-      html += '<div class="ob-wine-actions">';
+    // Section title item
+    if (item.type === 'section') {
+      html += '<div class="ob-section-item">';
+      html += '<span class="ob-section-label">Section</span>';
+      html += '<input type="text" value="' + escapeHtml(item.title || '') + '" placeholder="Section title..." oninput="updateOfferSectionTitle(' + idx + ',this.value)">';
       html += '<button class="ob-move-btn" onclick="moveOfferItem(' + idx + ',-1)" title="Move up">&#9650;</button>';
       html += '<button class="ob-move-btn" onclick="moveOfferItem(' + idx + ',1)" title="Move down">&#9660;</button>';
+      html += '<button class="ob-section-remove" onclick="removeOfferSection(' + idx + ')" title="Remove section">&times;</button>';
       html += '</div>';
-      html += '</div>';
-    });
+      return;
+    }
+
+    // Wine item
+    var excClass = item.included ? '' : ' excluded';
+    var priceLabel = offerSettings.priceUnit === 'bottle' ? '/bottle' : '/case';
+    var displaySell = offerSettings.priceUnit === 'bottle' ? (item.sellPrice / 12).toFixed(2) : item.sellPrice.toFixed(2);
+    var costLabel = offerSettings.priceUnit === 'bottle' ? '$' + (item.price / 12).toFixed(2) + '/bt' : '$' + item.price.toFixed(2) + '/cs';
+
+    html += '<div class="ob-wine-item' + excClass + '">';
+    html += '<input type="checkbox" class="ob-wine-check" ' + (item.included ? 'checked' : '') + ' onchange="toggleOfferItem(' + idx + ')">';
+    html += '<div class="ob-wine-info">';
+    html += '<div class="ob-wine-name">' + escapeHtml(item.wine) + (offerSettings.showVintage && item.vintage ? ' ' + escapeHtml(item.vintage) : '') + '</div>';
+    html += '<div class="ob-wine-producer">' + escapeHtml(item.producer) + '</div>';
+    if (item.appellation || item.region) {
+      html += '<div class="ob-wine-meta">' + escapeHtml(item.appellation || item.region) + (item.country ? ' &mdash; ' + escapeHtml(item.country) : '') + '</div>';
+    }
+    html += '<div class="ob-wine-prices">';
+    html += '<span class="ob-wine-cost">Cost: ' + costLabel + '</span>';
+    html += '<span class="ob-wine-sell"><input type="number" step="0.01" min="0" value="' + displaySell + '" onchange="updateOfferSellPrice(' + idx + ',this.value)"></span>';
+    html += '<span class="ob-wine-sell-label">sell ' + escapeHtml(priceLabel) + '</span>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="ob-wine-actions">';
+    html += '<button class="ob-move-btn" onclick="moveOfferItem(' + idx + ',-1)" title="Move up">&#9650;</button>';
+    html += '<button class="ob-move-btn" onclick="moveOfferItem(' + idx + ',1)" title="Move down">&#9660;</button>';
+    html += '</div>';
+    html += '</div>';
   });
   container.innerHTML = html;
 }
@@ -3708,6 +3728,25 @@ function moveOfferItem(i, dir) {
       return;
     }
   }
+}
+
+function addOfferSection() {
+  // Find the highest sortOrder and add section at the top
+  var maxOrder = -1;
+  offerItems.forEach(function(it) { if (it.sortOrder > maxOrder) maxOrder = it.sortOrder; });
+  // Shift everything down by 1 to insert section at position 0
+  offerItems.forEach(function(it) { it.sortOrder += 1; });
+  offerItems.push({ type: 'section', title: '', sortOrder: 0 });
+  renderOfferBuilder();
+}
+
+function updateOfferSectionTitle(i, val) {
+  offerItems[i].title = val;
+}
+
+function removeOfferSection(i) {
+  offerItems.splice(i, 1);
+  renderOfferBuilder();
 }
 
 function handleOfferLogo(input) {
@@ -3758,8 +3797,12 @@ function buildOfferStyles() {
   'body{margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:"EB Garamond",Georgia,serif;-webkit-font-smoothing:antialiased;font-size:10pt;line-height:1.5}' +
   '.offer-wrap{width:7.3in;max-width:100%;margin:0 auto;padding:0}' +
 
+  /* ── Top branding ── */
+  '.offer-top-brand{text-align:center;padding:24px 0 8px}' +
+  '.offer-top-brand .brand-name{font-family:"The Source","EB Garamond",serif;font-size:28pt;font-weight:normal;letter-spacing:8px;text-transform:uppercase;color:#1a1a1a}' +
+
   /* ── Header ── */
-  '.offer-header{text-align:center;padding:20px 0 16px;margin-bottom:20px}' +
+  '.offer-header{text-align:center;padding:12px 0 16px;margin-bottom:20px}' +
   '.offer-logo{max-height:50px;max-width:160px;margin-bottom:8px}' +
   '.offer-company{font-family:"The Source","EB Garamond",serif;font-size:16pt;font-weight:normal;letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;color:#1a1a1a}' +
   '.offer-title{font-family:"The Source","EB Garamond",serif;font-size:11pt;font-weight:normal;color:#5a3e2b;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}' +
@@ -3823,22 +3866,24 @@ function buildOfferStyles() {
 }
 
 function generateOffer() {
-  var items = offerItems.filter(function(it) { return it.included; })
-    .slice().sort(function(a, b) { return a.sortOrder - b.sortOrder; });
-  if (items.length === 0) { alert('No wines selected for the offer.'); return; }
+  // Build sorted flat list: sections + included wines
+  var sorted = offerItems.slice().sort(function(a, b) { return a.sortOrder - b.sortOrder; });
+  var flat = sorted.filter(function(it) { return it.type === 'section' || it.included !== false; });
+  var wineCount = flat.filter(function(it) { return it.type !== 'section'; }).length;
+  if (wineCount === 0) { alert('No wines selected for the offer.'); return; }
 
   var s = offerSettings;
   var priceLabel = s.priceUnit === 'bottle' ? 'Per Bottle' : 'Per Case';
-  var grouped = groupOfferWines(items, s.groupBy);
 
   var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">';
   html += '<title>' + escapeHtml(s.offerTitle || s.companyName || 'Wine Offer') + ' — THE SOURCE</title>';
   html += '<style>' + buildOfferStyles() + '</style></head><body>';
 
-  // Outer page sheet (screen preview shows as white paper on tan bg)
   html += '<div class="offer-page-sheet">';
-
   html += '<div class="offer-wrap">';
+
+  // The Source branding
+  html += '<div class="offer-top-brand"><div class="brand-name">THE SOURCE</div></div>';
 
   // Distributor header
   html += '<div class="offer-header">';
@@ -3846,22 +3891,32 @@ function generateOffer() {
   if (s.companyName) html += '<div class="offer-company">' + escapeHtml(s.companyName) + '</div>';
   if (s.offerTitle) html += '<div class="offer-title">' + escapeHtml(s.offerTitle) + '</div>';
   if (s.validThrough || s.contactInfo) {
-    html += '<div class="offer-divider"></div>';
     if (s.validThrough) html += '<div class="offer-validity">Valid through ' + escapeHtml(s.validThrough) + '</div>';
     if (s.contactInfo) html += '<div class="offer-contact-header">' + escapeHtml(s.contactInfo) + '</div>';
   }
   html += '</div>';
 
-  // Grouped wine sections
-  grouped.forEach(function(group) {
-    if (group.label) {
-      html += '<div class="offer-group-heading">' + escapeHtml(group.label) + '</div>';
+  // Iterate flat list: sections become headings, wines get grouped by producer between sections
+  var i = 0;
+  while (i < flat.length) {
+    // Emit section heading
+    if (flat[i].type === 'section') {
+      if (flat[i].title) html += '<div class="offer-group-heading">' + escapeHtml(flat[i].title) + '</div>';
+      i++;
+      continue;
     }
 
-    // Sub-group by producer within each group
+    // Collect consecutive wine items until next section
+    var chunk = [];
+    while (i < flat.length && flat[i].type !== 'section') {
+      chunk.push(flat[i]);
+      i++;
+    }
+
+    // Sub-group chunk by producer
     var producerBlocks = {};
     var producerOrder = [];
-    group.items.forEach(function(w) {
+    chunk.forEach(function(w) {
       var pKey = w.producer || 'Other';
       if (!producerBlocks[pKey]) { producerBlocks[pKey] = []; producerOrder.push(pKey); }
       producerBlocks[pKey].push(w);
@@ -3880,15 +3935,13 @@ function generateOffer() {
         html += '<div class="offer-producer-bio">' + escapeHtml(first.producerBio) + '</div>';
       }
 
-      // Wine table
       html += '<table class="offer-table"><thead><tr>';
       html += '<th>Wine</th><th class="price-col">' + escapeHtml(priceLabel) + '</th><th class="qty-col">Order Qty</th>';
       html += '</tr></thead><tbody>';
 
       wines.forEach(function(w) {
         var displayPrice = s.priceUnit === 'bottle' ? (w.sellPrice / 12) : w.sellPrice;
-        html += '<tr>';
-        html += '<td>';
+        html += '<tr><td>';
         html += '<div class="wine-name-cell">' + escapeHtml(w.wine);
         if (s.showVintage && w.vintage) html += ' <span class="wine-vintage">' + escapeHtml(w.vintage) + '</span>';
         html += '</div>';
@@ -3896,22 +3949,17 @@ function generateOffer() {
         if (w.varietals) html += '<div class="wine-varietals">' + escapeHtml(w.varietals) + '</div>';
         if (w.farming) {
           html += '<div class="wine-badges">';
-          w.farming.split(',').forEach(function(f) {
-            f = f.trim();
-            if (f) html += '<span>' + escapeHtml(f) + '</span>';
-          });
+          w.farming.split(',').forEach(function(f) { f = f.trim(); if (f) html += '<span>' + escapeHtml(f) + '</span>'; });
           html += '</div>';
         }
-        if (s.showTastingNotes && w.tastingNotes) {
-          html += '<div class="wine-notes">' + escapeHtml(w.tastingNotes) + '</div>';
-        }
+        if (s.showTastingNotes && w.tastingNotes) html += '<div class="wine-notes">' + escapeHtml(w.tastingNotes) + '</div>';
         if (s.showTechDetails) {
-          var techParts = [];
-          if (w.vineyard) techParts.push('Vineyard: ' + w.vineyard);
-          if (w.vinification) techParts.push('Vinification: ' + w.vinification);
-          if (w.aging) techParts.push('Aging: ' + w.aging);
-          if (w.alcohol) techParts.push('Alc: ' + w.alcohol);
-          if (techParts.length) html += '<div class="wine-tech">' + escapeHtml(techParts.join(' | ')) + '</div>';
+          var tp = [];
+          if (w.vineyard) tp.push('Vineyard: ' + w.vineyard);
+          if (w.vinification) tp.push('Vinification: ' + w.vinification);
+          if (w.aging) tp.push('Aging: ' + w.aging);
+          if (w.alcohol) tp.push('Alc: ' + w.alcohol);
+          if (tp.length) html += '<div class="wine-tech">' + escapeHtml(tp.join(' | ')) + '</div>';
         }
         html += '</td>';
         html += '<td class="price-cell">$' + displayPrice.toFixed(2) + '</td>';
@@ -3921,17 +3969,15 @@ function generateOffer() {
 
       html += '</tbody></table></div>';
     });
-  });
+  }
 
-  // Footer with The Source branding
+  // Footer
   html += '<div class="offer-footer">';
   if (s.contactInfo) html += '<div class="offer-footer-contact">' + escapeHtml(s.contactInfo) + '</div>';
   html += '<div class="offer-footer-brand">THE SOURCE</div>';
   html += '</div>';
 
-  html += '</div>'; // .offer-wrap
-  html += '</div>'; // .offer-page-sheet
-  html += '</body></html>';
+  html += '</div></div></body></html>';
 
   var w = window.open('', '_blank');
   if (w) { w.document.write(html); w.document.close(); }
