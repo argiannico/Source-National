@@ -497,6 +497,9 @@
 
       /* Fc sort bar */
       .fc-sort-bar { padding: 10px 12px; flex-wrap: wrap; }
+      .announcements-container .content { padding: 20px 14px 40px; }
+      .announcement-card { padding: 20px 16px; }
+      .announcement-title { font-size: 14pt; }
     }
 
     /* Full Catalog view */
@@ -518,6 +521,91 @@
       padding: 16px 0 6px; border-bottom: 1px solid #e0d8cc; margin-bottom: 4px;
     }
     .cart-source-label:first-child { padding-top: 0; }
+
+    /* PO section cards */
+    .po-section {
+      border: 1px solid #e0d8cc; border-radius: 6px; padding: 20px 20px 16px;
+      margin-bottom: 24px; background: #fff;
+    }
+    .po-section-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #e8e2d8;
+    }
+    .po-section-title {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 12pt;
+      letter-spacing: 2px; text-transform: uppercase; color: #5a3e2b;
+    }
+    .po-section-meta {
+      font-family: 'EB Garamond', serif; font-size: 10pt; color: #888;
+    }
+    .po-subtotal-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0 10px; border-top: 1px solid #e8e2d8; margin-top: 8px;
+    }
+    .po-subtotal-label {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 10pt;
+      letter-spacing: 1px; text-transform: uppercase; color: #888;
+    }
+    .po-subtotal-amount {
+      font-family: 'EB Garamond', serif; font-size: 13pt; font-weight: 500; color: #5a3e2b;
+    }
+    .po-notes textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid #c5b9a8; border-radius: 3px;
+      font-family: 'EB Garamond', serif; font-size: 12pt; color: #1a1a1a; background: #fff;
+      outline: none; transition: border-color 0.3s; height: 50px; resize: vertical; margin-top: 8px;
+    }
+    .po-notes textarea:focus { border-color: #5a3e2b; }
+    .po-notes label {
+      font-family: 'EB Garamond', serif; font-size: 10pt; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #666;
+    }
+    .po-submit-row { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+    .po-submit-btn {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 11pt;
+      letter-spacing: 2px; text-transform: uppercase; background: #1a1a1a; color: #fff;
+      border: none; padding: 12px 28px; cursor: pointer; transition: background 0.3s;
+    }
+    .po-submit-btn:hover { background: #5a3e2b; }
+    .po-submit-btn:disabled { background: #aaa; cursor: not-allowed; }
+    .po-status {
+      font-family: 'EB Garamond', serif; font-size: 11pt; min-height: 20px;
+      transition: opacity 0.5s;
+    }
+    .po-status.success { color: #2e7d32; }
+    .po-status.error { color: #8b2e2e; }
+
+    /* Shared buyer info section */
+    .cart-buyer-info {
+      margin-bottom: 28px; padding: 20px; border: 1px solid #e0d8cc;
+      border-radius: 6px; background: #fff;
+    }
+    .cart-buyer-info .buyer-info-title {
+      font-family: 'The Source', 'EB Garamond', serif; font-size: 10pt;
+      letter-spacing: 2px; text-transform: uppercase; color: #888;
+      margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #e8e2d8;
+    }
+    .cart-buyer-info .buyer-fields {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .cart-buyer-info label {
+      font-family: 'EB Garamond', serif; font-size: 10pt; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #666; margin-bottom: -4px;
+    }
+    .cart-buyer-info .field-group { display: flex; flex-direction: column; gap: 4px; }
+    .cart-buyer-info input {
+      width: 100%; padding: 10px 12px; border: 1px solid #c5b9a8; border-radius: 3px;
+      font-family: 'EB Garamond', serif; font-size: 12pt; color: #1a1a1a; background: #fff;
+      outline: none; transition: border-color 0.3s;
+    }
+    .cart-buyer-info input:focus { border-color: #5a3e2b; }
+
+    @media (max-width: 600px) {
+      .cart-buyer-info .buyer-fields { grid-template-columns: 1fr; }
+      .po-section { padding: 16px 14px 12px; }
+      .po-submit-btn { width: 100%; padding: 14px 20px; min-height: 50px; }
+      .po-notes textarea { font-size: 14pt; }
+      .cart-buyer-info input { font-size: 14pt; padding: 14px 14px; min-height: 44px; }
+    }
     .fc-badge {
       display: inline-block; font-family: 'EB Garamond', serif; font-size: 9pt;
       padding: 1px 6px; border-radius: 2px; margin-right: 4px;
@@ -893,12 +981,24 @@
       .ob-form-grid input, .ob-form-grid textarea { font-size: 14pt; min-height: 44px; padding: 10px 12px; }
     }
 
+    /* Announcements */
+    .announcements-container { display: none; }
+    .announcements-container .content { max-width: 850px; margin: 0 auto; padding: 50px 40px 60px; }
+    .announcement-card { background: #fff; border: 1px solid #e8e0d4; border-radius: 4px; padding: 28px 32px; margin-bottom: 20px; }
+    .announcement-pinned { border-left: 4px solid #b89d6a; background: #fdfbf7; }
+    .announcement-category { display: inline-block; font-family: 'The Source', 'EB Garamond', serif; font-size: 8pt; letter-spacing: 2px; text-transform: uppercase; color: #fff; background: #b89d6a; padding: 3px 10px; border-radius: 2px; margin-bottom: 10px; }
+    .announcement-date { font-family: 'EB Garamond', serif; font-size: 10pt; color: #999; margin-bottom: 6px; }
+    .announcement-title { font-family: 'The Source', 'EB Garamond', serif; font-size: 16pt; letter-spacing: 1px; color: #2c2c2c; margin-bottom: 12px; }
+    .announcement-image { width: 100%; border-radius: 4px; margin-bottom: 14px; }
+    .announcement-body { font-family: 'EB Garamond', serif; font-size: 12pt; color: #444; line-height: 1.7; }
+
     @media print {
       body { background: #fff !important; }
       .toolbar, .sticky-header, .pallet-tracker, .back-to-top, .fav-filter-btn,
       .search-bar, .view-toggle, .format-toggle, .region-float, #loginPage,
       .cart-add-btn, .cart-item-qty-controls, .search-autocomplete,
-      .checkout-form, .fav-btn, .fc-sort-bar, .offer-builder-page { display: none !important; }
+      .checkout-form, .fav-btn, .fc-sort-bar, .offer-builder-page,
+      .announcements-container, .po-submit-row, .po-notes, .cart-buyer-info { display: none !important; }
       .cart-page { position: static !important; padding: 0 !important; }
       .cart-item { break-inside: avoid; border-bottom: 1px solid #ddd; padding: 8px 0; }
       .cart-item-details { font-size: 11pt; }
@@ -959,30 +1059,26 @@
     <div class="order-history-panel" id="orderHistoryPanel">
       <div id="orderHistoryContent" style="font-family:'EB Garamond',serif;font-size:12pt;color:#888;font-style:italic;text-align:center;padding:20px 0;">Click "Order History" to load past orders.</div>
     </div>
+    <div class="cart-buyer-info" id="cartBuyerInfo" style="display:none;">
+      <div class="buyer-info-title">Buyer Information</div>
+      <div class="buyer-fields">
+        <div class="field-group"><label>Company Name *</label><input type="text" id="coName" placeholder="Your company"></div>
+        <div class="field-group"><label>Contact Name *</label><input type="text" id="coContact" placeholder="Full name"></div>
+        <div class="field-group"><label>Email *</label><input type="email" id="coEmail" placeholder="email@company.com"></div>
+        <div class="field-group"><label>Phone</label><input type="tel" id="coPhone" placeholder="(555) 123-4567"></div>
+      </div>
+    </div>
     <div class="cart-body" id="cartBody"></div>
     <div class="cart-footer" id="cartFooter" style="display:none;">
-      <div class="cart-subtotals" id="cartSubtotals" style="display:none"></div>
       <div class="cart-total-row">
         <span class="cart-total-label">ORDER TOTAL</span>
         <span class="cart-total-amount" id="cartTotal">$0.00</span>
       </div>
-      <form class="checkout-form" id="checkoutForm" onsubmit="submitOrder(event)">
-        <label>Company Name *</label>
-        <input type="text" id="coName" required placeholder="Your company">
-        <label>Contact Name *</label>
-        <input type="text" id="coContact" required placeholder="Full name">
-        <label>Email *</label>
-        <input type="email" id="coEmail" required placeholder="email@company.com">
-        <label>Phone</label>
-        <input type="tel" id="coPhone" placeholder="(555) 123-4567">
-        <label>Notes</label>
-        <textarea id="coNotes" placeholder="Delivery instructions, questions, etc."></textarea>
-        <button type="submit" class="submit-order-btn" id="submitBtn">Submit Order</button>
-        <button type="button" class="export-order-btn" onclick="exportOrderCSV()">Export CSV</button>
-        <button type="button" class="export-order-btn" onclick="window.print()" style="margin-left:8px">Print Order</button>
-        <button type="button" class="export-order-btn" onclick="openOfferBuilder()" style="margin-left:8px;background:#5a3e2b;color:#fff;border-color:#5a3e2b">Create Offer Sheet</button>
-        <div class="order-status" id="orderStatus"></div>
-      </form>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+        <button type="button" class="export-order-btn" onclick="exportOrderCSV()" style="flex:1;min-width:120px;">Export CSV</button>
+        <button type="button" class="export-order-btn" onclick="window.print()" style="flex:1;min-width:120px;">Print Order</button>
+        <button type="button" class="export-order-btn" onclick="openOfferBuilder()" style="flex:1;min-width:120px;background:#5a3e2b;color:#fff;border-color:#5a3e2b">Create Offer Sheet</button>
+      </div>
     </div>
   </div>
 
@@ -1093,6 +1189,7 @@
         <button class="view-tab active" id="allocTab" onclick="switchTab('alloc')">Allocations</button>
         <button class="view-tab" id="portfolioTab" onclick="switchTab('portfolio')">Full Portfolio</button>
         <button class="view-tab" id="prearrivTab" onclick="switchTab('prearrival')">Pre-Arrival</button>
+        <button class="view-tab" id="announcementTab" onclick="switchTab('announcements')">Announcements</button>
         <div class="format-toggle" id="formatToggle">
           <button class="format-btn active" id="formatCards" onclick="switchFormat('cards')">Full Version</button>
           <button class="format-btn" id="formatTable" onclick="switchFormat('table')">Spreadsheet</button>
@@ -1144,6 +1241,16 @@
   <!-- Pre-Arrival Spreadsheet View -->
   <div class="catalog-spreadsheet-container" id="preArrivalSpreadsheetContainer" style="display:none"></div>
 
+  <!-- Announcements View -->
+  <div class="announcements-container" id="announcementsContainer" style="display:none">
+    <div class="content" id="announcementsContent">
+      <div class="fc-loading" id="annLoading">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading announcements...</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Floating Region Sidebar (Full Catalog) -->
   <div class="region-float" id="fcRegionFloat"></div>
 </div>
@@ -1152,7 +1259,7 @@
 /* ═══════════════════════════════════════════════════
    CONFIG — Update SCRIPT_URL after deploying Apps Script
    ═══════════════════════════════════════════════════ */
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrV6hoXZJrJdihBLqkPmQl1x8g9mtIkKyXlbGPFCiAcD7gQ_4OAUtkutQn-tQg6Hyz/exec'; // <-- Paste your deployed Apps Script Web App URL here
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkQ0UjXH_JSkbfxkSOPQ5KPQi3rPUMKgc5t9o-vCEbWPVmPayAuyXv7sKXvVYNeqBz/exec'; // <-- Paste your deployed Apps Script Web App URL here
 
 var SESSION_KEY = 'src_dash_session';
 var CACHE_KEY = 'src_dash_wines';
@@ -1179,6 +1286,7 @@ var portfolioProducers = {};
 var catalogWineCounter = 0;
 var fullCatalogLoaded = false;
 var producerBios = {};
+var growerLookup = {};
 var producerNameMap = {};
 var fullCatalogRendered = false;
 var preArrivalGrouped = [];
@@ -1196,6 +1304,8 @@ var paCardSort = 'default';
 var CASES_PER_PALLET = 56;
 var favorites = {};
 var showFavoritesOnly = false;
+var announcementsData = null;
+var announcementsLoaded = false;
 
 /* ═══════════ OFFER BUILDER STATE ═══════════ */
 var offerItems = [];
@@ -1399,6 +1509,8 @@ function doLogout() {
   orderHistoryLoaded = false;
   favorites = {};
   showFavoritesOnly = false;
+  announcementsData = null;
+  announcementsLoaded = false;
   document.getElementById('orderHistoryPanel').classList.remove('open');
   document.getElementById('cartPage').classList.remove('open');
   var obPage = document.getElementById('offerBuilderPage');
@@ -1528,6 +1640,7 @@ function renderAll() {
 /* ═══════════ COUNTRY NAV ═══════════ */
 function renderCountryNav() {
   var nav = document.getElementById('countryNav');
+  if (currentView === 'announcements') { nav.innerHTML = ''; return; }
   var isPreArrival = currentView === 'prearrival' || currentView === 'prearrivalspreadsheet';
   var isCatalogView = currentView === 'fullcatalog' || currentView === 'catalogspreadsheet';
   var data = isPreArrival ? preArrivalGrouped : (isCatalogView ? fullCatalogGrouped : groupedData);
@@ -1674,7 +1787,7 @@ function renderWineEntry(wine) {
   var varietalStr = formatVarietals(wine.varietals);
   var wineId = 'wine-' + slugify(wine.sku);
 
-  var h = '<div class="wine-entry" data-wine="' + escapeHtml(wine.sku) + '" data-search="' + escapeHtml((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.country || '') + ' ' + (wine.vintage || '')).toLowerCase() + '">';
+  var h = '<div class="wine-entry" data-wine="' + escapeHtml(wine.sku) + '" data-search="' + escapeHtml((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.country || '') + ' ' + (wine.vintage || '') + ' ' + growerSearchExtra(wine.producer)).toLowerCase() + '">';
 
   h += '<div class="wine-title">' + escapeHtml(displayName);
   if (wine.vintage) h += ' ' + escapeHtml(wine.vintage);
@@ -1690,6 +1803,13 @@ function renderWineEntry(wine) {
   // Wine description from sheet
   if (wine.wine_description) {
     h += '<p class="intro" style="margin:8px 0 12px">' + escapeHtml(wine.wine_description) + '</p>';
+  }
+
+  // Warehouse label (from portfolio cross-reference)
+  var pfMatch = (wine.sku && portfolioByCode[wine.sku]) || {};
+  var warehouseLabel = wine.warehouse_label || pfMatch.warehouse_label || '';
+  if (warehouseLabel) {
+    h += '<div class="cart-item-warehouse" style="margin:4px 0 2px">' + escapeHtml(warehouseLabel) + '</div>';
   }
 
   // Appellation / format
@@ -1760,6 +1880,8 @@ function renderSpreadsheet() {
     var displayName = wine.name ? stripProducerPrefix(wine.name) : wine.sku;
     var varietalStr = formatVarietals(wine.varietals);
     var price = wine.price || 0;
+    var pfMatch = (wine.sku && portfolioByCode[wine.sku]) || {};
+    var warehouseLabel = wine.warehouse_label || pfMatch.warehouse_label || '';
     rows.push({
       producer: wine.producer || '',
       wine: displayName,
@@ -1767,6 +1889,7 @@ function renderSpreadsheet() {
       appellation: wine.appellation || '',
       region: wine.region || '',
       country: wine.country || '',
+      warehouse: warehouseLabel,
       format: (wine.unit_set || '') + (wine.bottle_size ? '/' + wine.bottle_size : ''),
       price: price,
       allocated: wine.qty_allocated || 0,
@@ -1774,7 +1897,7 @@ function renderSpreadsheet() {
       varietals: varietalStr,
       sku: wine.sku,
       notes: wine.notes || '',
-      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '')).toLowerCase()
+      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '') + ' ' + warehouseLabel + ' ' + growerSearchExtra(wine.producer)).toLowerCase()
     });
   });
 
@@ -1795,6 +1918,7 @@ function renderSpreadsheet() {
     { key: 'vintage', label: 'Vintage' },
     { key: 'appellation', label: 'Appellation' },
     { key: 'country', label: 'Country' },
+    { key: 'warehouse', label: 'Warehouse' },
     { key: 'format', label: 'Format' },
     { key: 'price', label: 'Price' },
     { key: 'allocated', label: 'Allocated' },
@@ -1817,6 +1941,7 @@ function renderSpreadsheet() {
     html += '<td>' + escapeHtml(row.vintage) + '</td>';
     html += '<td>' + escapeHtml(row.appellation) + '</td>';
     html += '<td>' + escapeHtml(row.country) + '</td>';
+    html += '<td>' + escapeHtml(row.warehouse) + '</td>';
     html += '<td>' + escapeHtml(row.format) + '</td>';
     html += '<td class="price-cell">' + (row.price > 0 ? '$' + row.price.toFixed(2) : 'TBD') + '</td>';
     html += '<td>' + row.allocated + ' cs</td>';
@@ -1854,6 +1979,7 @@ function sortTable(column) {
 function resolveView() {
   if (currentTab === 'alloc') return currentFormat === 'cards' ? 'catalog' : 'spreadsheet';
   if (currentTab === 'prearrival') return currentFormat === 'cards' ? 'prearrival' : 'prearrivalspreadsheet';
+  if (currentTab === 'announcements') return 'announcements';
   return currentFormat === 'cards' ? 'fullcatalog' : 'catalogspreadsheet';
 }
 
@@ -1876,10 +2002,19 @@ function applyView() {
   document.getElementById('allocTab').classList.toggle('active', currentTab === 'alloc');
   document.getElementById('portfolioTab').classList.toggle('active', currentTab === 'portfolio');
   document.getElementById('prearrivTab').classList.toggle('active', currentTab === 'prearrival');
+  document.getElementById('announcementTab').classList.toggle('active', currentTab === 'announcements');
 
   // Format highlight
   document.getElementById('formatCards').classList.toggle('active', currentFormat === 'cards');
   document.getElementById('formatTable').classList.toggle('active', currentFormat === 'table');
+
+  // Hide format toggle, search, and fav filter on announcements tab
+  var isAnn = (currentTab === 'announcements');
+  document.getElementById('formatToggle').style.display = isAnn ? 'none' : '';
+  var searchBar = document.querySelector('.search-bar');
+  if (searchBar) searchBar.style.display = isAnn ? 'none' : '';
+  var favBtn = document.getElementById('favFilterBtn');
+  if (favBtn) favBtn.style.display = isAnn ? 'none' : '';
 
   // Container visibility
   document.getElementById('catalogContainer').style.display = view === 'catalog' ? 'block' : 'none';
@@ -1888,6 +2023,7 @@ function applyView() {
   document.getElementById('catalogSpreadsheetContainer').style.display = view === 'catalogspreadsheet' ? 'block' : 'none';
   document.getElementById('preArrivalContainer').style.display = view === 'prearrival' ? 'block' : 'none';
   document.getElementById('preArrivalSpreadsheetContainer').style.display = view === 'prearrivalspreadsheet' ? 'block' : 'none';
+  document.getElementById('announcementsContainer').style.display = view === 'announcements' ? 'block' : 'none';
 
   // Warehouse nav only in full catalog views (not pre-arrival, it's already filtered)
   var whNav = document.getElementById('warehouseNav');
@@ -1912,6 +2048,9 @@ function applyView() {
   }
   if (view === 'prearrivalspreadsheet' && fullCatalogLoaded) {
     renderPreArrivalSpreadsheet();
+  }
+  if (view === 'announcements') {
+    loadAnnouncements();
   }
 
   renderCountryNav();
@@ -2001,7 +2140,7 @@ function updateAutocomplete(query) {
   Object.keys(catalogWineMap).forEach(function(catId) {
     if (results.length >= 8) return;
     var w = catalogWineMap[catId];
-    var searchText = ((w.name||'') + ' ' + (w.producer||'') + ' ' + (w.region||'') + ' ' + (w.appellation||'') + ' ' + (w.country||'') + ' ' + (w.vintage||'')).toLowerCase();
+    var searchText = ((w.name||'') + ' ' + (w.producer||'') + ' ' + (w.region||'') + ' ' + (w.appellation||'') + ' ' + (w.country||'') + ' ' + (w.vintage||'') + ' ' + growerSearchExtra(w.producer)).toLowerCase();
     if (matches(searchText)) {
       results.push({ type: 'catalog', id: catId, name: stripProducerPrefix(w.name || 'Unknown'), producer: w.producer || '', price: parsePortfolioPrice(w.dist), vintage: w.vintage || '' });
     }
@@ -2009,7 +2148,7 @@ function updateAutocomplete(query) {
   // Search allocations
   allAllocations.forEach(function(w) {
     if (results.length >= 10) return;
-    var searchText = ((w.name||'') + ' ' + (w.producer||'') + ' ' + (w.region||'') + ' ' + (w.appellation||'') + ' ' + (w.country||'') + ' ' + (w.vintage||'')).toLowerCase();
+    var searchText = ((w.name||'') + ' ' + (w.producer||'') + ' ' + (w.region||'') + ' ' + (w.appellation||'') + ' ' + (w.country||'') + ' ' + (w.vintage||'') + ' ' + growerSearchExtra(w.producer)).toLowerCase();
     if (matches(searchText)) {
       results.push({ type: 'alloc', id: w.sku, name: w.name || 'Unknown', producer: w.producer || '', price: w.price || 0, vintage: w.vintage || '' });
     }
@@ -2141,10 +2280,90 @@ function removeFromCart(sku) {
   updateCartUI();
 }
 
+function getKnownWarehouses() {
+  var labels = [];
+  var seen = {};
+  if (typeof portfolioData !== 'undefined' && portfolioData) {
+    portfolioData.forEach(function(wh) {
+      var label = wh.warehouse_label || wh.warehouse || '';
+      if (label && !seen[label]) { seen[label] = true; labels.push(label); }
+    });
+  }
+  // Fallback if catalog not loaded yet
+  if (labels.length === 0) {
+    cart.forEach(function(item) {
+      if (item.source === 'catalog' && item.warehouse_label && !seen[item.warehouse_label]) {
+        seen[item.warehouse_label] = true;
+        labels.push(item.warehouse_label);
+      }
+    });
+  }
+  return labels;
+}
+
+function getCartWarehouseKey(item) {
+  // Allocation items use their assigned warehouse (or first known warehouse)
+  if (item.source !== 'catalog') {
+    if (item.assigned_warehouse) return item.assigned_warehouse;
+    var known = getKnownWarehouses();
+    return known.length > 0 ? known[0] : 'Orders';
+  }
+  return item.warehouse_label || 'Catalog Requests';
+}
+
+function assignAllocWarehouse(sku, warehouseLabel) {
+  var item = cart.find(function(c) { return c.sku === sku; });
+  if (item) {
+    item.assigned_warehouse = warehouseLabel;
+    saveCart();
+    updateCartUI();
+  }
+}
+
+function getCartGroups() {
+  var groups = {};
+  var order = [];
+  cart.forEach(function(item) {
+    var key = getCartWarehouseKey(item);
+    if (!groups[key]) { groups[key] = []; order.push(key); }
+    groups[key].push(item);
+  });
+  return { groups: groups, order: order };
+}
+
+var PO_NOTES_KEY = 'src_dash_ponotes';
+function savePONotes() {
+  try {
+    if (!currentUser) return;
+    var notes = {};
+    document.querySelectorAll('[id^="poNotes_"]').forEach(function(el) {
+      var key = el.id.replace('poNotes_', '');
+      if (el.value.trim()) notes[key] = el.value;
+    });
+    localStorage.setItem(PO_NOTES_KEY + '_' + currentUser.code, JSON.stringify(notes));
+  } catch (e) {}
+}
+function loadPONotes() {
+  try {
+    if (!currentUser) return {};
+    var raw = localStorage.getItem(PO_NOTES_KEY + '_' + currentUser.code);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) { return {}; }
+}
+function clearPONotes(whKey) {
+  try {
+    if (!currentUser) return;
+    var notes = loadPONotes();
+    if (whKey) { delete notes[whKey]; } else { notes = {}; }
+    localStorage.setItem(PO_NOTES_KEY + '_' + currentUser.code, JSON.stringify(notes));
+  } catch (e) {}
+}
+
 function updateCartUI() {
   var badge = document.getElementById('cartBadge');
   var body = document.getElementById('cartBody');
   var footer = document.getElementById('cartFooter');
+  var buyerInfo = document.getElementById('cartBuyerInfo');
 
   badge.textContent = cart.length;
   badge.classList.toggle('show', cart.length > 0);
@@ -2158,68 +2377,60 @@ function updateCartUI() {
   if (cart.length === 0) {
     body.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
     footer.style.display = 'none';
+    if (buyerInfo) buyerInfo.style.display = 'none';
     return;
   }
 
+  if (buyerInfo) buyerInfo.style.display = '';
   footer.style.display = 'block';
-  var total = 0;
+  var grandTotal = 0;
   var html = '';
+  var savedNotes = loadPONotes();
+  var grouped = getCartGroups();
 
-  // Group by source
-  var allocationItems = cart.filter(function(c) { return c.source !== 'catalog'; });
-  var catalogItems = cart.filter(function(c) { return c.source === 'catalog'; });
+  grouped.order.forEach(function(whKey) {
+    var items = grouped.groups[whKey];
+    var sectionTotal = 0;
+    var totalCases = 0;
+    items.forEach(function(item) {
+      sectionTotal += item.price * item.qty;
+      totalCases += item.qty;
+    });
+    grandTotal += sectionTotal;
 
-  if (allocationItems.length > 0) {
-    html += '<div class="cart-source-label">Allocations</div>';
-  }
-  allocationItems.forEach(function(item) {
-    var lineTotal = item.price * item.qty;
-    total += lineTotal;
-    html += renderCartItem(item, lineTotal);
+    var safeKey = whKey.replace(/[^a-zA-Z0-9]/g, '_');
+
+    html += '<div class="po-section" id="poSection_' + safeKey + '">';
+    html += '<div class="po-section-header">';
+    html += '<div class="po-section-title">' + escapeHtml(whKey) + '</div>';
+    html += '<div class="po-section-meta">' + items.length + ' wine' + (items.length !== 1 ? 's' : '') + ' &middot; ' + totalCases + ' case' + (totalCases !== 1 ? 's' : '') + '</div>';
+    html += '</div>';
+
+    items.forEach(function(item) {
+      var lineTotal = item.price * item.qty;
+      html += renderCartItem(item, lineTotal);
+    });
+
+    html += '<div class="po-subtotal-row">';
+    html += '<span class="po-subtotal-label">Subtotal</span>';
+    html += '<span class="po-subtotal-amount">' + (sectionTotal > 0 ? '$' + sectionTotal.toFixed(2) : 'TBD') + '</span>';
+    html += '</div>';
+
+    html += '<div class="po-notes">';
+    html += '<label>Notes for this PO</label>';
+    html += '<textarea id="poNotes_' + safeKey + '" placeholder="Delivery instructions, questions, etc." oninput="savePONotes()">' + escapeHtml(savedNotes[safeKey] || '') + '</textarea>';
+    html += '</div>';
+
+    html += '<div class="po-submit-row">';
+    html += '<button class="po-submit-btn" onclick="submitPO(\'' + escapeJsString(whKey) + '\')">Submit This PO</button>';
+    html += '<div class="po-status" id="poStatus_' + safeKey + '"></div>';
+    html += '</div>';
+
+    html += '</div>';
   });
 
-  // Group catalog items by warehouse
-  if (catalogItems.length > 0) {
-    var warehouseGroups = {};
-    var warehouseOrder = [];
-    catalogItems.forEach(function(item) {
-      var wl = item.warehouse_label || 'Catalog Requests';
-      if (!warehouseGroups[wl]) { warehouseGroups[wl] = []; warehouseOrder.push(wl); }
-      warehouseGroups[wl].push(item);
-    });
-
-    warehouseOrder.forEach(function(wl) {
-      html += '<div class="cart-source-label">' + escapeHtml(wl) + '</div>';
-      warehouseGroups[wl].forEach(function(item) {
-        var lineTotal = item.price * item.qty;
-        total += lineTotal;
-        html += renderCartItem(item, lineTotal);
-      });
-    });
-  }
-
   body.innerHTML = html;
-  document.getElementById('cartTotal').textContent = total > 0 ? '$' + total.toFixed(2) : 'TBD';
-
-  // Per-warehouse subtotals
-  var subtotalEl = document.getElementById('cartSubtotals');
-  if (subtotalEl) {
-    var whTotals = {};
-    cart.forEach(function(item) {
-      var wl = item.warehouse_label || (item.source === 'catalog' ? 'Catalog' : 'Allocations');
-      if (!whTotals[wl]) whTotals[wl] = 0;
-      whTotals[wl] += item.price * item.qty;
-    });
-    var keys = Object.keys(whTotals);
-    if (keys.length > 1) {
-      subtotalEl.innerHTML = keys.map(function(k) {
-        return '<span>' + escapeHtml(k) + ': ' + (whTotals[k] > 0 ? '$' + whTotals[k].toFixed(2) : 'TBD') + '</span>';
-      }).join('');
-      subtotalEl.style.display = 'flex';
-    } else {
-      subtotalEl.style.display = 'none';
-    }
-  }
+  document.getElementById('cartTotal').textContent = grandTotal > 0 ? '$' + grandTotal.toFixed(2) : 'TBD';
 }
 
 function updatePalletTracker() {
@@ -2255,7 +2466,7 @@ function updatePalletTracker() {
   if (breakdownEl) {
     var whGroups = {};
     cart.forEach(function(item) {
-      var wl = item.warehouse_label || (item.source === 'catalog' ? 'Catalog' : 'Allocations');
+      var wl = getCartWarehouseKey(item);
       whGroups[wl] = (whGroups[wl] || 0) + item.qty;
     });
     var whKeys = Object.keys(whGroups);
@@ -2271,8 +2482,17 @@ function renderCartItem(item, lineTotal) {
   var html = '<div class="cart-item">';
   html += '<div class="cart-item-name">' + escapeHtml(item.wine) + '</div>';
   html += '<div class="cart-item-producer">' + escapeHtml(item.producer) + '</div>';
-  if (item.warehouse_label && item.source === 'catalog') {
-    html += '<div class="cart-item-warehouse">' + escapeHtml(item.warehouse_label) + '</div>';
+  // Allocation items get a warehouse picker
+  if (item.source !== 'catalog') {
+    var warehouses = getKnownWarehouses();
+    if (warehouses.length > 1) {
+      var currentWh = item.assigned_warehouse || warehouses[0];
+      html += '<div style="margin:4px 0 2px"><select class="alloc-wh-select" onchange="assignAllocWarehouse(\'' + escapeJsString(item.sku) + '\', this.value)" style="font-family:\'EB Garamond\',serif;font-size:10pt;padding:3px 6px;border:1px solid #c5b9a8;border-radius:3px;color:#5a3e2b;background:#faf8f5;cursor:pointer;">';
+      warehouses.forEach(function(wl) {
+        html += '<option value="' + escapeHtml(wl) + '"' + (wl === currentWh ? ' selected' : '') + '>' + escapeHtml(wl) + '</option>';
+      });
+      html += '</select></div>';
+    }
   }
   html += '<div class="cart-item-row">';
   html += '<div class="cart-item-qty-controls">';
@@ -2295,7 +2515,7 @@ function toggleCart() {
   var cartIcon = document.getElementById('cartIcon');
 
   // Hide/show all content containers and header
-  var containers = ['catalogContainer', 'spreadsheetContainer', 'fullCatalogContainer', 'catalogSpreadsheetContainer', 'preArrivalContainer', 'preArrivalSpreadsheetContainer'];
+  var containers = ['catalogContainer', 'spreadsheetContainer', 'fullCatalogContainer', 'catalogSpreadsheetContainer', 'preArrivalContainer', 'preArrivalSpreadsheetContainer', 'announcementsContainer'];
   var palletTracker = document.getElementById('palletTracker');
   if (cartOpen) {
     cartPage.classList.add('open');
@@ -2320,19 +2540,39 @@ function toggleCart() {
   }
 }
 
-/* ═══════════ ORDER SUBMISSION ═══════════ */
-function submitOrder(e) {
-  e.preventDefault();
-  if (cart.length === 0) return;
+/* ═══════════ ORDER SUBMISSION (per-PO) ═══════════ */
+function validateBuyerInfo() {
+  var company = document.getElementById('coName').value.trim();
+  var contact = document.getElementById('coContact').value.trim();
+  var email = document.getElementById('coEmail').value.trim();
+  if (!company) { document.getElementById('coName').focus(); return 'Please enter your company name.'; }
+  if (!contact) { document.getElementById('coContact').focus(); return 'Please enter your contact name.'; }
+  if (!email) { document.getElementById('coEmail').focus(); return 'Please enter your email.'; }
+  return null;
+}
 
-  var btn = document.getElementById('submitBtn');
-  var status = document.getElementById('orderStatus');
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
-  status.textContent = '';
-  status.className = 'order-status';
+function submitPO(warehouseKey) {
+  var validationError = validateBuyerInfo();
+  var safeKey = warehouseKey.replace(/[^a-zA-Z0-9]/g, '_');
+  var statusEl = document.getElementById('poStatus_' + safeKey);
+  if (validationError) {
+    if (statusEl) { statusEl.className = 'po-status error'; statusEl.textContent = validationError; }
+    return;
+  }
 
-  var items = cart.map(function(c) {
+  var poItems = cart.filter(function(c) { return getCartWarehouseKey(c) === warehouseKey; });
+  if (poItems.length === 0) return;
+
+  // Find the button in this PO section
+  var section = document.getElementById('poSection_' + safeKey);
+  var btn = section ? section.querySelector('.po-submit-btn') : null;
+  if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
+  if (statusEl) { statusEl.textContent = ''; statusEl.className = 'po-status'; }
+
+  var notesEl = document.getElementById('poNotes_' + safeKey);
+  var notes = notesEl ? notesEl.value.trim() : '';
+
+  var items = poItems.map(function(c) {
     return {
       sku: c.source === 'catalog' ? (c.fullWineName || c.wine) : c.sku,
       wine: c.wine,
@@ -2351,34 +2591,50 @@ function submitOrder(e) {
     contact: document.getElementById('coContact').value.trim(),
     email: document.getElementById('coEmail').value.trim(),
     phone: document.getElementById('coPhone').value.trim(),
-    notes: document.getElementById('coNotes').value.trim(),
+    notes: notes,
     items: items
   }, function(err, data) {
-    btn.disabled = false;
-    btn.textContent = 'Submit Order';
+    if (btn) { btn.disabled = false; btn.textContent = 'Submit This PO'; }
 
     if (err) {
-      status.className = 'order-status error';
-      status.textContent = 'Error: ' + err;
+      if (statusEl) { statusEl.className = 'po-status error'; statusEl.textContent = 'Error: ' + err; }
       return;
     }
     if (!data.success) {
-      status.className = 'order-status error';
-      status.textContent = data.error || 'Order failed.';
+      if (statusEl) { statusEl.className = 'po-status error'; statusEl.textContent = data.error || 'Order failed.'; }
       return;
     }
 
-    status.className = 'order-status success';
-    status.textContent = data.message || 'Order submitted successfully!';
-    cart = [];
-    clearSavedCart();
-    updateCartUI();
-    orderHistoryLoaded = false; // refresh history on next view
+    // Success — remove only these items from cart
+    var submittedSkus = {};
+    poItems.forEach(function(c) { submittedSkus[c.sku] = true; });
+    cart = cart.filter(function(c) { return !submittedSkus[c.sku]; });
+    clearPONotes(safeKey);
+    saveCart();
+    orderHistoryLoaded = false;
 
-    // Refresh allocations to get updated remaining quantities
-    localStorage.removeItem(getUserCacheKey());
-    setTimeout(function() { loadAllocations(true); }, 2000);
+    // Show success briefly, then refresh UI
+    if (statusEl) {
+      statusEl.className = 'po-status success';
+      statusEl.textContent = data.message || 'PO submitted successfully!';
+    }
+    setTimeout(function() {
+      updateCartUI();
+      // Refresh allocations if allocation items were submitted
+      var hadAllocations = poItems.some(function(c) { return c.source !== 'catalog'; });
+      if (hadAllocations) {
+        localStorage.removeItem(getUserCacheKey());
+        setTimeout(function() { loadAllocations(true); }, 1500);
+      }
+    }, 1500);
   });
+}
+
+// Legacy wrapper in case anything still calls submitOrder
+function submitOrder(e) {
+  if (e) e.preventDefault();
+  var grouped = getCartGroups();
+  if (grouped.order.length > 0) submitPO(grouped.order[0]);
 }
 
 /* ═══════════ ORDER HISTORY ═══════════ */
@@ -2480,27 +2736,55 @@ function loadPortfolioData() {
   if (fcLoading) fcLoading.style.display = 'block';
   if (paLoading) paLoading.style.display = 'block';
 
-  var portfolioPromise = fetch('the-source-portfolio.html')
-    .then(function(r) { return r.text(); })
-    .then(function(html) {
-      // Use indexOf instead of regex — much faster on 2.6MB strings
-      var startMarker = 'const DATA = [';
-      var startIdx = html.indexOf(startMarker);
-      if (startIdx === -1) throw new Error('Could not find portfolio data');
-      startIdx += startMarker.length - 1; // point at the opening [
-      var endIdx = html.indexOf('];\n', startIdx);
-      if (endIdx === -1) endIdx = html.indexOf('];', startIdx);
-      if (endIdx === -1) throw new Error('Could not find end of portfolio data');
-      var jsonStr = html.substring(startIdx, endIdx + 1);
-      html = null; // free 2.7MB string
-      portfolioData = JSON.parse(jsonStr);
-      jsonStr = null; // free parsed string
+  var portfolioPromise = fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'portfolio' }),
+      redirect: 'follow'
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!Array.isArray(data)) throw new Error('Invalid portfolio response');
+      portfolioData = data;
+    })
+    .catch(function() {
+      // Fallback to static file
+      return fetch('the-source-portfolio.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          var startMarker = 'const DATA = [';
+          var startIdx = html.indexOf(startMarker);
+          if (startIdx === -1) throw new Error('Could not find portfolio data');
+          startIdx += startMarker.length - 1;
+          var endIdx = html.indexOf('];\n', startIdx);
+          if (endIdx === -1) endIdx = html.indexOf('];', startIdx);
+          if (endIdx === -1) throw new Error('Could not find end of portfolio data');
+          var jsonStr = html.substring(startIdx, endIdx + 1);
+          html = null;
+          portfolioData = JSON.parse(jsonStr);
+          jsonStr = null;
+        });
     });
 
-  var biosPromise = fetch('scripts/producer-bios.json')
+  var biosPromise = fetch('growers.json')
     .then(function(r) { return r.json(); })
-    .then(function(bios) { producerBios = bios; })
-    .catch(function() { producerBios = {}; });
+    .then(function(data) {
+      producerBios = {};
+      growerLookup = {};
+      Object.keys(data).forEach(function(region) {
+        var subregions = data[region];
+        Object.keys(subregions).forEach(function(sub) {
+          subregions[sub].forEach(function(grower) {
+            if (grower.name) {
+              if (grower.short_profile) {
+                producerBios[grower.name] = grower.short_profile;
+              }
+              growerLookup[grower.name] = grower;
+            }
+          });
+        });
+      });
+    })
+    .catch(function() { producerBios = {}; growerLookup = {}; });
 
   // MHW exclusion + inventory correction is now done at build time by scripts/enrich-portfolio.py
 
@@ -2543,6 +2827,25 @@ function lookupProducerBio(name) {
   return '';
 }
 
+function lookupGrower(name) {
+  if (!growerLookup || !name) return null;
+  if (growerLookup[name]) return growerLookup[name];
+  var lowerName = name.toLowerCase();
+  for (var key in growerLookup) {
+    var lowerKey = key.toLowerCase();
+    if (lowerKey === lowerName || lowerKey.indexOf(lowerName) !== -1 || lowerName.indexOf(lowerKey) !== -1) {
+      return growerLookup[key];
+    }
+  }
+  return null;
+}
+
+function growerSearchExtra(producerName) {
+  var g = lookupGrower(producerName);
+  if (!g) return '';
+  return (g.subregion || '') + ' ' + (g.country || '');
+}
+
 function processPortfolioData() {
   fullCatalogByWarehouse = {};
   catalogWineMap = {};
@@ -2563,12 +2866,14 @@ function processPortfolioData() {
         var resolvedName = resolveProducerName(producer.name);
         var pKey = resolvedName;
         if (!countryMap[countryName][pKey]) {
+          var grower = lookupGrower(resolvedName);
           countryMap[countryName][pKey] = {
             name: resolvedName,
-            region: producer.region || '',
+            region: producer.region || (grower ? grower.subregion : '') || '',
             about: producer.about || lookupProducerBio(producer.name),
             farming: producer.farming || [],
             carousel_images: producer.carousel_images || [],
+            url: (grower ? grower.url : '') || '',
             wines: []
           };
         }
@@ -2655,12 +2960,14 @@ function buildMergedCatalog() {
         var resolvedName = resolveProducerName(producer.name);
         var pKey = resolvedName;
         if (!countryMap[cName][pKey]) {
+          var grower = lookupGrower(resolvedName);
           countryMap[cName][pKey] = {
             name: resolvedName,
-            region: producer.region || '',
+            region: producer.region || (grower ? grower.subregion : '') || '',
             about: producer.about || lookupProducerBio(producer.name),
             farming: producer.farming || [],
             carousel_images: producer.carousel_images || [],
+            url: (grower ? grower.url : '') || '',
             wines: []
           };
         }
@@ -2865,7 +3172,7 @@ function renderCatalogWineEntry(wine) {
   var varietalStr = wine.varietals ? wine.varietals.map(function(v) { return v.name; }).join(', ') : '';
   var catId = wine.catId;
 
-  var searchText = ((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.warehouse_label || '')).toLowerCase();
+  var searchText = ((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.warehouse_label || '') + ' ' + growerSearchExtra(wine.producer)).toLowerCase();
 
   var h = '<div class="wine-entry fc-wine-entry" data-wine="' + escapeHtml(catId) + '" data-search="' + escapeHtml(searchText) + '">';
 
@@ -2882,7 +3189,7 @@ function renderCatalogWineEntry(wine) {
 
   // Pre-arrival notes (inbounding details)
   if (wine.prearrival_notes) {
-    h += '<div class="prearrival-note"><span class="prearrival-label">ETA: </span>' + escapeHtml(wine.prearrival_notes) + '</div>';
+    h += '<div class="prearrival-note"><span class="prearrival-label">LOCATION: </span>' + escapeHtml(cleanPreArrivalNotes(wine.prearrival_notes)) + '</div>';
   }
 
   // Meta info
@@ -2928,7 +3235,7 @@ function renderCatalogWineEntry(wine) {
   }
   h += '<span class="qty-label">Qty (cs):</span>';
   h += '<input type="number" class="qty-input" id="qty-' + escapeHtml(catId) + '" value="1" min="1" step="1">';
-  h += '<button class="add-to-cart-btn" onclick="addToCartCatalog(\'' + escapeHtml(catId) + '\')">Request</button>';
+  h += '<button class="add-to-cart-btn" onclick="addToCartCatalog(\'' + escapeHtml(catId) + '\')">Add</button>';
   h += '</div>';
 
   h += '</div>';
@@ -2973,7 +3280,7 @@ function addToCartCatalog(catId) {
   if (btn) {
     btn.classList.add('added');
     btn.textContent = 'Added';
-    setTimeout(function() { btn.classList.remove('added'); btn.textContent = 'Request'; }, 1200);
+    setTimeout(function() { btn.classList.remove('added'); btn.textContent = 'Add'; }, 1200);
   }
 }
 
@@ -3081,9 +3388,9 @@ function renderCatalogSpreadsheet() {
       available: available,
       stock: stockStatus,
       varietals: varietalStr,
-      notes: wine.prearrival_notes || '',
+      notes: cleanPreArrivalNotes(wine.prearrival_notes || ''),
       catId: catId,
-      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '') + ' ' + (wine.country || '') + ' ' + (wine.warehouse_label || '') + ' ' + (wine.prearrival_notes || '')).toLowerCase()
+      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '') + ' ' + (wine.country || '') + ' ' + (wine.warehouse_label || '') + ' ' + cleanPreArrivalNotes(wine.prearrival_notes || '') + ' ' + growerSearchExtra(wine.producer)).toLowerCase()
     });
   });
 
@@ -3280,7 +3587,7 @@ function renderPreArrival() {
     var varietalStr = wine.varietals ? wine.varietals.map(function(v) { return v.name; }).join(', ') : '';
     var catId = wine.catId;
 
-    var searchText = ((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.warehouse_label || '')).toLowerCase();
+    var searchText = ((wine.name || '') + ' ' + (wine.producer || '') + ' ' + varietalStr + ' ' + (wine.region || '') + ' ' + (wine.appellation || '') + ' ' + (wine.warehouse_label || '') + ' ' + growerSearchExtra(wine.producer)).toLowerCase();
 
     var h = '<div class="wine-entry fc-wine-entry" data-wine="' + escapeHtml(catId) + '" data-search="' + escapeHtml(searchText) + '">';
 
@@ -3296,10 +3603,10 @@ function renderPreArrival() {
 
     // Pre-arrival ETA / notes
     if (wine.prearrival_notes) {
-      h += '<div class="prearrival-note"><span class="prearrival-label">ETA: </span>' + escapeHtml(wine.prearrival_notes) + '</div>';
+      h += '<div class="prearrival-note"><span class="prearrival-label">LOCATION: </span>' + escapeHtml(cleanPreArrivalNotes(wine.prearrival_notes)) + '</div>';
     }
     if (wine.expected_date) {
-      h += '<div class="prearrival-note"><span class="prearrival-label">Expected: </span>' + escapeHtml(wine.expected_date) + '</div>';
+      h += '<div class="prearrival-note"><span class="prearrival-label">Expected: </span>' + escapeHtml(formatExpectedDate(wine.expected_date)) + '</div>';
     }
 
     // Qty expected
@@ -3350,7 +3657,7 @@ function renderPreArrival() {
     }
     h += '<span class="qty-label">Qty (cs):</span>';
     h += '<input type="number" class="qty-input" id="qty-' + escapeHtml(catId) + '" value="1" min="1" step="1">';
-    h += '<button class="add-to-cart-btn" onclick="addToCartCatalog(\'' + escapeHtml(catId) + '\')">Request</button>';
+    h += '<button class="add-to-cart-btn" onclick="addToCartCatalog(\'' + escapeHtml(catId) + '\')">Add</button>';
     h += '</div>';
 
     h += '</div>';
@@ -3408,10 +3715,10 @@ function renderPreArrivalSpreadsheet() {
       format: (wine.unit_set || '') + (wine.bottle_size ? '/' + wine.bottle_size : ''),
       price: price,
       paQty: paQty,
-      notes: wine.prearrival_notes || '',
+      notes: cleanPreArrivalNotes(wine.prearrival_notes || ''),
       varietals: varietalStr,
       catId: catId,
-      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '') + ' ' + (wine.country || '') + ' ' + (wine.prearrival_notes || '')).toLowerCase()
+      searchText: ((wine.producer || '') + ' ' + displayName + ' ' + (wine.appellation || '') + ' ' + varietalStr + ' ' + (wine.vintage || '') + ' ' + (wine.region || '') + ' ' + (wine.country || '') + ' ' + cleanPreArrivalNotes(wine.prearrival_notes || '') + ' ' + growerSearchExtra(wine.producer)).toLowerCase()
     });
   });
 
@@ -3435,7 +3742,7 @@ function renderPreArrivalSpreadsheet() {
     { key: 'format', label: 'Format' },
     { key: 'price', label: 'Price' },
     { key: 'paQty', label: 'Qty Expected' },
-    { key: 'notes', label: 'ETA / Notes' },
+    { key: 'notes', label: 'Location / Notes' },
     { key: 'varietals', label: 'Varietals' }
   ];
 
@@ -3528,7 +3835,6 @@ function exportOrderCSV() {
   var contact = document.getElementById('coContact').value.trim();
   var email = document.getElementById('coEmail').value.trim();
   var phone = document.getElementById('coPhone').value.trim();
-  var notes = document.getElementById('coNotes').value.trim();
 
   var headers = ['Source', 'Warehouse', 'Producer', 'Wine', 'Qty (cases)', 'Unit Price', 'Line Total', 'Stock Status'];
   var csvRows = [];
@@ -3537,7 +3843,6 @@ function exportOrderCSV() {
   if (contact) csvRows.push('Contact,' + csvEscape(contact));
   if (email) csvRows.push('Email,' + csvEscape(email));
   if (phone) csvRows.push('Phone,' + csvEscape(phone));
-  if (notes) csvRows.push('Notes,' + csvEscape(notes));
   csvRows.push('');
   csvRows.push(headers.join(','));
 
@@ -4105,6 +4410,10 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function escapeJsString(str) {
+  return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
 function stripProducerPrefix(wineName) {
   var idx = wineName.indexOf(',');
   if (idx === -1) return wineName;
@@ -4125,6 +4434,31 @@ function formatFarming(farming) {
   if (Array.isArray(farming)) return farming.join(', ');
   try { var arr = JSON.parse(farming); if (Array.isArray(arr)) return arr.join(', '); } catch(e) {}
   return String(farming);
+}
+
+function cleanPreArrivalNotes(notes) {
+  if (!notes) return '';
+  // Remove month+year codes like JAN26, FEB25, DEC26, etc.
+  var cleaned = notes.replace(/\b[A-Za-z]{3}\d{2}\b/g, '');
+  // Replace warehouse codes
+  cleaned = cleaned.replace(/\bCA\b/g, 'CALIFORNIA').replace(/\bNY\b/g, 'FDL');
+  // Clean up extra spaces and dangling dashes/hyphens
+  cleaned = cleaned.replace(/\s*-\s*-\s*/g, ' - ').replace(/^\s*-\s*/, '').replace(/\s*-\s*$/, '').replace(/\s+/g, ' ').trim();
+  return cleaned;
+}
+
+function formatExpectedDate(dateStr) {
+  if (!dateStr) return '';
+  var parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var m = parseInt(parts[1], 10) - 1;
+  var d = parseInt(parts[2], 10);
+  var suffix = 'th';
+  if (d === 1 || d === 21 || d === 31) suffix = 'st';
+  else if (d === 2 || d === 22) suffix = 'nd';
+  else if (d === 3 || d === 23) suffix = 'rd';
+  return months[m] + ' ' + d + suffix + ', ' + parts[0];
 }
 
 function toggleWineDetails(btn) {
@@ -4279,6 +4613,73 @@ function initCountryScrollTracking() {
   sections.forEach(function(sec) {
     _countryScrollObserver.observe(sec);
   });
+}
+
+/* ═══════════ ANNOUNCEMENTS ═══════════ */
+function loadAnnouncements() {
+  if (announcementsLoaded) {
+    renderAnnouncements();
+    return;
+  }
+  var loading = document.getElementById('annLoading');
+  if (loading) loading.style.display = 'block';
+
+  fetch('announcements.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      announcementsData = data || [];
+      announcementsLoaded = true;
+      renderAnnouncements();
+    })
+    .catch(function() {
+      announcementsData = [];
+      announcementsLoaded = true;
+      renderAnnouncements();
+    });
+}
+
+function renderAnnouncements() {
+  var container = document.getElementById('announcementsContent');
+  var loading = document.getElementById('annLoading');
+  if (loading) loading.style.display = 'none';
+
+  if (!announcementsData || announcementsData.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:#999;font-family:EB Garamond,serif;font-size:12pt;padding:40px 0;">No announcements at this time.</p>';
+    return;
+  }
+
+  var pinned = announcementsData.filter(function(a) { return a.pinned; });
+  var rest = announcementsData.filter(function(a) { return !a.pinned; });
+
+  function sortByDate(a, b) { return b.date.localeCompare(a.date); }
+  pinned.sort(sortByDate);
+  rest.sort(sortByDate);
+
+  var sorted = pinned.concat(rest);
+  var html = '';
+
+  sorted.forEach(function(ann) {
+    var cls = 'announcement-card' + (ann.pinned ? ' announcement-pinned' : '');
+    html += '<div class="' + cls + '">';
+    html += '<div class="announcement-category">' + escapeHtml(ann.category) + '</div>';
+    html += '<div class="announcement-date">' + escapeHtml(formatAnnouncementDate(ann.date)) + '</div>';
+    html += '<div class="announcement-title">' + escapeHtml(ann.title) + '</div>';
+    if (ann.image) {
+      html += '<img class="announcement-image" src="' + escapeHtml(ann.image) + '" alt="" loading="lazy">';
+    }
+    html += '<div class="announcement-body">' + escapeHtml(ann.content) + '</div>';
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function formatAnnouncementDate(dateStr) {
+  var parts = dateStr.split('-');
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var m = parseInt(parts[1], 10) - 1;
+  var d = parseInt(parts[2], 10);
+  return months[m] + ' ' + d + ', ' + parts[0];
 }
 
 /* ═══════════ INIT ═══════════ */
