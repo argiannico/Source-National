@@ -36,9 +36,13 @@ function doPost(e) {
     var body = JSON.parse(e.postData.contents);
     var action = body.action;
 
-    if (action === 'login')       return makeOutput(handleLogin(body));
-    if (action === 'allocations') return makeOutput(handleAllocations(body));
-    if (action === 'order')       return makeOutput(handleOrder(body));
+    if (action === 'login')        return makeOutput(handleLogin(body));
+    if (action === 'allocations')  return makeOutput(handleAllocations(body));
+    if (action === 'order')        return makeOutput(handleOrder(body));
+    if (action === 'orderHistory') return makeOutput(handleOrderHistory(body));
+    if (action === 'portfolio')    return handlePortfolio();
+    if (action === 'getComments')  return makeOutput(handleGetComments(body));
+    if (action === 'addComment')   return makeOutput(handleAddComment(body));
 
     return makeOutput({ success: false, error: 'Unknown action: ' + action });
   } catch (err) {
@@ -49,6 +53,16 @@ function doPost(e) {
 /* Also support GET for simple health check */
 function doGet(e) {
   return makeOutput({ status: 'ok', service: 'Source Dashboard Backend' });
+}
+
+/* ──────────────────────────── PORTFOLIO ─── */
+function handlePortfolio() {
+  var cached = loadPortfolioFromSheet();  // from PortfolioBuilder.gs
+  if (cached) {
+    return ContentService.createTextOutput(cached)
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  return makeOutput({ success: false, error: 'Portfolio not yet built.' });
 }
 
 /* ─────────────────────────────────── LOGIN ─── */
@@ -505,11 +519,139 @@ function handleOrder(body) {
     ordersSheet.getRange(lastRow + 1, 1, rows.length, 13).setValues(rows);
   }
 
+  // Send email confirmation
+  try {
+    var orderTotal = 0;
+    var itemsHtml = '';
+    items.forEach(function(item) {
+      var lineTotal = (item.price || 0) * (item.qty || 0);
+      orderTotal += lineTotal;
+      itemsHtml += '<tr>'
+        + '<td style="padding:6px 12px;border-bottom:1px solid #e8e2d8">' + (item.wine || '') + '</td>'
+        + '<td style="padding:6px 12px;border-bottom:1px solid #e8e2d8">' + (item.producer || '') + '</td>'
+        + '<td style="padding:6px 12px;border-bottom:1px solid #e8e2d8;text-align:center">' + (item.qty || 0) + '</td>'
+        + '<td style="padding:6px 12px;border-bottom:1px solid #e8e2d8;text-align:right">' + (item.price > 0 ? '$' + item.price.toFixed(2) : 'TBD') + '</td>'
+        + '<td style="padding:6px 12px;border-bottom:1px solid #e8e2d8;text-align:right">' + (lineTotal > 0 ? '$' + lineTotal.toFixed(2) : 'TBD') + '</td>'
+        + '</tr>';
+    });
+
+    var emailBody = '<div style="font-family:Georgia,serif;max-width:600px;margin:0 auto">'
+      + '<h2 style="color:#5a3e2b;letter-spacing:2px">THE SOURCE — Order Confirmation</h2>'
+      + '<p>Thank you for your order! Here is a summary:</p>'
+      + '<p><strong>Order ID:</strong> ' + orderId + '<br>'
+      + '<strong>Company:</strong> ' + company + '<br>'
+      + '<strong>Contact:</strong> ' + contact + '<br>'
+      + '<strong>Date:</strong> ' + Utilities.formatDate(timestamp, 'America/Los_Angeles', 'MMMM d, yyyy h:mm a') + '</p>'
+      + '<table style="width:100%;border-collapse:collapse;font-size:14px">'
+      + '<thead><tr style="background:#1a1a1a;color:#fff">'
+      + '<th style="padding:8px 12px;text-align:left">Wine</th>'
+      + '<th style="padding:8px 12px;text-align:left">Producer</th>'
+      + '<th style="padding:8px 12px;text-align:center">Qty</th>'
+      + '<th style="padding:8px 12px;text-align:right">Unit Price</th>'
+      + '<th style="padding:8px 12px;text-align:right">Total</th>'
+      + '</tr></thead><tbody>' + itemsHtml + '</tbody></table>'
+      + '<p style="text-align:right;font-size:16px;margin-top:12px"><strong>Order Total: ' + (orderTotal > 0 ? '$' + orderTotal.toFixed(2) : 'TBD') + '</strong></p>';
+
+    if (notes) {
+      emailBody += '<p><strong>Notes:</strong> ' + notes + '</p>';
+    }
+
+    emailBody += '<hr style="border:none;border-top:1px solid #e0d8cc;margin:24px 0">'
+      + '<p style="color:#888;font-size:12px">This is an automated confirmation from The Source Imports Portfolio Dashboard. '
+      + 'If you have questions, please reply to this email or contact your representative.</p></div>';
+
+    var emailSubject = 'The Source — Order Confirmation ' + orderId;
+
+    // Send to buyer
+    if (email) {
+      MailApp.sendEmail({
+        to: email,
+        subject: emailSubject,
+        htmlBody: emailBody
+      });
+    }
+
+    // Send copy to admin
+    MailApp.sendEmail({
+      to: 'remy@thesourceimports.com',
+      subject: emailSubject + ' (' + company + ')',
+      htmlBody: emailBody
+    });
+  } catch (emailErr) {
+    // Email failure should not break the order
+    Logger.log('Email send failed: ' + emailErr.message);
+  }
+
   return {
     success: true,
     order_id: orderId,
     message: 'Order ' + orderId + ' submitted successfully. ' + items.length + ' item(s).'
   };
+}
+
+/* ──────────────────────────── ORDER HISTORY ─── */
+function handleOrderHistory(body) {
+  var code = (body.code || '').trim().toUpperCase();
+  if (!code) return { success: false, error: 'Access code required.' };
+
+  var ss = SpreadsheetApp.openById(SHEET_ID);
+
+  // Verify user exists and is active
+  var usersSheet = ss.getSheetByName('Dashboard Users');
+  if (!usersSheet) return { success: false, error: 'Users tab not found.' };
+  var userData = usersSheet.getDataRange().getValues();
+  var userValid = false;
+  for (var u = 1; u < userData.length; u++) {
+    if (String(userData[u][0]).trim().toUpperCase() === code) {
+      var active = userData[u][5];
+      if (active === false || String(active).toUpperCase() === 'FALSE') {
+        return { success: false, error: 'Access code deactivated.' };
+      }
+      userValid = true;
+      break;
+    }
+  }
+  if (!userValid) return { success: false, error: 'Invalid access code.' };
+
+  var ordersSheet = ss.getSheetByName('Dashboard Orders');
+  if (!ordersSheet) return { success: true, orders: [] };
+
+  var data = ordersSheet.getDataRange().getValues();
+  // Columns: 0=Timestamp, 1=Order ID, 2=Access Code, 3=Company, 4=Contact,
+  //          5=Email, 6=SKU, 7=Wine, 8=Producer, 9=Qty, 10=Unit Price, 11=Line Total, 12=Notes
+
+  var orderMap = {};
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    if (String(row[2]).trim().toUpperCase() !== code) continue;
+
+    var orderId = String(row[1]).trim();
+    if (!orderMap[orderId]) {
+      orderMap[orderId] = {
+        order_id: orderId,
+        date: row[0] ? Utilities.formatDate(new Date(row[0]), 'America/Los_Angeles', 'yyyy-MM-dd HH:mm') : '',
+        company: String(row[3]).trim(),
+        items: [],
+        total: 0
+      };
+    }
+    var lineTotal = parseFloat(row[11]) || 0;
+    orderMap[orderId].items.push({
+      wine: String(row[7]).trim(),
+      producer: String(row[8]).trim(),
+      qty: parseFloat(row[9]) || 0,
+      price: parseFloat(row[10]) || 0,
+      line_total: lineTotal,
+      notes: String(row[12] || '').trim()
+    });
+    orderMap[orderId].total += lineTotal;
+  }
+
+  // Convert to array sorted by date descending
+  var orders = Object.keys(orderMap).map(function(k) { return orderMap[k]; });
+  orders.sort(function(a, b) { return b.date.localeCompare(a.date); });
+
+  return { success: true, orders: orders };
 }
 
 /*
@@ -600,3 +742,84 @@ function fetchProducerBios() {
   bioSheet.getRange(1, 1).setValue(result);
   Logger.log('Written to _ProducerBios tab. Copy cell A1 and save as producer-bios.json');
 }
+
+/* ──────────────────────────── COMMENTS ─── */
+function handleGetComments(body) {
+  var ss = SpreadsheetApp.openById(SHEET_ID);
+  var sheet = ss.getSheetByName('Dashboard Comments');
+  if (!sheet) return { success: true, comments: {} };
+
+  var data = sheet.getDataRange().getValues();
+  var comments = {};
+  // Columns: Timestamp | Wine Key | Wine Name | Producer | User Code | User Name | Company | Comment
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    var wineKey = String(row[1]).trim();
+    if (!wineKey) continue;
+    if (!comments[wineKey]) comments[wineKey] = [];
+    comments[wineKey].push({
+      timestamp: row[0] ? Utilities.formatDate(new Date(row[0]), 'America/Los_Angeles', 'MMM d, yyyy h:mm a') : '',
+      userCode: String(row[4]).trim(),
+      userName: String(row[5]).trim(),
+      company: String(row[6]).trim(),
+      comment: String(row[7]).trim()
+    });
+  }
+  return { success: true, comments: comments };
+}
+
+function handleAddComment(body) {
+  var code = (body.code || '').trim().toUpperCase();
+  if (!code) return { success: false, error: 'Access code required.' };
+  var comment = (body.comment || '').trim();
+  if (!comment) return { success: false, error: 'Comment cannot be empty.' };
+  var wineKey = (body.wineKey || '').trim();
+  if (!wineKey) return { success: false, error: 'Wine key required.' };
+
+  var ss = SpreadsheetApp.openById(SHEET_ID);
+
+  // Verify user
+  var usersSheet = ss.getSheetByName('Dashboard Users');
+  if (!usersSheet) return { success: false, error: 'Users tab not found.' };
+  var userData = usersSheet.getDataRange().getValues();
+  var userName = '', company = '';
+  var userValid = false;
+  for (var u = 1; u < userData.length; u++) {
+    if (String(userData[u][0]).trim().toUpperCase() === code) {
+      var active = userData[u][5];
+      if (active === false || String(active).toUpperCase() === 'FALSE') {
+        return { success: false, error: 'Access code deactivated.' };
+      }
+      userName = String(userData[u][1]).trim();
+      company = String(userData[u][2]).trim();
+      userValid = true;
+      break;
+    }
+  }
+  if (!userValid) return { success: false, error: 'Invalid access code.' };
+
+  // Get or create comments sheet
+  var sheet = ss.getSheetByName('Dashboard Comments');
+  if (!sheet) {
+    sheet = ss.insertSheet('Dashboard Comments');
+    sheet.appendRow(['Timestamp', 'Wine Key', 'Wine Name', 'Producer', 'User Code', 'User Name', 'Company', 'Comment']);
+  }
+
+  var timestamp = new Date();
+  var wineName = (body.wineName || '').trim();
+  var producer = (body.producer || '').trim();
+
+  sheet.appendRow([timestamp, wineKey, wineName, producer, code, userName, company, comment]);
+
+  return {
+    success: true,
+    comment: {
+      timestamp: Utilities.formatDate(timestamp, 'America/Los_Angeles', 'MMM d, yyyy h:mm a'),
+      userCode: code,
+      userName: userName,
+      company: company,
+      comment: comment
+    }
+  };
+}
+

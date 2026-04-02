@@ -194,6 +194,21 @@
     .wine-details { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; opacity: 0; }
     .wine-details.open { max-height: 800px; opacity: 1; }
 
+    /* Wine comments / notes */
+    .comment-badge { display: inline-flex; align-items: center; justify-content: center; background: #5a3e2b; color: #fff; font-size: 9px; font-family: sans-serif; min-width: 16px; height: 16px; border-radius: 8px; padding: 0 4px; margin-left: 4px; vertical-align: middle; }
+    .comment-item { padding: 8px 0; border-bottom: 1px solid #eee; }
+    .comment-item:last-child { border-bottom: none; }
+    .comment-meta { font-family: 'EB Garamond', serif; font-size: 10pt; color: #888; margin-bottom: 2px; }
+    .comment-time { color: #aaa; font-size: 9pt; }
+    .comment-text { font-family: 'EB Garamond', serif; font-size: 11pt; color: #333; line-height: 1.4; }
+    .comment-empty { font-family: 'EB Garamond', serif; font-size: 10.5pt; color: #aaa; font-style: italic; padding: 6px 0; }
+    .comment-form { display: flex; gap: 8px; align-items: flex-end; margin-top: 8px; }
+    .comment-input { flex: 1; font-family: 'EB Garamond', serif; font-size: 11pt; padding: 6px 8px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; min-height: 32px; background: #faf9f6; }
+    .comment-input:focus { outline: none; border-color: #5a3e2b; }
+    .comment-submit { font-family: 'EB Garamond', serif; font-size: 10.5pt; background: #5a3e2b; color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; white-space: nowrap; letter-spacing: 0.5px; }
+    .comment-submit:hover { background: #3d2a1c; }
+    .comment-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
     /* Allocation bar */
     .allocation-bar-container {
       display: flex; align-items: center; gap: 10px; margin: 6px 0;
@@ -1311,6 +1326,8 @@ var favorites = {};
 var showFavoritesOnly = false;
 var announcementsData = null;
 var announcementsLoaded = false;
+var wineComments = {};
+var commentsLoaded = false;
 
 /* ═══════════ OFFER BUILDER STATE ═══════════ */
 var offerItems = [];
@@ -1393,6 +1410,98 @@ function applyFavoritesFilter() {
     var hasVisible = false;
     allWines.forEach(function(w) { if (w.style.display !== 'none') hasVisible = true; });
     ps.style.display = hasVisible ? '' : 'none';
+  });
+}
+
+/* ═══════════ WINE COMMENTS ═══════════ */
+function loadComments() {
+  apiCall('getComments', { code: currentUser.code }, function(err, data) {
+    if (err || !data.success) return;
+    wineComments = data.comments || {};
+    commentsLoaded = true;
+    // Update badges in already-rendered cards
+    Object.keys(wineComments).forEach(function(key) {
+      var badge = document.getElementById('commentBadge-' + key);
+      if (badge) badge.textContent = wineComments[key].length;
+    });
+  });
+}
+
+function renderCommentsSection(wineKey, wineName, producer) {
+  var comments = wineComments[wineKey] || [];
+  var count = comments.length;
+  var badge = count > 0 ? ' <span class="comment-badge" id="commentBadge-' + escapeHtml(wineKey) + '">' + count + '</span>' : '<span class="comment-badge" id="commentBadge-' + escapeHtml(wineKey) + '" style="display:none"></span>';
+
+  var h = '<div class="wine-comments-section">';
+  h += '<button class="wine-toggle comment-toggle" onclick="toggleWineDetails(this)"><span class="chevron">&#9654;</span> Notes' + badge + '</button>';
+  h += '<div class="wine-details wine-comments-body" id="commentsBody-' + escapeHtml(wineKey) + '">';
+
+  if (comments.length === 0) {
+    h += '<div class="comment-empty" id="commentEmpty-' + escapeHtml(wineKey) + '">No notes yet</div>';
+  }
+  comments.forEach(function(c) {
+    h += '<div class="comment-item">';
+    h += '<div class="comment-meta">' + escapeHtml(c.userName) + ' — ' + escapeHtml(c.company) + ' <span class="comment-time">' + escapeHtml(c.timestamp) + '</span></div>';
+    h += '<div class="comment-text">' + escapeHtml(c.comment) + '</div>';
+    h += '</div>';
+  });
+
+  h += '<div class="comment-form">';
+  h += '<textarea class="comment-input" id="commentInput-' + escapeHtml(wineKey) + '" placeholder="Add a note..." rows="2"></textarea>';
+  h += '<button class="comment-submit" data-wine-key="' + escapeHtml(wineKey) + '" data-wine-name="' + escapeHtml(wineName) + '" data-producer="' + escapeHtml(producer) + '" onclick="submitComment(this)">Post</button>';
+  h += '</div>';
+
+  h += '</div></div>';
+  return h;
+}
+
+function submitComment(btn) {
+  var wineKey = btn.dataset.wineKey;
+  var wineName = btn.dataset.wineName;
+  var producer = btn.dataset.producer;
+  var input = document.getElementById('commentInput-' + wineKey);
+  var text = (input ? input.value : '').trim();
+  if (!text || !currentUser) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Posting...';
+
+  apiCall('addComment', {
+    code: currentUser.code,
+    wineKey: wineKey,
+    wineName: wineName,
+    producer: producer,
+    comment: text
+  }, function(err, data) {
+    btn.disabled = false;
+    btn.textContent = 'Post';
+    if (err || !data.success) { alert(err || data.error || 'Failed to post comment'); return; }
+
+    // Update local state
+    if (!wineComments[wineKey]) wineComments[wineKey] = [];
+    wineComments[wineKey].push(data.comment);
+    input.value = '';
+
+    // Insert new comment into DOM
+    var body = document.getElementById('commentsBody-' + wineKey);
+    if (body) {
+      var empty = document.getElementById('commentEmpty-' + wineKey);
+      if (empty) empty.remove();
+
+      var div = document.createElement('div');
+      div.className = 'comment-item';
+      div.innerHTML = '<div class="comment-meta">' + escapeHtml(data.comment.userName) + ' — ' + escapeHtml(data.comment.company) + ' <span class="comment-time">' + escapeHtml(data.comment.timestamp) + '</span></div>'
+        + '<div class="comment-text">' + escapeHtml(data.comment.comment) + '</div>';
+      var form = body.querySelector('.comment-form');
+      body.insertBefore(div, form);
+    }
+
+    // Update badge count
+    var badge = document.getElementById('commentBadge-' + wineKey);
+    if (badge) {
+      badge.textContent = wineComments[wineKey].length;
+      badge.style.display = '';
+    }
   });
 }
 
@@ -1484,6 +1593,7 @@ function doLogin(e) {
     showDashboard();
     loadAllocations(false);
     loadPortfolioData();
+    loadComments();
   });
 }
 
@@ -1516,6 +1626,8 @@ function doLogout() {
   showFavoritesOnly = false;
   announcementsData = null;
   announcementsLoaded = false;
+  wineComments = {};
+  commentsLoaded = false;
   document.getElementById('orderHistoryPanel').classList.remove('open');
   document.getElementById('cartPage').classList.remove('open');
   var obPage = document.getElementById('offerBuilderPage');
@@ -1873,6 +1985,9 @@ function renderWineEntry(wine) {
     h += '<span class="qty-label" style="color:#c0392b">Fully allocated</span>';
   }
   h += '</div>';
+
+  // Comments section
+  h += renderCommentsSection(wine.sku, displayName, wine.producer || '');
 
   h += '</div>'; // wine-entry
   return h;
@@ -3306,6 +3421,9 @@ function renderCatalogWineEntry(wine) {
   h += '<button class="add-to-cart-btn" onclick="addToCartCatalog(\'' + escapeHtml(catId) + '\')">Add</button>';
   h += '</div>';
 
+  // Comments section
+  h += renderCommentsSection(catId, displayName, wine.producer || '');
+
   h += '</div>';
   return h;
 }
@@ -3727,6 +3845,9 @@ function renderPreArrival() {
     h += '<input type="number" class="qty-input" id="qty-' + escapeHtml(catId) + '" value="1" min="1" step="1">';
     h += '<button class="add-to-cart-btn" onclick="addToCartCatalog(\'' + escapeHtml(catId) + '\')">Add</button>';
     h += '</div>';
+
+    // Comments section
+    h += renderCommentsSection(catId, displayName, wine.producer || '');
 
     h += '</div>';
     return h;
@@ -4758,6 +4879,7 @@ document.addEventListener('DOMContentLoaded', function() {
     showDashboard();
     loadAllocations(false);
     loadPortfolioData();
+    loadComments();
   }
 });
 </script>
