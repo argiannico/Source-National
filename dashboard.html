@@ -107,7 +107,7 @@
       background: #faf8f5; padding: 10px 40px; display: flex; align-items: center;
       gap: 16px; border-bottom: 1px solid #e0d8cc;
     }
-    .search-bar { flex: 1; display: flex; align-items: center; gap: 8px; position: relative; }
+    .search-bar { flex: 1; display: flex; align-items: center; gap: 8px; position: relative; z-index: 120; }
     .search-icon { position: absolute; left: 12px; pointer-events: none; }
     .search-bar input {
       width: 100%; padding: 8px 14px 8px 36px; border: 1px solid #c5b9a8; border-radius: 3px;
@@ -736,6 +736,9 @@
     }
     .fav-filter-btn:hover { color: #d4a017; border-color: #d4a017; }
     .fav-filter-btn.active { background: #d4a017; color: #fff; border-color: #d4a017; }
+
+    /* Search filtering */
+    .search-hidden { display: none !important; }
 
     /* Search autocomplete */
     .search-autocomplete {
@@ -2112,18 +2115,81 @@ function _doFilter() {
 
   if (cardSel) {
     document.querySelectorAll(cardSel).forEach(function(el) {
-      el.style.display = matches((el.dataset.search || '')) ? '' : 'none';
+      if (matches((el.dataset.search || ''))) { el.classList.remove('search-hidden'); }
+      else { el.classList.add('search-hidden'); }
     });
   }
   if (rowSel) {
     document.querySelectorAll(rowSel).forEach(function(row) {
-      row.style.display = matches((row.dataset.search || '')) ? '' : 'none';
+      if (matches((row.dataset.search || ''))) { row.classList.remove('search-hidden'); }
+      else { row.classList.add('search-hidden'); }
     });
   }
-  if (prodSel) {
+
+  // Hide all empty containers: producers, regions, countries, nav tabs
+  var containerSel = null;
+  if (view === 'catalog') containerSel = '#catalogContent';
+  else if (view === 'fullcatalog') containerSel = '#fullCatalogContent';
+  else if (view === 'prearrival') containerSel = '#preArrivalContent';
+  if (containerSel) {
+    // Producer sections
+    document.querySelectorAll(containerSel + ' .producer-section').forEach(function(sec) {
+      var hasMatch = sec.querySelector('.wine-entry:not(.search-hidden)');
+      if (hasMatch || !query) { sec.classList.remove('search-hidden'); }
+      else { sec.classList.add('search-hidden'); }
+    });
+    // Flight dividers
+    document.querySelectorAll(containerSel + ' .flight-divider').forEach(function(hr) {
+      var prev = hr.previousElementSibling;
+      if (!query) { hr.classList.remove('search-hidden'); }
+      else if (prev && prev.classList.contains('search-hidden')) { hr.classList.add('search-hidden'); }
+      else { hr.classList.remove('search-hidden'); }
+    });
+    // Region sections (full catalog / pre-arrival)
+    document.querySelectorAll(containerSel + ' .fc-region-section').forEach(function(rs) {
+      var hasMatch = rs.querySelector('.wine-entry:not(.search-hidden)');
+      if (hasMatch || !query) { rs.classList.remove('search-hidden'); }
+      else { rs.classList.add('search-hidden'); }
+    });
+    // Region nav buttons
+    document.querySelectorAll(containerSel + ' .fc-region-nav-btn').forEach(function(btn) {
+      var m = btn.getAttribute('onclick').match(/'([^']+)'/);
+      if (m) {
+        var el = document.getElementById(m[1]);
+        if (el && el.classList.contains('search-hidden')) { btn.classList.add('search-hidden'); }
+        else { btn.classList.remove('search-hidden'); }
+      }
+    });
+    // Region navs
+    document.querySelectorAll(containerSel + ' .fc-region-nav').forEach(function(nav) {
+      var hasBtn = nav.querySelector('.fc-region-nav-btn:not(.search-hidden)');
+      if (hasBtn || !query) { nav.classList.remove('search-hidden'); }
+      else { nav.classList.add('search-hidden'); }
+    });
+    // Country sections
+    var visibleCountries = {};
+    document.querySelectorAll(containerSel + ' .country-section').forEach(function(cs) {
+      var hasMatch = cs.querySelector('.wine-entry:not(.search-hidden)');
+      if (hasMatch || !query) {
+        cs.classList.remove('search-hidden');
+        var cid = (cs.id || '').replace(/^(country-|fc-country-|pa-country-)/, '');
+        visibleCountries[cid] = true;
+      } else {
+        cs.classList.add('search-hidden');
+      }
+    });
+    // Country nav tabs
+    document.querySelectorAll('#countryNav .country-tab').forEach(function(tab) {
+      var tc = slugify(tab.dataset.country || '');
+      if (visibleCountries[tc] || !query) { tab.classList.remove('search-hidden'); }
+      else { tab.classList.add('search-hidden'); }
+    });
+  }
+  if (prodSel && !containerSel) {
     document.querySelectorAll(prodSel).forEach(function(sec) {
-      var visible = sec.querySelectorAll('.wine-entry:not([style*="display: none"])');
-      sec.style.display = visible.length > 0 || !query ? '' : 'none';
+      var hasMatch = sec.querySelector('.wine-entry:not(.search-hidden)');
+      if (hasMatch || !query) { sec.classList.remove('search-hidden'); }
+      else { sec.classList.add('search-hidden'); }
     });
   }
 }
